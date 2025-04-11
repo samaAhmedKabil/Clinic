@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.clinic.ui.splash.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_roleSelectionFragment"
+            app:destination="@id/roleSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/roleSelectionFragment"
+        android:name="com.example.clinic.ui.auth.RoleSelectionFragment"
+        android:label="RoleSelectionFragment" >
+        <action
+            android:id="@+id/action_roleSelectionFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_roleSelectionFragment_to_loginFragment2"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.clinic.ui.auth.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="userType"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_loginFragment_to_doctorHomeFragment"
+            app:destination="@id/doctorHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.clinic.ui.auth.register.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="userType"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_registerFragment_to_doctorHomeFragment"
+            app:destination="@id/doctorHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.clinic.ui.patient.Home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_slotSelectionFragment"
+            app:destination="@id/slotSelectionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookedAppointmentsFragment"
+            app:destination="@id/bookedAppointmentsFragment" />
+        <argument
+            android:name="userName"
+            app:argType="string"
+            android:defaultValue="Unknown"/>
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/slotSelectionFragment"
+        android:name="com.example.clinic.ui.patient.booking.SlotSelectionFragment"
+        android:label="SlotSelectionFragment" >
+        <action
+            android:id="@+id/action_slotSelectionFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookedAppointmentsFragment"
+        android:name="com.example.clinic.ui.patient.booking.BookedAppointmentsFragment"
+        android:label="BookedAppointmentsFragment" />
+    <fragment
+        android:id="@+id/doctorHomeFragment"
+        android:name="com.example.clinic.ui.doctor.Home.DoctorHomeFragment"
+        android:label="DoctorHomeFragment" >
+        <action
+            android:id="@+id/action_doctorHomeFragment_to_allCasesFragment"
+            app:destination="@id/allCasesFragment" />
+        <action
+            android:id="@+id/action_doctorHomeFragment_to_allBookingsFragment"
+            app:destination="@id/allBookingsFragment" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_doctorHomeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allCasesFragment"
+        android:name="com.example.clinic.ui.doctor.cases.AllCasesFragment"
+        android:label="AllCasesFragment" >
+        <action
+            android:id="@+id/action_allCasesFragment_to_caseDetailsFragment"
+            app:destination="@id/caseDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allBookingsFragment"
+        android:name="com.example.clinic.ui.doctor.bookings.AllBookingsFragment"
+        android:label="AllBookingsFragment" />
+    <fragment
+        android:id="@+id/caseDetailsFragment"
+        android:name="com.example.clinic.ui.doctor.cases.CaseDetailsFragment"
+        android:label="CaseDetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.clinic.settings.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_roleSelectionFragment"
+            app:destination="@id/roleSelectionFragment" />
+    </fragment>
+</navigation>

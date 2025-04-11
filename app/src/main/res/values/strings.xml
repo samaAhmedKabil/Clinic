@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Clinic</string>
+    <string name="loading">Loading...</string>
+    <string name="continue_as_doctor">   Continue as Doctor</string>
+    <string name="continue_as_patient">  Continue as Patient</string>
+    <string name="noUserTypeSelected">No User Type Selected</string>
+    <string name="required">required</string>
+    <string name="wrong_email">Wrong Email</string>
+    <string name="have_account">Don\'t have an account ?</string>
+    <string name="register">Register Now</string>
+    <string name="forget_password">Forget Password ?</string>
+    <string name="remember_me">Remember me</string>
+    <string name="setting">Settings</string>
+    <string name="intro">Ehab Kabil Clinic </string>
+</resources>
