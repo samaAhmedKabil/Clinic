@@ -1,4 +1,4 @@
-package com.example.clinic.settings
+package com.example.clinic.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
