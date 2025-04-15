@@ -12,4 +12,14 @@
     <string name="remember_me">Remember me</string>
     <string name="setting">Settings</string>
     <string name="intro">Ehab Kabil Clinic </string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="selected_date">Selected Date: ---</string>
+    <string name="pick_a_date">Pick a Date</string>
+    <string name="your_appointments">Your Appointments</string>
+    <string name="welcome_back">Welcome Back !!</string>
+    <string name="to_continue_login_now">To continue , Login Now</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>
