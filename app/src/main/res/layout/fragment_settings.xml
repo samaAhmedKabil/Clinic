@@ -76,8 +76,8 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/my_profile"
         app:layout_constraintBottom_toBottomOf="@id/my_profile"
@@ -117,8 +117,8 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/logout"
         app:layout_constraintBottom_toBottomOf="@id/logout"
@@ -158,8 +158,8 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/change_password"
         app:layout_constraintBottom_toBottomOf="@id/change_password"
@@ -199,8 +199,8 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/about_us"
         app:layout_constraintBottom_toBottomOf="@id/about_us"
@@ -240,8 +240,8 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/language"
         app:layout_constraintBottom_toBottomOf="@id/language"
