@@ -22,4 +22,22 @@
     <string name="e_mail">E-mail</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="get_started">Get Started</string>
+    <string name="skip">Skip</string>
+    <string name="onboarding_intro">Consultant and Head of the Department of Obstetrics, \n Gynecology and Infertility at the Armed Forces Hospitals</string>
+    <string name="dr_ehab_kabil">Dr. Ehab Kabil</string>
+    <string name="easy_appointments">Easy Appointments</string>
+    <string name="how_to_book">Making clinic visits easier than ever. \n Quickly find and book your next appointment without \n the hassle. Our intuitive system lets you schedule, confirm, \n and manage your appointments in just a few simple steps.</string>
+    <string name="my_profile">My Profile</string>
+    <string name="logout">Logout</string>
+    <string name="change_password">Change Password</string>
+    <string name="about_us">About Us</string>
+    <string name="language">Language</string>
+    <string name="cases">Cases</string>
+    <string name="case_details">Case Details</string>
+    <string name="patient_name">Patient Name :</string>
+    <string name="age">Age :</string>
+    <string name="phone_number">Phone Number :</string>
+    <string name="email">Email :</string>
+    <string name="address">Address :</string>
 </resources>

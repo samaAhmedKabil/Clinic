@@ -31,22 +31,31 @@
         android:layout_height="wrap_content"
         android:text="@string/pick_a_date"
         android:textStyle="bold|italic"
-        android:textSize="25sp"
+        android:textSize="22sp"
+        android:fontFamily="@font/poppins_black"
         app:layout_constraintBottom_toBottomOf="@id/arrowBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/arrowBack"
         app:layout_constraintTop_toTopOf="@id/arrowBack" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/thin_line"
+        app:layout_constraintTop_toBottomOf="@id/newUser"
+        android:layout_marginHorizontal="30dp"/>
+
+    <TextView
         android:id="@+id/tv_selected_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         android:background="@drawable/text_box"
         android:paddingHorizontal="10dp"
         android:paddingVertical="9dp"
         android:text="@string/selected_date"
+        android:fontFamily="@font/rubik_variable_font_wight"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

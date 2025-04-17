@@ -18,6 +18,14 @@
         app:layout_constraintVertical_bias="0.095" />
 
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pink_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
     <TextView
         android:id="@+id/Continue_patient"
         android:layout_width="wrap_content"
