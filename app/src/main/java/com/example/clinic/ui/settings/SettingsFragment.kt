@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
 import com.example.clinic.databinding.FragmentSettingsBinding
+import com.example.clinic.ui.auth.logout.LogoutDialog
 import com.example.clinic.utils.SharedPrefManager
 import com.google.firebase.auth.FirebaseAuth
 
@@ -35,13 +36,8 @@ class SettingsFragment: Fragment() {
     }
     private fun logoutClick(){
         binding.logout.setOnClickListener {
-            val sharedPrefManager = SharedPrefManager(requireContext())
-            sharedPrefManager.clearPrefs()
-
-            // 2. Sign out from FirebaseAuth if you're using it
-            FirebaseAuth.getInstance().signOut()
-
-            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToRoleSelectionFragment())
+            val bottomSheetFragment = LogoutDialog()
+            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
         }
     }
     private fun myProfileClick(){

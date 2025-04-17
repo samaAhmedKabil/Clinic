@@ -40,4 +40,6 @@
     <string name="phone_number">Phone Number :</string>
     <string name="email">Email :</string>
     <string name="address">Address :</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout ?</string>
+    <string name="ok">OK</string>
 </resources>
