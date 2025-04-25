@@ -73,12 +73,12 @@ class BookedAppointmentsFragment: Fragment() {
     }
 
     private fun deleteBooking(bookingId: String) {
-        database.child(bookingId).removeValue().addOnSuccessListener {
+        val dialog = ConfirmCancelingDialog()
+        dialog.bookingId = bookingId
+        dialog.setOnDeleteConfirmedListener {
             bookingAdapter.removeItem(bookingId)
-            Toast.makeText(requireContext(), "Booking deleted successfully", Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener {
-            Toast.makeText(requireContext(), "Failed to delete booking", Toast.LENGTH_SHORT).show()
         }
+        dialog.show(parentFragmentManager, "ConfirmDialog")
     }
 
     override fun onDestroyView() {

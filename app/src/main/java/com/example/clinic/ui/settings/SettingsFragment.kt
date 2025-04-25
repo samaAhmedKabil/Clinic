@@ -41,6 +41,8 @@ class SettingsFragment: Fragment() {
         }
     }
     private fun myProfileClick(){
-        //
+        binding.myProfile.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToMyProfileFragment())
+        }
     }
 }
