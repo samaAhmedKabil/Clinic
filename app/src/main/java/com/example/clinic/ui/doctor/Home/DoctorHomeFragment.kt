@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
 import com.example.clinic.databinding.FragmentDoctorHomeBinding
+import com.example.clinic.utils.MyFirebaseMessagingService
 import com.example.clinic.utils.SharedPrefManager
 
 class DoctorHomeFragment :Fragment() {
@@ -27,11 +28,15 @@ class DoctorHomeFragment :Fragment() {
         val sharedPrefManager = SharedPrefManager(requireContext())
         userName = sharedPrefManager.getUserName()
         binding.type.text = userName
+
         binding.blue.setOnClickListener {
             findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToAllCasesFragment())
         }
         binding.purple.setOnClickListener {
             findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToAllBookingsFragment())
+        }
+        binding.settings.setOnClickListener {
+            findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToSettingsFragment())
         }
     }
 

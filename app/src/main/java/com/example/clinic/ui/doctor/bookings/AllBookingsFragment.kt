@@ -1,6 +1,65 @@
 package com.example.clinic.ui.doctor.bookings
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.clinic.R
+import com.example.clinic.adapters.DoctorBookingAdapter
+import com.example.clinic.databinding.FragmentDoctorBookingsBinding
+import com.example.clinic.repos.PatientRepo
+import com.example.clinic.ui.doctor.viewModel.DoctorViewModel
+import kotlin.getValue
 
 class AllBookingsFragment : Fragment() {
+    private var _binding: FragmentDoctorBookingsBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel: DoctorViewModel by viewModels { DoctorViewModel.Factory(PatientRepo()) }
+    private lateinit var bookingAdapter: DoctorBookingAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_doctor_bookings , container , false)
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentDoctorBookingsBinding.bind(view)
+        viewModel.fetchAllBookings()
+        backArrowClick()
+        init()
+        fetchAllBookings()
+    }
+
+    private fun backArrowClick(){
+        binding.arrowBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun init(){
+        bookingAdapter = DoctorBookingAdapter(mutableListOf())
+        binding.bookedSlots.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = bookingAdapter
+        }
+    }
+
+    private fun fetchAllBookings() {
+        viewModel.bookingsList.observe(viewLifecycleOwner) { bookings ->
+            bookingAdapter.updateBookings(bookings)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            if (error.isNotEmpty()) {
+                android.widget.Toast.makeText(context, error, android.widget.Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 }

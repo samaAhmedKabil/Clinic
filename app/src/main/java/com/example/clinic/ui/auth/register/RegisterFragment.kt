@@ -14,6 +14,7 @@ import com.example.clinic.utils.ConstData
 import com.example.clinic.R
 import com.example.clinic.databinding.FragmentRegisterBinding
 import com.example.clinic.ui.auth.viewModel.AuthViewModel
+import com.example.clinic.utils.SharedPrefManager
 
 
 class RegisterFragment: Fragment() {
@@ -83,14 +84,17 @@ class RegisterFragment: Fragment() {
             binding.email.error = getString(R.string.wrong_email)
         }
         else{
+            val fullName = "$fName $lName"
+            val sharedPrefManager = SharedPrefManager(requireContext())
+            sharedPrefManager.saveUserName(fullName)
             authViewModel.register(email, password, userType, fName, lName, age.toInt(), phone, address) { success ->
                 if (success) {
                     Toast.makeText(context, "Register Successful", Toast.LENGTH_SHORT).show()
                     if(userType == ConstData.DOCTOR_TYPE){
-                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToDoctorHomeFragment("$fName $lName"))
+                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToDoctorHomeFragment(fullName))
                     }
                     if(userType == ConstData.PATIENT_TYPE){
-                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment("$fName $lName"))
+                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(fullName))
                     }
                 } else {
                     Toast.makeText(context, "Register Failed", Toast.LENGTH_SHORT).show()

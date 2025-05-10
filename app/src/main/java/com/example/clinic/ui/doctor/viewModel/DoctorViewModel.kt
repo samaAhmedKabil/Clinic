@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.clinic.data.DoctorBooking
 import com.example.clinic.data.Patient
 import com.example.clinic.repos.PatientRepo
 
@@ -36,6 +37,20 @@ class DoctorViewModel(private val repo: PatientRepo) : ViewModel() {
             },
             onFailure = {
                 _patient.postValue(null)
+            }
+        )
+    }
+
+    private val _bookingsList = MutableLiveData<List<DoctorBooking>>()
+    val bookingsList: LiveData<List<DoctorBooking>> get() = _bookingsList
+
+    fun fetchAllBookings() {
+        repo.getAllBookings(
+            onResult = { bookings ->
+                _bookingsList.value = bookings
+            },
+            onFailure = { error ->
+                _errorMessage.value = "Error fetching bookings: $error"
             }
         )
     }

@@ -52,7 +52,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
     implementation ("com.google.firebase:firebase-auth-ktx")
     implementation ("com.google.firebase:firebase-database-ktx")          // Firebase Auth
-    //implementation ("com.google.firebase:firebase-messaging-ktx") */      // FCM
+    implementation ("com.google.firebase:firebase-messaging-ktx")    // FCM
 
     val nav_version = "2.6.0"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")

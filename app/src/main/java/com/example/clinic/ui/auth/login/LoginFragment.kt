@@ -19,19 +19,21 @@ import com.example.clinic.utils.SharedPrefManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class LoginFragment: Fragment() {
-    private var _binding: FragmentLoginBinding?= null
+class LoginFragment : Fragment() {
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val authViewModel: AuthViewModel by viewModels()
     private lateinit var sharedPrefManager: SharedPrefManager
     private var userType: String = ""
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login , container , false)
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLoginBinding.bind(view)
@@ -43,17 +45,21 @@ class LoginFragment: Fragment() {
         rememberClick()
         checkRememberedState()
     }
-    private fun loginClick(){
-        binding.btnLogin.setOnClickListener{
+
+    private fun loginClick() {
+        binding.btnLogin.setOnClickListener {
             validate()
         }
     }
-    private fun registerClick(){
-        binding.register.setOnClickListener{
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment(
-                ConstData.userType))
+
+    private fun registerClick() {
+        binding.register.setOnClickListener {
+            findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToRegisterFragment(ConstData.userType)
+            )
         }
     }
+
     private fun rememberClick() {
         binding.rememberMe.setOnClickListener {
             val isChecked = binding.rememberMe.isChecked
@@ -76,11 +82,27 @@ class LoginFragment: Fragment() {
 
             val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser != null) {
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                // Fetch the user name from Firebase for remembered state
+                val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.uid)
+                userRef.get().addOnSuccessListener { snapshot ->
+                    val fName = snapshot.child("fname").getValue(String::class.java) ?: "Unknown"
+                    sharedPrefManager.saveUserName(fName)
+                    val savedName = sharedPrefManager.getUserName()
+                    if (userType == ConstData.DOCTOR_TYPE) {
+                        findNavController().navigate(
+                            LoginFragmentDirections.actionLoginFragmentToDoctorHomeFragment(savedName)
+                        )
+                    } else if (userType == ConstData.PATIENT_TYPE) {
+                        findNavController().navigate(
+                            LoginFragmentDirections.actionLoginFragmentToHomeFragment(savedName)
+                        )
+                    }
+                }
             }
         }
     }
-    private fun showPassword(){
+
+    private fun showPassword() {
         binding.showPass.setOnClickListener {
             if (binding.editText2.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
                 binding.editText2.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
@@ -89,6 +111,7 @@ class LoginFragment: Fragment() {
             }
         }
     }
+
     private fun validate() {
         val email = binding.editText.text.toString().trim()
         val password = binding.editText2.text.toString().trim()
@@ -112,26 +135,30 @@ class LoginFragment: Fragment() {
                         userRef.get().addOnSuccessListener { snapshot ->
                             val fName = snapshot.child("fname").getValue(String::class.java) ?: "Unknown"
                             sharedPrefManager.saveUserName(fName)
+                            // Retrieve the saved name from SharedPreferences
+                            val savedName = sharedPrefManager.getUserName()
                             if (userType == ConstData.DOCTOR_TYPE) {
-                                val action = LoginFragmentDirections.actionLoginFragmentToDoctorHomeFragment(fName)
-                                findNavController().navigate(action)
+                                findNavController().navigate(
+                                    LoginFragmentDirections.actionLoginFragmentToDoctorHomeFragment(savedName)
+                                )
                             } else if (userType == ConstData.PATIENT_TYPE) {
-                                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment(fName))
+                                findNavController().navigate(
+                                    LoginFragmentDirections.actionLoginFragmentToHomeFragment(savedName)
+                                )
                             }
                         }.addOnFailureListener {
-                            Toast.makeText(context, "Failed to fetch user info", Toast.LENGTH_SHORT)
-                                .show()
+                            Toast.makeText(context, "Failed to fetch user info", Toast.LENGTH_SHORT).show()
                         }
                     }
-
                 } else {
                     Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-        override fun onDestroyView() {
-            super.onDestroyView()
-            _binding = null
-        }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
