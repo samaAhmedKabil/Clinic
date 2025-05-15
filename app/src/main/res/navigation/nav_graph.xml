@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_splashFragment_to_roleSelectionFragment"
             app:destination="@id/roleSelectionFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingOne"
+            app:destination="@id/onBoardingOne" />
     </fragment>
     <fragment
         android:id="@+id/roleSelectionFragment"
@@ -136,4 +139,16 @@
         android:id="@+id/myProfileFragment"
         android:name="com.example.clinic.ui.myProfile.MyProfileFragment"
         android:label="MyProfileFragment" />
+    <fragment
+        android:id="@+id/onBoardingOne"
+        android:name="com.example.clinic.ui.onBoarding.OnBoardingOne"
+        android:label="OnBoardingOne" >
+        <action
+            android:id="@+id/action_onBoardingOne_to_onBoardingTwo"
+            app:destination="@id/onBoardingTwo" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingTwo"
+        android:name="com.example.clinic.ui.onBoarding.OnBoardingTwo"
+        android:label="OnBoardingTwo" />
 </navigation>
