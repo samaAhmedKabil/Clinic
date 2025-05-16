@@ -1,4 +1,4 @@
-package com.example.clinic.ui.patient.booking
+package com.example.clinic.ui.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater

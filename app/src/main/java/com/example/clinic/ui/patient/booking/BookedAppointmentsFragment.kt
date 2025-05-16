@@ -12,6 +12,7 @@ import com.example.clinic.R
 import com.example.clinic.adapters.BookingAdapter
 import com.example.clinic.data.Booking
 import com.example.clinic.databinding.FragmentBookedAppointmentsBinding
+import com.example.clinic.ui.dialogs.ConfirmCancelingDialog
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

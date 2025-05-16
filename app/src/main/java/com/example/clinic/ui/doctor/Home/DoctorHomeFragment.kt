@@ -4,10 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
 import com.example.clinic.databinding.FragmentDoctorHomeBinding
+import com.example.clinic.ui.dialogs.ConfirmCancelingDialog
+import com.example.clinic.ui.dialogs.ConfirmQuitDialog
 import com.example.clinic.utils.MyFirebaseMessagingService
 import com.example.clinic.utils.SharedPrefManager
 
@@ -29,6 +35,8 @@ class DoctorHomeFragment :Fragment() {
         userName = sharedPrefManager.getUserName()
         binding.type.text = userName
 
+        onBackPressed()
+
         binding.blue.setOnClickListener {
             findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToAllCasesFragment())
         }
@@ -38,6 +46,15 @@ class DoctorHomeFragment :Fragment() {
         binding.settings.setOnClickListener {
             findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToSettingsFragment())
         }
+    }
+
+    private fun onBackPressed(){
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner , object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                val dialog = ConfirmQuitDialog()
+                dialog.show(parentFragmentManager, "ConfirmDialog")
+            }
+        })
     }
 
     override fun onDestroyView() {
