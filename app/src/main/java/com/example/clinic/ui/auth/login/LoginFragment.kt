@@ -1,5 +1,6 @@
 package com.example.clinic.ui.auth.login
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
@@ -141,6 +142,8 @@ class LoginFragment : Fragment() {
                                 findNavController().navigate(
                                     LoginFragmentDirections.actionLoginFragmentToDoctorHomeFragment(savedName)
                                 )
+                                val prefs = context?.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+                                prefs?.edit()?.putString("role", "Doctor")?.apply()
                             } else if (userType == ConstData.PATIENT_TYPE) {
                                 findNavController().navigate(
                                     LoginFragmentDirections.actionLoginFragmentToHomeFragment(savedName)

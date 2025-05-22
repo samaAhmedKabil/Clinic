@@ -1,17 +1,20 @@
 package com.example.clinic.ui.patient.booking
 
-import com.example.clinic.adapters.SlotsAdapter
 import android.os.Bundle
 import android.os.Parcel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.clinic.R
 import com.example.clinic.repos.BookingRepo
+import com.example.clinic.adapters.SlotsAdapter
 import com.example.clinic.databinding.FragmentCalenderBinding
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -20,7 +23,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class SlotSelectionFragment: Fragment() {
+class SlotSelectionFragment : Fragment() {
     private var _binding: FragmentCalenderBinding? = null
     private val binding get() = _binding!!
 
@@ -47,9 +50,11 @@ class SlotSelectionFragment: Fragment() {
         setupDatePicker()
         setupButtonListeners()
         backArrowClick()
+
+        binding.rvSlots.visibility = View.GONE
     }
 
-    private fun backArrowClick(){
+    private fun backArrowClick() {
         binding.arrowBack.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -70,6 +75,9 @@ class SlotSelectionFragment: Fragment() {
         binding.rvSlots.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = slotAdapter
+            // Apply layout animation
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_slide_in)
+            setPadding(8, 8, 8, 8)
         }
     }
 
@@ -106,8 +114,26 @@ class SlotSelectionFragment: Fragment() {
                     binding.tvSelectedDate.text = "Selected Date: $formattedDate"
                     // Fetch available slots after setting the date
                     viewModel.loadAvailableSlots(formattedDate)
+                    // Show RecyclerView with slide-down animation
+                    showRecyclerViewWithAnimation()
                 }
             }
+        }
+    }
+
+    private fun showRecyclerViewWithAnimation() {
+        if (binding.rvSlots.visibility != View.VISIBLE) {
+            binding.rvSlots.visibility = View.VISIBLE
+            val slideDown = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down)
+            slideDown.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {}
+                override fun onAnimationEnd(animation: Animation?) {
+                    binding.rvSlots.visibility = View.VISIBLE
+                    // Schedule layout animation after RecyclerView slide-down
+                    binding.rvSlots.scheduleLayoutAnimation()
+                }
+                override fun onAnimationRepeat(animation: Animation?) {}
+            })
         }
     }
 
@@ -139,13 +165,13 @@ class SlotSelectionFragment: Fragment() {
 
         viewModel.availableSlots.observe(viewLifecycleOwner) { availableSlots ->
             slotAdapter.updateSlots(availableSlots)
+            // Re-trigger layout animation when slots are updated
+            binding.rvSlots.scheduleLayoutAnimation()
         }
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

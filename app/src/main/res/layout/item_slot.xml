@@ -7,7 +7,7 @@
     android:id="@+id/card_slot"
     android:background="@drawable/text_box"
     app:cardCornerRadius="8dp"
-    app:cardElevation="20dp">
+    app:cardElevation="14dp">
 
     <TextView
         android:id="@+id/tv_slot"
