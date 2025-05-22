@@ -123,6 +123,7 @@ class SlotSelectionFragment : Fragment() {
 
     private fun showRecyclerViewWithAnimation() {
         if (binding.rvSlots.visibility != View.VISIBLE) {
+            binding.selectFirst.visibility = View.GONE
             binding.rvSlots.visibility = View.VISIBLE
             val slideDown = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down)
             slideDown.setAnimationListener(object : Animation.AnimationListener {

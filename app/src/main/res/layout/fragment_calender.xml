@@ -73,6 +73,19 @@
         app:layout_constraintBottom_toBottomOf="@id/tv_selected_date"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/select_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_a_date_to_show_the_available_slots"
+        app:layout_constraintTop_toBottomOf="@id/btn_open_date_picker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_confirm"
+        android:textColor="@color/default_pink"
+        android:textStyle="bold|italic"
+        android:textSize="15sp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_slots"
         android:layout_width="match_parent"
