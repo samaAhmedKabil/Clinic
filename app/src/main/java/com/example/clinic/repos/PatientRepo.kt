@@ -129,4 +129,65 @@ class PatientRepo {
             }
         })
     }
+
+    fun getBookingsByDate(
+        date: String,
+        onResult: (List<DoctorBooking>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        bookingsDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val bookings = mutableListOf<DoctorBooking>()
+                val matchingBookings = snapshot.children.filter {
+                    it.child("date").getValue(String::class.java) == date
+                }
+
+                if (matchingBookings.isEmpty()) {
+                    onResult(emptyList())
+                    return
+                }
+
+                var processedCount = 0
+                val totalCount = matchingBookings.size
+
+                for (bookingSnapshot in matchingBookings) {
+                    val bookingId = bookingSnapshot.key ?: continue
+                    val patientId = bookingSnapshot.child("patientId").getValue(String::class.java) ?: continue
+                    val slot = bookingSnapshot.child("timeSlot").getValue(String::class.java) ?: ""
+
+                    database.child(patientId).get()
+                        .addOnSuccessListener { userSnapshot ->
+                            val fName = userSnapshot.child("fname").getValue(String::class.java) ?: ""
+                            val lName = userSnapshot.child("lname").getValue(String::class.java) ?: ""
+                            val phone = userSnapshot.child("phone").getValue(String::class.java) ?: ""
+
+                            val booking = DoctorBooking(
+                                bookingId = bookingId,
+                                patientName = "$fName $lName",
+                                patientPhone = phone,
+                                date = date,
+                                slot = slot
+                            )
+                            bookings.add(booking)
+                            processedCount++
+                            if (processedCount == totalCount) {
+                                onResult(bookings)
+                            }
+                        }
+                        .addOnFailureListener {
+                            processedCount++
+                            if (processedCount == totalCount) {
+                                onResult(bookings)
+                            }
+                        }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                onFailure(error.message)
+            }
+        })
+    }
+
+
 }

@@ -55,6 +55,18 @@ class DoctorViewModel(private val repo: PatientRepo) : ViewModel() {
         )
     }
 
+    fun fetchBookingsByDate(date: String) {
+        repo.getBookingsByDate(
+            date = date,
+            onResult = { bookings ->
+                _bookingsList.value = bookings
+            },
+            onFailure = { error ->
+                _errorMessage.value = "Error fetching bookings: $error"
+            }
+        )
+    }
+
     class Factory(private val repo: PatientRepo) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -1,5 +1,6 @@
 package com.example.clinic.ui.doctor.bookings
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,10 @@ import com.example.clinic.adapters.DoctorBookingAdapter
 import com.example.clinic.databinding.FragmentDoctorBookingsBinding
 import com.example.clinic.repos.PatientRepo
 import com.example.clinic.ui.doctor.viewModel.DoctorViewModel
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import kotlin.getValue
 
 class AllBookingsFragment : Fragment() {
@@ -31,10 +36,13 @@ class AllBookingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentDoctorBookingsBinding.bind(view)
-        viewModel.fetchAllBookings()
+        //viewModel.fetchAllBookings()
         backArrowClick()
         init()
-        fetchAllBookings()
+        fetchBookingsByToday()
+        calendarClick()
+        setupObservers()
+        //fetchAllBookings()
     }
 
     private fun backArrowClick(){
@@ -51,7 +59,41 @@ class AllBookingsFragment : Fragment() {
         }
     }
 
-    private fun fetchAllBookings() {
+    /*private fun fetchAllBookings() {
+        viewModel.bookingsList.observe(viewLifecycleOwner) { bookings ->
+            bookingAdapter.updateBookings(bookings)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            if (error.isNotEmpty()) {
+                android.widget.Toast.makeText(context, error, android.widget.Toast.LENGTH_SHORT).show()
+            }
+        }
+    }*/
+
+    private fun fetchBookingsByToday() {
+        val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        viewModel.fetchBookingsByDate(today)
+    }
+
+    private fun calendarClick() {
+        binding.calender.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val datePicker = DatePickerDialog(
+                requireContext(),
+                { _, year, month, dayOfMonth ->
+                    val selectedDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth)
+                    viewModel.fetchBookingsByDate(selectedDate)
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+            datePicker.show()
+        }
+    }
+
+    private fun setupObservers() {
         viewModel.bookingsList.observe(viewLifecycleOwner) { bookings ->
             bookingAdapter.updateBookings(bookings)
         }

@@ -14,7 +14,6 @@ import com.example.clinic.R
 import com.example.clinic.databinding.FragmentDoctorHomeBinding
 import com.example.clinic.ui.dialogs.ConfirmCancelingDialog
 import com.example.clinic.ui.dialogs.ConfirmQuitDialog
-import com.example.clinic.utils.MyFirebaseMessagingService
 import com.example.clinic.utils.SharedPrefManager
 
 class DoctorHomeFragment :Fragment() {

@@ -1,5 +1,6 @@
 package com.example.clinic.ui.patient.booking
 
+import SlotsAdapter
 import android.os.Bundle
 import android.os.Parcel
 import android.view.LayoutInflater
@@ -9,12 +10,12 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clinic.R
 import com.example.clinic.repos.BookingRepo
-import com.example.clinic.adapters.SlotsAdapter
 import com.example.clinic.databinding.FragmentCalenderBinding
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -29,6 +30,9 @@ class SlotSelectionFragment : Fragment() {
 
     private lateinit var viewModel: BookingViewModel
     private lateinit var slotAdapter: SlotsAdapter
+
+    lateinit var timeSlots: List<String>
+    var takenSlots: MutableList<String> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +65,7 @@ class SlotSelectionFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val timeSlots = listOf(
+        timeSlots = listOf(
             "6:00 PM", "6:10 PM", "6:20 PM", "6:30 PM", "6:40 PM", "6:50 PM",
             "7:00 PM", "7:10 PM", "7:20 PM", "7:30 PM", "7:40 PM", "7:50 PM",
             "8:00 PM", "8:10 PM", "8:20 PM", "8:30 PM", "8:40 PM", "8:50 PM",
@@ -165,8 +169,13 @@ class SlotSelectionFragment : Fragment() {
         }
 
         viewModel.availableSlots.observe(viewLifecycleOwner) { availableSlots ->
-            slotAdapter.updateSlots(availableSlots)
-            // Re-trigger layout animation when slots are updated
+            val takenSlots = viewModel.bookedSlots.value ?: emptyList()
+            slotAdapter.updateSlots(timeSlots, takenSlots) // << Use original order
+            binding.rvSlots.scheduleLayoutAnimation()
+        }
+
+        viewModel.bookedSlots.observe(viewLifecycleOwner) { takenSlots ->
+            slotAdapter.updateSlots(timeSlots, takenSlots) // << Use original order
             binding.rvSlots.scheduleLayoutAnimation()
         }
     }

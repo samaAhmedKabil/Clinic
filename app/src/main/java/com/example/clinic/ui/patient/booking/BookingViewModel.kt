@@ -79,8 +79,12 @@ class BookingViewModel(private val repo: BookingRepo):ViewModel() {
         "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM", "10:00 PM"
     )
 
+    private val _bookedSlots = MutableLiveData<List<String>>()
+    val bookedSlots: LiveData<List<String>> get() = _bookedSlots
+
     fun loadAvailableSlots(date: String) {
         repo.getBookedSlotsForDate(date) { bookedSlots ->
+            _bookedSlots.postValue(bookedSlots)  // save booked slots
             val filteredSlots = allSlots.filter { it !in bookedSlots }
             _availableSlots.postValue(filteredSlots)
         }

@@ -1,15 +1,17 @@
-package com.example.clinic.adapters
-
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clinic.R
 
-class SlotsAdapter(private var slots: List<String>, private val onSlotSelected: (String) -> Unit) : RecyclerView.Adapter<SlotsAdapter.SlotViewHolder>() {
+class SlotsAdapter(
+    private var slots: List<String>,
+    private var takenSlots: List<String> = emptyList(),
+    private val onSlotSelected: (String) -> Unit
+) : RecyclerView.Adapter<SlotsAdapter.SlotViewHolder>() {
 
     private var selectedPosition: Int = RecyclerView.NO_POSITION
 
@@ -27,21 +29,42 @@ class SlotsAdapter(private var slots: List<String>, private val onSlotSelected: 
         val slot = slots[position]
         holder.tvSlot.text = slot
 
-        if (selectedPosition == position) {
+        val isTaken = takenSlots.contains(slot)
+
+        // Set visual appearance for taken/free slots
+        if (isTaken) {
+            // Taken slot appearance (gray background, gray text)
             holder.cardSlot.setCardBackgroundColor(Color.parseColor("#D8D8D8"))
+            holder.tvSlot.setTextColor(Color.DKGRAY)
         } else {
-            holder.cardSlot.setCardBackgroundColor(Color.WHITE)
+            // Free slot appearance
+            if (selectedPosition == position) {
+                holder.cardSlot.setCardBackgroundColor(Color.parseColor("#FFE6F1"))
+                holder.tvSlot.setTextColor(Color.BLACK)
+            } else {
+                holder.cardSlot.setCardBackgroundColor(Color.WHITE)
+                holder.tvSlot.setTextColor(Color.BLACK)
+            }
         }
 
+        // Enable click only if slot is free
+        holder.itemView.isEnabled = !isTaken
+
         holder.itemView.setOnClickListener {
+            if (isTaken) return@setOnClickListener  // ignore clicks on taken slots
+
+            val previousPosition = selectedPosition
             selectedPosition = holder.adapterPosition
+            notifyItemChanged(previousPosition)
+            notifyItemChanged(selectedPosition)
+
             onSlotSelected(slot)
-            notifyDataSetChanged()
         }
     }
 
-    fun updateSlots(newSlots: List<String>) {
+    fun updateSlots(newSlots: List<String>, newTakenSlots: List<String> = emptyList()) {
         this.slots = newSlots
+        this.takenSlots = newTakenSlots
         selectedPosition = RecyclerView.NO_POSITION
         notifyDataSetChanged()
     }
