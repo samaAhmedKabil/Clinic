@@ -8,11 +8,9 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
-import com.example.clinic.databinding.FragmentHomeBinding
 import com.example.clinic.databinding.FragmentPatientHome2Binding
 import com.example.clinic.ui.dialogs.ConfirmQuitDialog
 import com.example.clinic.utils.SharedPrefManager
-import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment:Fragment() {
     private var _binding: FragmentPatientHome2Binding? = null
