@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
 import com.example.clinic.databinding.FragmentHomeBinding
+import com.example.clinic.databinding.FragmentPatientHome2Binding
 import com.example.clinic.ui.dialogs.ConfirmQuitDialog
 import com.example.clinic.utils.SharedPrefManager
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment:Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentPatientHome2Binding? = null
     private val binding get() = _binding!!
     private var userName: String = ""
     override fun onCreateView(
@@ -22,25 +23,25 @@ class HomeFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home , container , false)
+        return inflater.inflate(R.layout.fragment_patient_home_2 , container , false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentHomeBinding.bind(view)
+        _binding = FragmentPatientHome2Binding.bind(view)
         val sharedPrefManager = SharedPrefManager(requireContext())
         userName = sharedPrefManager.getUserName()
         binding.type.text = userName
 
         onBackPressed()
 
-        binding.blue.setOnClickListener {
+        binding.bookNow.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSlotSelectionFragment())
         }
-        binding.purple.setOnClickListener {
+        binding.myBookings.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBookedAppointmentsFragment())
         }
-        binding.settings.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment())
+        binding.commonQues.setOnClickListener {
+            //findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment())
         }
     }
 

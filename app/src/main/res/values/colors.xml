@@ -3,7 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="default_blue">#426BAE</color>
+    <color name="default_blue_transparent">#80426BAE</color>
     <color name="default_pink">#C53B84</color>
+    <color name="default_pink_transparent">#80C53B84</color>
     <color name="pink">#EAA0C2</color>
     <color name="purple">#A701C8</color>
+    <color name="purple2_transparent">#803F47CC</color>
 </resources>

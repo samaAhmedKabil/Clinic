@@ -69,8 +69,7 @@ class SlotSelectionFragment : Fragment() {
             "6:00 PM", "6:10 PM", "6:20 PM", "6:30 PM", "6:40 PM", "6:50 PM",
             "7:00 PM", "7:10 PM", "7:20 PM", "7:30 PM", "7:40 PM", "7:50 PM",
             "8:00 PM", "8:10 PM", "8:20 PM", "8:30 PM", "8:40 PM", "8:50 PM",
-            "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM", "10:00 PM"
-        )
+            "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM")
 
         slotAdapter = SlotsAdapter(timeSlots) { slot ->
             viewModel.setSelectedSlot(slot)

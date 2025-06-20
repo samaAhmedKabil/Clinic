@@ -45,4 +45,6 @@
     <string name="all_bookings">All Bookings</string>
     <string name="select_a_date_to_show_the_available_slots">Select a Date to show the available Slots !!</string>
     <string name="bookings_of_today">Bookings of Today</string>
+    <string name="all_cases">All Cases</string>
+    <string name="book_now">Book Now ?</string>
 </resources>

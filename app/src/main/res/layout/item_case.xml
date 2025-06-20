@@ -5,30 +5,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:layout_margin="8dp"
-    app:cardElevation="20dp"
+    app:cardElevation="10dp"
     app:cardCornerRadius="8dp"
     android:layout_marginBottom="10dp"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
         <TextView
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/call_item"
-            android:layout_marginHorizontal="20dp"
+            android:id="@+id/img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/mother_64"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintBottom_toBottomOf="parent" />
         <TextView
             android:id="@+id/person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/name"
-            app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toTopOf="@id/container"
+            app:layout_constraintStart_toEndOf="@id/img"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="20dp"
             />
         <TextView
@@ -36,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/phone"
-            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintStart_toEndOf="@id/img"
             app:layout_constraintTop_toBottomOf="@id/person"
             android:layout_margin="20dp"/>
         <TextView
