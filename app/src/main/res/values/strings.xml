@@ -31,7 +31,7 @@
     <string name="my_profile">My Profile</string>
     <string name="logout">Logout</string>
     <string name="change_password">Change Password</string>
-    <string name="about_us">About Us</string>
+    <string name="about_us">About Clinic</string>
     <string name="language">Language</string>
     <string name="cases">Cases</string>
     <string name="case_details">Case Details</string>
@@ -47,4 +47,7 @@
     <string name="bookings_of_today">Bookings of Today</string>
     <string name="all_cases">All Cases</string>
     <string name="book_now">Book Now ?</string>
+    <string name="speciality">Consultant and Head of the Department of Obstetrics, Gynecology and Infertility at the Armed Forces Hospitals</string>
+    <string name="stars"><![CDATA[5 On Veseeta & Clindo]]></string>
+    <string name="price">200 EGP</string>
 </resources>

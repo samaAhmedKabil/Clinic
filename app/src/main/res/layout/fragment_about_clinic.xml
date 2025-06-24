@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/info_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/white_background"
+        app:backgroundTint="#80C8BFE7"
+        android:stateListAnimator="@anim/slide_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.40" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/info_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/arrow_back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.11"
+        app:layout_constraintHeight_percent="0.04"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="About The Clinic"
+        android:textStyle="bold|italic"
+        android:textSize="20sp"
+        android:textColor="@color/default_pink"
+        android:fontFamily="@font/poppins_black"/>
+
+    <TextView
+        android:id="@+id/icon_location"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/new_user_location"
+        app:layout_constraintStart_toStartOf="@id/info_container"
+        app:layout_constraintTop_toTopOf="@id/info_container"
+        android:layout_margin="30dp"/>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/icon_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:ellipsize="end"
+        android:textIsSelectable="true"
+        app:layout_constraintTop_toTopOf="@id/icon_location"
+        app:layout_constraintBottom_toBottomOf="@id/icon_location"
+        android:text="315 Faisal Main Street - Hassan Mohamed Station - Next to Attijariwafa Bank and Oriental Weavers, Giza, 12553"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/money_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="@id/icon_location"
+        app:layout_constraintTop_toBottomOf="@id/icon_location"
+        app:layout_constraintBottom_toTopOf="@id/facebook"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/money"
+        android:backgroundTint="@color/default_blue"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/money_icon"
+        app:layout_constraintBottom_toBottomOf="@id/money_icon"
+        app:layout_constraintStart_toEndOf="@id/money_icon"
+        android:text="@string/price"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/facebook"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/facebook_logo"
+        app:layout_constraintStart_toStartOf="@id/info_container"
+        app:layout_constraintBottom_toTopOf="@id/book"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/Instagram"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/instagram_logo"
+        app:layout_constraintStart_toEndOf="@id/facebook"
+        app:layout_constraintEnd_toStartOf="@id/WhatsApp"
+        app:layout_constraintBottom_toTopOf="@id/book"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/WhatsApp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/whatsapp_logo"
+        app:layout_constraintEnd_toEndOf="@id/info_container"
+        app:layout_constraintBottom_toTopOf="@id/book"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintBottom_toBottomOf="@id/info_container"
+        android:layout_marginBottom="30dp"
+        app:cornerRadius="10dp"
+        android:backgroundTint="@color/default_blue"
+        android:text="Book An Appointment Now"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

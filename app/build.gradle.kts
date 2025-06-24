@@ -67,4 +67,6 @@ dependencies {
     implementation ("com.google.android.material:material:1.9.0")
     implementation ("androidx.work:work-runtime-ktx:2.9.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
+    // maps
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 }

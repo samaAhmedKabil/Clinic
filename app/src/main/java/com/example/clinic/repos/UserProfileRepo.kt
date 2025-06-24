@@ -17,4 +17,20 @@ class UserProfileRepo(private val database: FirebaseDatabase) {
                 onFailure(exception)
             }
     }
+
+    fun updateUserProfile(
+        userId: String,
+        user: User,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        database.getReference("users").child(userId)
+            .setValue(user) // This will overwrite the entire user object
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
 }

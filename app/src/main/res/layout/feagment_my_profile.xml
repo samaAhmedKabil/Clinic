@@ -64,11 +64,10 @@
 
         <ImageView
             android:id="@+id/pic"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:background="@drawable/name"
-            android:backgroundTint="@color/default_pink"
-            android:scaleType="fitXY"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/profile"
+            android:layout_gravity="center"
             />
 
     </androidx.cardview.widget.CardView>
@@ -87,108 +86,165 @@
         android:textColor="@color/default_blue"/>
     <TextView
         android:id="@+id/specialization"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/role"
-        app:layout_constraintTop_toBottomOf="@id/pic_container"
+        app:layout_constraintTop_toBottomOf="@id/name"
         app:layout_constraintStart_toStartOf="@id/container"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         />
-    <TextView
+    <EditText
         android:id="@+id/specializationText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.65"
         android:layout_height="wrap_content"
         tools:text="nhrbfierb , fhouero"
+        android:paddingStart="10dp"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintStart_toEndOf="@id/specialization"
         app:layout_constraintTop_toTopOf="@id/specialization"
         app:layout_constraintBottom_toBottomOf="@id/specialization"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:textSize="15sp"
+        android:background="@drawable/text_box"
         />
     <TextView
         android:id="@+id/agee"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/profile_date"
         app:layout_constraintTop_toBottomOf="@id/specialization"
         app:layout_constraintStart_toStartOf="@id/container"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         />
-    <TextView
+    <EditText
         android:id="@+id/ageText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.65"
         android:layout_height="wrap_content"
         tools:text="21"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
+        android:background="@drawable/text_box"
+        android:paddingStart="10dp"
         app:layout_constraintStart_toEndOf="@id/agee"
         app:layout_constraintTop_toTopOf="@id/agee"
         app:layout_constraintBottom_toBottomOf="@id/agee"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:textSize="15sp"
         />
     <TextView
         android:id="@+id/location"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/profile_location"
         app:layout_constraintTop_toBottomOf="@id/agee"
         app:layout_constraintStart_toStartOf="@id/container"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         />
-    <TextView
+    <EditText
         android:id="@+id/locationText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.65"
         android:layout_height="wrap_content"
         tools:text="Giza"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
+        android:background="@drawable/text_box"
+        android:paddingStart="10dp"
         app:layout_constraintStart_toEndOf="@id/location"
         app:layout_constraintTop_toTopOf="@id/location"
         app:layout_constraintBottom_toBottomOf="@id/location"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:textSize="15sp"
         />
     <TextView
         android:id="@+id/email"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/profile_email"
         app:layout_constraintTop_toBottomOf="@id/location"
         app:layout_constraintStart_toStartOf="@id/container"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         />
-    <TextView
+    <EditText
         android:id="@+id/emailText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.65"
         android:layout_height="wrap_content"
         tools:text="hf22bihebv@gmail.com"
+        android:background="@drawable/text_box"
+        android:paddingStart="10dp"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintStart_toEndOf="@id/email"
         app:layout_constraintTop_toTopOf="@id/email"
         app:layout_constraintBottom_toBottomOf="@id/email"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:textSize="15sp"
         />
     <TextView
         android:id="@+id/phone"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/profile_phone"
         app:layout_constraintTop_toBottomOf="@id/email"
         app:layout_constraintStart_toStartOf="@id/container"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         />
-    <TextView
+    <EditText
         android:id="@+id/phoneText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.65"
         android:layout_height="wrap_content"
         tools:text="0108975984"
+        android:background="@drawable/text_box"
+        android:paddingStart="10dp"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintStart_toEndOf="@id/phone"
         app:layout_constraintTop_toTopOf="@id/phone"
         app:layout_constraintBottom_toBottomOf="@id/phone"
-        android:layout_marginStart="20dp"
-        android:textSize="15sp"
-        />
+        android:layout_marginStart="10dp"
+        android:textSize="15sp" />
+
+    <ImageButton
+        android:id="@+id/editAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/ageText"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toTopOf="@id/ageText"
+        app:layout_constraintBottom_toBottomOf="@id/ageText"
+        android:background="@color/white"
+        android:src="@drawable/pencil"/>
+
+    <ImageButton
+        android:id="@+id/editLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/locationText"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toTopOf="@id/locationText"
+        app:layout_constraintBottom_toBottomOf="@id/locationText"
+        android:background="@color/white"
+        android:src="@drawable/pencil"/>
+
+    <ImageButton
+        android:id="@+id/editPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/phoneText"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toTopOf="@id/phoneText"
+        app:layout_constraintBottom_toBottomOf="@id/phoneText"
+        android:background="@color/white"
+        android:src="@drawable/pencil"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

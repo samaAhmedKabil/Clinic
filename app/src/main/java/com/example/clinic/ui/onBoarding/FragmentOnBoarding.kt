@@ -34,4 +34,9 @@ class FragmentOnBoarding: Fragment() {
             override fun createFragment(position: Int) = fragments[position]
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/default_blue_transparent">
+
+    <TextView
+        android:id="@+id/info_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/white_background"
+        android:stateListAnimator="@anim/slide_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.60" />
+
+    <ImageView
+        android:id="@+id/arrow_back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.11"
+        app:layout_constraintHeight_percent="0.04"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="About The Doctor"
+        android:textStyle="bold|italic"
+        android:textSize="20sp"
+        android:textColor="@color/default_pink"
+        android:fontFamily="@font/poppins_black"/>
+
+    <ImageView
+        android:id="@+id/dr_img"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/circle_uncle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about"
+        app:layout_constraintBottom_toTopOf="@id/info_container"
+        android:layout_marginStart="10dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/dr_img"
+        app:layout_constraintTop_toTopOf="@id/dr_img"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:text="DR. Ehab Kabil"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/speciality"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:text="@string/speciality"
+        android:textColor="@color/purple"/>
+
+    <TextView
+        android:id="@+id/star"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintStart_toEndOf="@id/dr_img"
+        app:layout_constraintTop_toBottomOf="@id/speciality"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/stars"
+        android:textColor="@color/default_blue"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@id/star"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/star"
+        app:layout_constraintBottom_toBottomOf="@id/star"
+        android:layout_marginStart="5dp" />
+
+    <TextView
+        android:id="@+id/contact_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/info_container"
+        app:layout_constraintTop_toTopOf="@id/info_container"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="45dp"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:text="Contact Details For Emergency"/>
+
+    <ImageView
+        android:id="@+id/phone1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintWidth_percent="0.08"
+        android:src="@drawable/phone"
+        app:layout_constraintTop_toBottomOf="@id/contact_title"
+        app:layout_constraintStart_toStartOf="@id/contact_title"
+        android:layout_marginTop="25dp"/>
+
+    <ImageView
+        android:id="@+id/phone2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintWidth_percent="0.08"
+        android:src="@drawable/phone"
+        app:layout_constraintTop_toBottomOf="@id/phone1"
+        app:layout_constraintStart_toStartOf="@id/phone1"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:id="@+id/phone1_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/phone1"
+        app:layout_constraintTop_toTopOf="@id/phone1"
+        app:layout_constraintBottom_toBottomOf="@id/phone1"
+        android:text="01116043605"
+        android:layout_marginStart="15dp"
+        android:textSize="18sp"
+        android:textIsSelectable="true"
+        android:fontFamily="@font/rubik_variable_font_wight"
+        android:textStyle="bold"
+        android:textColor="#878787"/>
+
+    <TextView
+    android:id="@+id/phone2_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toEndOf="@id/phone2"
+    app:layout_constraintTop_toTopOf="@id/phone2"
+    app:layout_constraintBottom_toBottomOf="@id/phone2"
+    android:text="01030903115"
+    android:layout_marginStart="15dp"
+    android:textSize="18sp"
+    android:textIsSelectable="true"
+    android:fontFamily="@font/rubik_variable_font_wight"
+    android:textStyle="bold"
+    android:textColor="#878787"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintBottom_toBottomOf="@id/info_container"
+        android:layout_marginBottom="30dp"
+        app:cornerRadius="10dp"
+        android:backgroundTint="@color/pink"
+        android:text="Book An Appointment Now"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package com.example.clinic.ui.patient.Home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +33,8 @@ class HomeFragment:Fragment() {
         binding.type.text = userName
 
         onBackPressed()
+        addressClick()
+        whatsAppClick()
 
         binding.bookNow.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSlotSelectionFragment())
@@ -41,6 +45,34 @@ class HomeFragment:Fragment() {
         binding.commonQues.setOnClickListener {
             //findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment())
         }
+        binding.menu.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment())
+        }
+    }
+
+    private fun addressClick() {
+        binding.location.setOnClickListener {
+            openGoogleMaps()
+        }
+    }
+
+    private fun openGoogleMaps() {
+        val latitude = 30.002160517828127
+        val longitude = 31.170703790458393
+        val label = "Dr. EHAB KABIL Clinic"
+
+        val gmmIntentUri = Uri.parse("geo:$latitude,$longitude?q=$latitude,$longitude($label)")
+
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps") // Specify package to ensure Google Maps app is used
+
+        if (mapIntent.resolveActivity(requireContext().packageManager) != null) {
+            startActivity(mapIntent)
+        } else {
+            val webMapUrl = "https://maps.google.com/?q=$latitude,$longitude"
+            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(webMapUrl))
+            startActivity(webIntent)
+        }
     }
 
     private fun onBackPressed(){
@@ -50,6 +82,28 @@ class HomeFragment:Fragment() {
                 dialog.show(parentFragmentManager, "ConfirmDialog")
             }
         })
+    }
+
+    private fun whatsAppClick(){
+        binding.WhatsApp.setOnClickListener {
+            openWhatsAppChat()
+        }
+    }
+
+    private fun openWhatsAppChat() {
+        val phoneNumber = "+201102977959" // International format, no spaces or dashes
+        val url = "https://wa.me/${phoneNumber.replace("+", "")}"
+
+        try {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            intent.setPackage("com.whatsapp")
+            startActivity(intent)
+        } catch (e: Exception) {
+            // WhatsApp not installed or error — open in browser
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {

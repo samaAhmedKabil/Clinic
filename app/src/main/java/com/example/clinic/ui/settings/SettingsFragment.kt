@@ -28,6 +28,8 @@ class SettingsFragment: Fragment() {
         logoutClick()
         backArrowClick()
         myProfileClick()
+        aboutDoctorClick()
+        aboutClinicClick()
     }
     private fun backArrowClick(){
         binding.arrowBack.setOnClickListener {
@@ -44,5 +46,20 @@ class SettingsFragment: Fragment() {
         binding.myProfile.setOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToMyProfileFragment())
         }
+    }
+    private fun aboutDoctorClick(){
+        binding.aboutDoctor.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToAboutDoctor())
+        }
+    }
+    private fun aboutClinicClick(){
+        binding.aboutUs.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToAboutClinic())
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

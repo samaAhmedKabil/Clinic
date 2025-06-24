@@ -134,6 +134,12 @@
         <action
             android:id="@+id/action_settingsFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutDoctor"
+            app:destination="@id/aboutDoctor" />
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutClinic"
+            app:destination="@id/aboutClinic" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
@@ -151,4 +157,20 @@
         android:id="@+id/onBoardingTwo"
         android:name="com.example.clinic.ui.onBoarding.OnBoardingTwo"
         android:label="OnBoardingTwo" />
+    <fragment
+        android:id="@+id/aboutDoctor"
+        android:name="com.example.clinic.ui.patient.about.AboutDoctor"
+        android:label="AboutDoctor" >
+        <action
+            android:id="@+id/action_aboutDoctor_to_slotSelectionFragment"
+            app:destination="@id/slotSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutClinic"
+        android:name="com.example.clinic.ui.patient.about.AboutClinic"
+        android:label="AboutClinic" >
+        <action
+            android:id="@+id/action_aboutClinic_to_slotSelectionFragment"
+            app:destination="@id/slotSelectionFragment" />
+    </fragment>
 </navigation>

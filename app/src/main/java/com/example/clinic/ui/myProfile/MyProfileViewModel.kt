@@ -22,6 +22,22 @@ class MyProfileViewModel(private val repository: UserProfileRepo): ViewModel() {
         )
     }
 
+    private val _updateSuccess = MutableLiveData<Boolean>()
+    val updateSuccess: LiveData<Boolean> get() = _updateSuccess
+
+    fun updateUserProfile(userId: String, updatedUser: User) {
+        repository.updateUserProfile(userId, updatedUser,
+            onSuccess = {
+                _updateSuccess.value = true // Signal success
+                _userProfile.value = updatedUser // Update the LiveData with the new profile
+            },
+            onFailure = { e ->
+                _error.value = e.message ?: "Failed to update profile."
+                _updateSuccess.value = false // Signal failure
+            }
+        )
+    }
+
     class MyProfileViewModelFactory(private val repository: UserProfileRepo) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MyProfileViewModel::class.java)) {

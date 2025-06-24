@@ -35,10 +35,10 @@ class CaseDetailsFragment :Fragment() {
         viewModel.patient.observe(viewLifecycleOwner) { patient ->
             if (patient != null) {
                 binding.patientName.text = patient.name
-                binding.phone.text = patient.phone
-                binding.age.text = patient.age.toString()
-                binding.email.text = patient.email
-                binding.address.text = patient.address
+                binding.email.setText(patient.email)
+                binding.phone.setText(patient.phone)
+                binding.age.setText(patient.age.toString())
+                binding.address.setText(patient.address)
             } else {
                 binding.patientName.text = "No data found"
             }
@@ -49,5 +49,10 @@ class CaseDetailsFragment :Fragment() {
         binding.arrowBack.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
