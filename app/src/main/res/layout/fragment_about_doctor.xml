@@ -60,7 +60,7 @@
         app:layout_constraintTop_toTopOf="@id/dr_img"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
-        android:text="DR. Ehab Kabil"
+        android:text="@string/dr_ehab_kabil"
         android:textStyle="bold"
         android:textSize="20sp"/>
 

@@ -106,12 +106,22 @@
         android:layout_marginBottom="20dp"/>
 
     <TextView
+        android:id="@+id/tikTok"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/tiktok_logo"
+        app:layout_constraintEnd_toStartOf="@id/facebook"
+        app:layout_constraintStart_toEndOf="@id/Instagram"
+        app:layout_constraintBottom_toTopOf="@id/book"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
         android:id="@+id/Instagram"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/instagram_logo"
-        app:layout_constraintStart_toEndOf="@id/facebook"
         app:layout_constraintEnd_toStartOf="@id/WhatsApp"
+        app:layout_constraintStart_toEndOf="@id/tikTok"
         app:layout_constraintBottom_toTopOf="@id/book"
         android:layout_marginBottom="20dp"/>
 

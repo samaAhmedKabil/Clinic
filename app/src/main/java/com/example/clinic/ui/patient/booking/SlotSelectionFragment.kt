@@ -2,7 +2,6 @@ package com.example.clinic.ui.patient.booking
 
 import SlotsAdapter
 import android.os.Bundle
-import android.os.Parcel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,35 +9,34 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clinic.R
 import com.example.clinic.repos.BookingRepo
-import com.example.clinic.databinding.FragmentCalenderBinding
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.MaterialDatePicker
+import com.example.clinic.databinding.FragmentSlotSelectionBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 class SlotSelectionFragment : Fragment() {
-    private var _binding: FragmentCalenderBinding? = null
+    private var _binding: FragmentSlotSelectionBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: BookingViewModel
     private lateinit var slotAdapter: SlotsAdapter
+    private val args: SlotSelectionFragmentArgs by navArgs()
 
     lateinit var timeSlots: List<String>
-    var takenSlots: MutableList<String> = mutableListOf()
+
+    private lateinit var receivedSelectedDate: Calendar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCalenderBinding.inflate(inflater, container, false)
+        _binding = FragmentSlotSelectionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -49,19 +47,32 @@ class SlotSelectionFragment : Fragment() {
         val factory = BookingViewModel.BookingViewModelFactory(repo)
         viewModel = ViewModelProvider(this, factory)[BookingViewModel::class.java]
 
+        val receivedDateMillis = args.date
+        receivedSelectedDate = Calendar.getInstance().apply { timeInMillis = receivedDateMillis }
+
+        displayReceivedDate(receivedSelectedDate)
+
         setupRecyclerView()
         setupObservers()
-        setupDatePicker()
         setupButtonListeners()
         backArrowClick()
 
-        binding.rvSlots.visibility = View.GONE
+        val formattedDateForViewModel = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(receivedSelectedDate.time)
+        viewModel.setSelectedDate(formattedDateForViewModel)
+        viewModel.loadAvailableSlots(formattedDateForViewModel)
+        showRecyclerViewWithAnimation()
     }
 
     private fun backArrowClick() {
         binding.arrowBack.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    private fun displayReceivedDate(calendar: Calendar) {
+        val dateFormat = SimpleDateFormat("dd MMMM, yyyy", Locale.getDefault()) // Adjust format as needed
+        val formattedDate = dateFormat.format(calendar.time)
+        binding.tvSelectedDate.text = "Selected Date: $formattedDate"
     }
 
     private fun setupRecyclerView() {
@@ -84,60 +95,22 @@ class SlotSelectionFragment : Fragment() {
         }
     }
 
-    private fun setupDatePicker() {
-        binding.btnOpenDatePicker.setOnClickListener {
-            val constraintsBuilder = CalendarConstraints.Builder()
-                .setValidator(object : CalendarConstraints.DateValidator {
-                    override fun isValid(date: Long): Boolean {
-                        val calendar = Calendar.getInstance().apply { timeInMillis = date }
-                        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
-                        return dayOfWeek != Calendar.MONDAY && dayOfWeek != Calendar.TUESDAY
-                    }
-
-                    override fun describeContents(): Int = 0
-                    override fun writeToParcel(dest: Parcel, flags: Int) {}
-                })
-
-            val datePicker = MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select a date")
-                .setCalendarConstraints(constraintsBuilder.build())
-                .build()
-
-            datePicker.show(parentFragmentManager, "DATE_PICKER")
-
-            datePicker.addOnPositiveButtonClickListener { millis ->
-                val calendar = Calendar.getInstance().apply { timeInMillis = millis }
-                val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
-
-                if (dayOfWeek == Calendar.MONDAY || dayOfWeek == Calendar.TUESDAY) {
-                    Toast.makeText(requireContext(), "Monday and Tuesday are not selectable!", Toast.LENGTH_SHORT).show()
-                } else {
-                    val formattedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(millis))
-                    viewModel.setSelectedDate(formattedDate)
-                    binding.tvSelectedDate.text = "Selected Date: $formattedDate"
-                    // Fetch available slots after setting the date
-                    viewModel.loadAvailableSlots(formattedDate)
-                    // Show RecyclerView with slide-down animation
-                    showRecyclerViewWithAnimation()
-                }
-            }
-        }
-    }
+    // Removed setupDatePicker()
 
     private fun showRecyclerViewWithAnimation() {
         if (binding.rvSlots.visibility != View.VISIBLE) {
-            binding.selectFirst.visibility = View.GONE
             binding.rvSlots.visibility = View.VISIBLE
             val slideDown = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down)
             slideDown.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation?) {}
                 override fun onAnimationEnd(animation: Animation?) {
-                    binding.rvSlots.visibility = View.VISIBLE
-                    // Schedule layout animation after RecyclerView slide-down
                     binding.rvSlots.scheduleLayoutAnimation()
                 }
                 override fun onAnimationRepeat(animation: Animation?) {}
             })
+            binding.rvSlots.startAnimation(slideDown)
+        } else {
+            binding.rvSlots.scheduleLayoutAnimation()
         }
     }
 
@@ -155,26 +128,33 @@ class SlotSelectionFragment : Fragment() {
         viewModel.bookingStatus.observe(viewLifecycleOwner) { success ->
             if (success == true) {
                 Toast.makeText(requireContext(), "Booking Confirmed!", Toast.LENGTH_SHORT).show()
-                findNavController().popBackStack()
+                findNavController().navigate(SlotSelectionFragmentDirections.actionSlotSelectionFragmentToHomeFragment())
                 viewModel.clearStatus()
             }
         }
 
         viewModel.bookingError.observe(viewLifecycleOwner) { error ->
             error?.let {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-                viewModel.clearStatus()
+                viewModel.bookingError.observe(viewLifecycleOwner) { error ->
+                    if (error == "You already have a booking on this date.") {
+                        binding.btnConfirm.isEnabled = false
+                        Toast.makeText(requireContext(), "You already have a booking on this date.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        binding.btnConfirm.isEnabled = true
+                    }
+                }
+                //viewModel.clearStatus()
             }
         }
 
         viewModel.availableSlots.observe(viewLifecycleOwner) { availableSlots ->
-            val takenSlots = viewModel.bookedSlots.value ?: emptyList()
-            slotAdapter.updateSlots(timeSlots, takenSlots) // << Use original order
+            val bookedSlots = viewModel.bookedSlots.value ?: emptyList()
+            slotAdapter.updateSlots(timeSlots, bookedSlots)
             binding.rvSlots.scheduleLayoutAnimation()
         }
 
-        viewModel.bookedSlots.observe(viewLifecycleOwner) { takenSlots ->
-            slotAdapter.updateSlots(timeSlots, takenSlots) // << Use original order
+        viewModel.bookedSlots.observe(viewLifecycleOwner) { bookedSlots ->
+            slotAdapter.updateSlots(timeSlots, bookedSlots)
             binding.rvSlots.scheduleLayoutAnimation()
         }
     }

@@ -71,8 +71,10 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/text_box"
         android:hint="@string/e_mail"
+        android:textColorHint="#878787"
         android:inputType="textEmailAddress"
         android:textSize="20sp"
+        android:textColor="@color/black"
         android:paddingHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,12 +96,14 @@
         android:layout_margin="17dp"
         android:background="@drawable/text_box"
         android:hint="@string/password"
+        android:textColorHint="#878787"
         android:inputType="textPassword"
         android:paddingHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="@+id/editText"
         app:layout_constraintStart_toStartOf="@+id/editText"
         app:layout_constraintTop_toBottomOf="@+id/editText"
         android:textSize="20sp"
+        android:textColor="@color/black"
         />
 
     <TextView
@@ -132,6 +136,7 @@
         android:layout_marginEnd="56dp"
         android:background="@drawable/login_button"
         android:text="@string/login"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:backgroundTint="@color/default_blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,6 +172,7 @@
         app:layout_constraintStart_toStartOf="@id/btnLogin"
         app:layout_constraintEnd_toEndOf="@id/btnLogin"
         android:layout_marginTop="10dp"
+        android:textColor="#878787"
         android:text="@string/have_account"/>
     <TextView
         android:id="@+id/register"
@@ -198,4 +204,15 @@
         android:text="@string/remember_me"
         android:layout_marginStart="5dp"
         android:textColor="@color/default_pink"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:indeterminateTint="#80C8BFE7"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

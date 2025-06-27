@@ -216,8 +216,8 @@
 
     <ImageButton
         android:id="@+id/editAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:layout_constraintEnd_toEndOf="@id/ageText"
         android:layout_marginEnd="10dp"
         app:layout_constraintTop_toTopOf="@id/ageText"
@@ -227,8 +227,8 @@
 
     <ImageButton
         android:id="@+id/editLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:layout_constraintEnd_toEndOf="@id/locationText"
         android:layout_marginEnd="10dp"
         app:layout_constraintTop_toTopOf="@id/locationText"
@@ -238,13 +238,23 @@
 
     <ImageButton
         android:id="@+id/editPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:layout_constraintEnd_toEndOf="@id/phoneText"
         android:layout_marginEnd="10dp"
         app:layout_constraintTop_toTopOf="@id/phoneText"
         app:layout_constraintBottom_toBottomOf="@id/phoneText"
         android:background="@color/white"
         android:src="@drawable/pencil"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:indeterminateTint="#80C8BFE7"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

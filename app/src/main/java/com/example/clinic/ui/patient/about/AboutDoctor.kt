@@ -36,7 +36,7 @@ class AboutDoctor: Fragment() {
 
     private fun bookClick(){
         binding.book.setOnClickListener {
-            findNavController().navigate(R.id.action_aboutDoctor_to_slotSelectionFragment)
+            findNavController().navigate(R.id.action_aboutDoctor_to_dateSelectionFragment)
         }
     }
 }

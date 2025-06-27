@@ -56,4 +56,27 @@ class BookingRepo {
         })
     }
 
+    fun isUserAlreadyBooked(date: String, userId: String, onResult: (Boolean) -> Unit) {
+        val database = FirebaseDatabase.getInstance().getReference("bookings")
+
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (bookingSnapshot in snapshot.children) {
+                    val bookingDate = bookingSnapshot.child("date").getValue(String::class.java)
+                    val bookingUserId = bookingSnapshot.child("patientId").getValue(String::class.java)
+
+                    if (bookingDate == date && bookingUserId == userId) {
+                        onResult(true)
+                        return
+                    }
+                }
+                onResult(false)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                onResult(false) // Treat as not booked on error
+            }
+        })
+    }
+
 }

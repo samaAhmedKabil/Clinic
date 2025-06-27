@@ -34,32 +34,34 @@ class BookingViewModel(private val repo: BookingRepo):ViewModel() {
         val slot = selectedSlot
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
-        // Check if userId is available
         if (userId == null) {
             _bookingError.value = "User not authenticated!"
             return
         }
 
-        // Validate selected date and slot
         if (date.isNullOrEmpty() || slot.isNullOrEmpty()) {
             _bookingError.value = "Please select a date and slot!"
             return
         }
 
-        // Create the booking object with patient ID (userId)
-        val booking = Booking(
-            id = "", // Firebase will automatically generate this ID
-            patientId = userId,
-            date = date,
-            timeSlot = slot
-        )
-
-        // Call the repository method to book the appointment
-        repo.bookAppointment(booking) { success ->
-            if (success) {
-                _bookingStatus.postValue(true)
+        repo.isUserAlreadyBooked(date, userId) { alreadyBooked ->
+            if (alreadyBooked) {
+                _bookingError.postValue("You already have a booking on this date.")
             } else {
-                _bookingError.postValue("Error: Booking Failed")
+                val booking = Booking(
+                    id = "",
+                    patientId = userId,
+                    date = date,
+                    timeSlot = slot
+                )
+
+                repo.bookAppointment(booking) { success ->
+                    if (success) {
+                        _bookingStatus.postValue(true)
+                    } else {
+                        _bookingError.postValue("Error: Booking Failed")
+                    }
+                }
             }
         }
     }

@@ -38,6 +38,7 @@ class AboutClinic : Fragment(), OnMapReadyCallback {
         instagramClick()
         whatsAppClick()
         addressClick()
+        tikTokClick()
         initMap()
     }
 
@@ -74,7 +75,7 @@ class AboutClinic : Fragment(), OnMapReadyCallback {
 
     private fun bookClick(){
         binding.book.setOnClickListener {
-            findNavController().navigate(R.id.action_aboutClinic_to_slotSelectionFragment)
+            findNavController().navigate(R.id.action_aboutClinic_to_dateSelectionFragment)
         }
     }
 
@@ -97,6 +98,28 @@ class AboutClinic : Fragment(), OnMapReadyCallback {
         } catch (e: Exception) {
             // Fallback to browser if app isn't installed
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl))
+            startActivity(intent)
+        }
+    }
+
+    private fun tikTokClick(){
+        binding.tikTok.setOnClickListener {
+            openTikTokPage()
+        }
+    }
+
+    private fun openTikTokPage() {
+        val tiktokUsername = "dr.ehabkabil"
+        val tiktokWebUrl = "https://www.tiktok.com/@$tiktokUsername"
+        val tiktokAppUri = Uri.parse("snssdk1233://user/profile/$tiktokUsername") // TikTok's custom URI scheme
+
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, tiktokAppUri)
+            intent.setPackage("com.ss.android.ugc.trill") // TikTok's package name
+            startActivity(intent)
+        } catch (e: Exception) {
+            // Fallback to browser if TikTok app is not installed
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(tiktokWebUrl))
             startActivity(intent)
         }
     }

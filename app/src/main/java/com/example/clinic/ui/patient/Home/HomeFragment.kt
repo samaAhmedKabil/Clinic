@@ -37,7 +37,7 @@ class HomeFragment:Fragment() {
         whatsAppClick()
 
         binding.bookNow.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSlotSelectionFragment())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDateSelectionFragment())
         }
         binding.myBookings.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBookedAppointmentsFragment())

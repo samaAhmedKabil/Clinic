@@ -62,9 +62,6 @@
         android:name="com.example.clinic.ui.patient.Home.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_slotSelectionFragment"
-            app:destination="@id/slotSelectionFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_bookedAppointmentsFragment"
             app:destination="@id/bookedAppointmentsFragment" />
         <argument
@@ -74,6 +71,9 @@
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dateSelectionFragment"
+            app:destination="@id/dateSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/slotSelectionFragment"
@@ -82,6 +82,10 @@
         <action
             android:id="@+id/action_slotSelectionFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="date"
+            app:argType="long"
+            android:defaultValue="0L" />
     </fragment>
     <fragment
         android:id="@+id/bookedAppointmentsFragment"
@@ -162,15 +166,23 @@
         android:name="com.example.clinic.ui.patient.about.AboutDoctor"
         android:label="AboutDoctor" >
         <action
-            android:id="@+id/action_aboutDoctor_to_slotSelectionFragment"
-            app:destination="@id/slotSelectionFragment" />
+            android:id="@+id/action_aboutDoctor_to_dateSelectionFragment"
+            app:destination="@id/dateSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutClinic"
         android:name="com.example.clinic.ui.patient.about.AboutClinic"
         android:label="AboutClinic" >
         <action
-            android:id="@+id/action_aboutClinic_to_slotSelectionFragment"
+            android:id="@+id/action_aboutClinic_to_dateSelectionFragment"
+            app:destination="@id/dateSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dateSelectionFragment"
+        android:name="com.example.clinic.ui.patient.booking.DateSelectionFragment"
+        android:label="DateSelectionFragment" >
+        <action
+            android:id="@+id/action_dateSelectionFragment_to_slotSelectionFragment"
             app:destination="@id/slotSelectionFragment" />
     </fragment>
 </navigation>

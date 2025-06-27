@@ -24,10 +24,10 @@
     <string name="login">Login</string>
     <string name="get_started">Get Started</string>
     <string name="skip">Skip</string>
-    <string name="onboarding_intro">Consultant and Head of the Department of Obstetrics, \n Gynecology and Infertility at the Armed Forces Hospitals</string>
+    <string name="onboarding_intro" translatable="false">Consultant and Head of the Department of Obstetrics, \n Gynecology and Infertility at the Armed Forces Hospitals</string>
     <string name="dr_ehab_kabil">Dr. Ehab Kabil</string>
-    <string name="easy_appointments">Easy Appointments</string>
-    <string name="how_to_book">Making clinic visits easier than ever. \n Quickly find and book your next appointment without \n the hassle. Our intuitive system lets you schedule, confirm, \n and manage your appointments in just a few simple steps.</string>
+    <string name="easy_appointments" translatable="false">Easy Appointments</string>
+    <string name="how_to_book" translatable="false">Making clinic visits easier than ever. \n Quickly find and book your next appointment without \n the hassle. Our intuitive system lets you schedule, confirm, \n and manage your appointments in just a few simple steps.</string>
     <string name="my_profile">My Profile</string>
     <string name="logout">Logout</string>
     <string name="change_password">Change Password</string>
@@ -47,7 +47,15 @@
     <string name="bookings_of_today">Bookings of Today</string>
     <string name="all_cases">All Cases</string>
     <string name="book_now">Book Now ?</string>
-    <string name="speciality">Consultant and Head of the Department of Obstetrics, Gynecology and Infertility at the Armed Forces Hospitals</string>
-    <string name="stars"><![CDATA[5 On Veseeta & Clindo]]></string>
+    <string name="speciality" translatable="false">Consultant and Head of the Department of Obstetrics, Gynecology and Infertility at the Armed Forces Hospitals</string>
+    <string name="stars" translatable="false"><![CDATA[5 On Veseeta & Clindo]]></string>
     <string name="price">200 EGP</string>
+    <string name="hi_dr_ehab_kabil">Hi, DR. Ehab Kabil</string>
+    <string name="common_questions">Common Questions ?</string>
+    <string name="new_user">New User</string>
+    <string name="pick_a_slot">Pick a Slot</string>
+    <string name="next">Next</string>
+    <string name="warning">Warning !!</string>
+    <string name="clinic_is_not_working_on"><![CDATA[DR. Ehab Kabils Clinic is not Working on Mondays & Tuesdays.]]></string>
+    <string name="manage_available_slots">Manage Available Slots</string>
 </resources>
