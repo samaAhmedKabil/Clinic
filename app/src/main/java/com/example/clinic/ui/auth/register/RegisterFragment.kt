@@ -12,13 +12,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.utils.ConstData
 import com.example.clinic.R
-import com.example.clinic.databinding.FragmentRegisterBinding
+import com.example.clinic.databinding.FragmentBRegisterBinding
 import com.example.clinic.ui.auth.viewModel.AuthViewModel
 import com.example.clinic.utils.SharedPrefManager
 
 
 class RegisterFragment: Fragment() {
-    private var _binding: FragmentRegisterBinding?= null
+    private var _binding: FragmentBRegisterBinding?= null
     private val binding get() = _binding!!
     private val authViewModel: AuthViewModel by viewModels()
     private var userType: String = ""
@@ -28,17 +28,24 @@ class RegisterFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_register , container , false)
+        return inflater.inflate(R.layout.fragment_b_register , container , false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentRegisterBinding.bind(view)
+        _binding = FragmentBRegisterBinding.bind(view)
         userType = RegisterFragmentArgs.fromBundle(requireArguments()).userType
         registerClick()
         showPassword()
+        backArrowClick()
+    }
+    private fun backArrowClick(){
+        binding.arrowBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
     private fun registerClick(){
         binding.btnRegister.setOnClickListener{
+            binding.inProgress.visibility = View.VISIBLE
             validate()
         }
     }

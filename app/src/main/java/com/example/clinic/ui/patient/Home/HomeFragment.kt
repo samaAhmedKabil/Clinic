@@ -43,7 +43,7 @@ class HomeFragment:Fragment() {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBookedAppointmentsFragment())
         }
         binding.commonQues.setOnClickListener {
-            //findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPatientCommonQuestionsFragment())
         }
         binding.menu.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment())

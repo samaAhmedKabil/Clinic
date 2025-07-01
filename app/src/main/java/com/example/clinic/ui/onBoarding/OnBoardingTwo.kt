@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
-import com.example.clinic.databinding.FragmentOnboarding2Binding
 import androidx.core.content.edit
+import com.example.clinic.databinding.FragmentBOnboarding2Binding
 
 class OnBoardingTwo: Fragment() {
-    private var _binding: FragmentOnboarding2Binding?= null
+    private var _binding: FragmentBOnboarding2Binding?= null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -20,11 +20,11 @@ class OnBoardingTwo: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_onboarding_2 , container , false)
+        return inflater.inflate(R.layout.fragment_b_onboarding_2 , container , false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentOnboarding2Binding.bind(view)
+        _binding = FragmentBOnboarding2Binding.bind(view)
         onSkipClick()
         onContinueClick()
     }

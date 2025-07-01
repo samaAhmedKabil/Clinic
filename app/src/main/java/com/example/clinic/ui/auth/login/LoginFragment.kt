@@ -14,14 +14,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.utils.ConstData
 import com.example.clinic.R
-import com.example.clinic.databinding.FragmentLoginBinding
+import com.example.clinic.databinding.FragmentBLoginBinding
 import com.example.clinic.ui.auth.viewModel.AuthViewModel
 import com.example.clinic.utils.SharedPrefManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class LoginFragment : Fragment() {
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentBLoginBinding? = null
     private val binding get() = _binding!!
     private val authViewModel: AuthViewModel by viewModels()
     private lateinit var sharedPrefManager: SharedPrefManager
@@ -32,12 +32,12 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return inflater.inflate(R.layout.fragment_b_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentLoginBinding.bind(view)
+        _binding = FragmentBLoginBinding.bind(view)
         sharedPrefManager = SharedPrefManager(requireContext())
         userType = LoginFragmentArgs.fromBundle(requireArguments()).userType
         loginClick()
@@ -49,6 +49,7 @@ class LoginFragment : Fragment() {
 
     private fun loginClick() {
         binding.btnLogin.setOnClickListener {
+            binding.inProgress.visibility = View.VISIBLE
             validate()
         }
     }
@@ -84,16 +85,19 @@ class LoginFragment : Fragment() {
             val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser != null) {
                 // Fetch the user name from Firebase for remembered state
+                binding.inProgress.visibility = View.VISIBLE
                 val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.uid)
                 userRef.get().addOnSuccessListener { snapshot ->
                     val fName = snapshot.child("fname").getValue(String::class.java) ?: "Unknown"
                     sharedPrefManager.saveUserName(fName)
                     val savedName = sharedPrefManager.getUserName()
                     if (userType == ConstData.DOCTOR_TYPE) {
+                        binding.inProgress.visibility = View.GONE
                         findNavController().navigate(
                             LoginFragmentDirections.actionLoginFragmentToDoctorHomeFragment(savedName)
                         )
                     } else if (userType == ConstData.PATIENT_TYPE) {
+                        binding.inProgress.visibility = View.GONE
                         findNavController().navigate(
                             LoginFragmentDirections.actionLoginFragmentToHomeFragment(savedName)
                         )

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clinic.R
 import com.example.clinic.adapters.BookingAdapter
 import com.example.clinic.data.Booking
-import com.example.clinic.databinding.FragmentBookedAppointmentsBinding
+import com.example.clinic.databinding.FragmentPatientBookedAppointmentsBinding
 import com.example.clinic.ui.dialogs.ConfirmCancelingDialog
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class BookedAppointmentsFragment: Fragment() {
-    private var _binding: FragmentBookedAppointmentsBinding? = null
+    private var _binding: FragmentPatientBookedAppointmentsBinding? = null
     private val binding get() = _binding!!
     private lateinit var database: DatabaseReference
     private lateinit var bookingAdapter: BookingAdapter
@@ -31,12 +31,13 @@ class BookedAppointmentsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_booked_appointments , container , false)
+        return inflater.inflate(R.layout.fragment_patient_booked_appointments , container , false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentBookedAppointmentsBinding.bind(view)
+        _binding = FragmentPatientBookedAppointmentsBinding.bind(view)
+        binding.inProgress.visibility = View.VISIBLE
         database = FirebaseDatabase.getInstance().reference.child("bookings")
         bookingAdapter = BookingAdapter(bookingsList) { bookingId ->
             deleteBooking(bookingId)
@@ -65,9 +66,11 @@ class BookedAppointmentsFragment: Fragment() {
                     }
                 }
                 bookingAdapter.notifyDataSetChanged()
+                binding.inProgress.visibility = View.GONE
             }
 
             override fun onCancelled(error: DatabaseError) {
+                binding.inProgress.visibility = View.GONE
                 Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })

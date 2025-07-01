@@ -35,7 +35,10 @@ class DoctorHomeFragment :Fragment() {
             findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToAllBookingsFragment())
         }
         binding.commonQues.setOnClickListener {
-            //findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToSettingsFragment())
+            findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToCommonQuestionsFragment())
+        }
+        binding.menu.setOnClickListener {
+            findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToSettingsFragment())
         }
     }
 

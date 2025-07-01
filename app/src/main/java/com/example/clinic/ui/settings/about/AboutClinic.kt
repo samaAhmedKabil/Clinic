@@ -1,4 +1,4 @@
-package com.example.clinic.ui.patient.about
+package com.example.clinic.ui.settings.about
 
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
-import com.example.clinic.databinding.FragmentAboutClinicBinding
+import com.example.clinic.databinding.FragmentBAboutClinicBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,7 +18,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 class AboutClinic : Fragment(), OnMapReadyCallback {
-    private var _binding: FragmentAboutClinicBinding? = null
+    private var _binding: FragmentBAboutClinicBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -26,12 +26,12 @@ class AboutClinic : Fragment(), OnMapReadyCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_about_clinic, container, false)
+        return inflater.inflate(R.layout.fragment_b_about_clinic, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentAboutClinicBinding.bind(view)
+        _binding = FragmentBAboutClinicBinding.bind(view)
         backArrowClick()
         bookClick()
         facebookClick()

@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hi, Dr. Ehab Kabil"
+        android:text="@string/hi_dr_ehab_kabil"
         android:textSize="20sp"
         android:textColor="#878787"
         android:textStyle="bold|italic"
@@ -56,7 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="16dp"> <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingBottom="16dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -103,9 +104,10 @@
                     android:backgroundTint="@color/default_blue_transparent"
                     android:drawableStart="@drawable/sonography"
                     android:paddingStart="10dp"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -143,13 +145,47 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Common Questions ?"
+                    android:text="@string/common_questions"
                     android:textSize="20dp"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="@id/common_ques"
                     app:layout_constraintTop_toTopOf="@id/common_ques"
                     app:layout_constraintBottom_toBottomOf="@id/common_ques"
                     app:layout_constraintStart_toStartOf="@id/common_ques"
+                    android:layout_marginStart="140dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_black"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/manage_bookings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/welcome_top"
+                    android:backgroundTint="#C8BFE7"
+                    android:drawableStart="@drawable/ultrasound"
+                    android:paddingStart="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manage_available_slots"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="@id/manage_bookings"
+                    app:layout_constraintTop_toTopOf="@id/manage_bookings"
+                    app:layout_constraintBottom_toBottomOf="@id/manage_bookings"
+                    app:layout_constraintStart_toStartOf="@id/manage_bookings"
                     android:layout_marginStart="140dp"
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_black"/>

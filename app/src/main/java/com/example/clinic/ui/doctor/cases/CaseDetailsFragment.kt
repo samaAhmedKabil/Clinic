@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.repos.PatientRepo
-import com.example.clinic.databinding.FragmentCaseDetailsBinding
+import com.example.clinic.databinding.FragmentDoctorCaseDetailsBinding
 import com.example.clinic.ui.doctor.viewModel.DoctorViewModel
 
 class CaseDetailsFragment :Fragment() {
-    private var _binding: FragmentCaseDetailsBinding? = null
+    private var _binding: FragmentDoctorCaseDetailsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DoctorViewModel by viewModels { DoctorViewModel.Factory(PatientRepo()) }
     private lateinit var patientId: String
@@ -21,7 +21,7 @@ class CaseDetailsFragment :Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCaseDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentDoctorCaseDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -29,7 +29,7 @@ class CaseDetailsFragment :Fragment() {
         super.onViewCreated(view, savedInstanceState)
         backArrowClick()
         patientId = CaseDetailsFragmentArgs.fromBundle(requireArguments()).id
-
+        binding.inProgress.visibility = View.VISIBLE
         viewModel.getPatientById(patientId)
 
         viewModel.patient.observe(viewLifecycleOwner) { patient ->
@@ -39,8 +39,10 @@ class CaseDetailsFragment :Fragment() {
                 binding.phone.setText(patient.phone)
                 binding.age.setText(patient.age.toString())
                 binding.address.setText(patient.address)
+                binding.inProgress.visibility = View.GONE
             } else {
                 binding.patientName.text = "No data found"
+                binding.inProgress.visibility = View.GONE
             }
         }
     }

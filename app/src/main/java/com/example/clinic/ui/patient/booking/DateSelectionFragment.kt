@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import android.widget.CalendarView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.clinic.databinding.FragmentDateSelectionBinding
+import com.example.clinic.databinding.FragmentPatientDateSelectionBinding
 import com.example.clinic.ui.dialogs.TellDisabledDialog
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class DateSelectionFragment: Fragment() {
-    private var _binding: FragmentDateSelectionBinding? = null
+    private var _binding: FragmentPatientDateSelectionBinding? = null
     private val binding get() = _binding!!
 
     private var selectedDate: Calendar = Calendar.getInstance()
@@ -24,7 +24,7 @@ class DateSelectionFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDateSelectionBinding.inflate(inflater, container, false)
+        _binding = FragmentPatientDateSelectionBinding.inflate(inflater, container, false)
         return binding.root
     }
 

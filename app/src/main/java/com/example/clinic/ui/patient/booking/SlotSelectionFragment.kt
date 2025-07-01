@@ -14,14 +14,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clinic.R
+import com.example.clinic.databinding.FragmentPatientSlotSelectionBinding
 import com.example.clinic.repos.BookingRepo
-import com.example.clinic.databinding.FragmentSlotSelectionBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class SlotSelectionFragment : Fragment() {
-    private var _binding: FragmentSlotSelectionBinding? = null
+    private var _binding: FragmentPatientSlotSelectionBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: BookingViewModel
@@ -36,7 +36,7 @@ class SlotSelectionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSlotSelectionBinding.inflate(inflater, container, false)
+        _binding = FragmentPatientSlotSelectionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -76,11 +76,24 @@ class SlotSelectionFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        timeSlots = listOf(
-            "6:00 PM", "6:10 PM", "6:20 PM", "6:30 PM", "6:40 PM", "6:50 PM",
-            "7:00 PM", "7:10 PM", "7:20 PM", "7:30 PM", "7:40 PM", "7:50 PM",
-            "8:00 PM", "8:10 PM", "8:20 PM", "8:30 PM", "8:40 PM", "8:50 PM",
-            "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM")
+        timeSlots = if (isAmDay()) {
+            listOf(
+                "10:00 AM", "10:10 AM", "10:20 AM", "10:30 AM", "10:40 AM", "10:50 AM",
+                "11:00 AM", "11:10 AM", "11:20 AM", "11:30 AM", "11:40 AM", "11:50 AM",
+                "12:00 PM", "12:10 PM", "12:20 PM", "12:30 PM", "12:40 PM", "12:50 PM",
+                "6:00 PM", "6:10 PM", "6:20 PM", "6:30 PM", "6:40 PM", "6:50 PM",
+                "7:00 PM", "7:10 PM", "7:20 PM", "7:30 PM", "7:40 PM", "7:50 PM",
+                "8:00 PM", "8:10 PM", "8:20 PM", "8:30 PM", "8:40 PM", "8:50 PM",
+                "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM"
+            )
+        } else {
+            listOf(
+                "6:00 PM", "6:10 PM", "6:20 PM", "6:30 PM", "6:40 PM", "6:50 PM",
+                "7:00 PM", "7:10 PM", "7:20 PM", "7:30 PM", "7:40 PM", "7:50 PM",
+                "8:00 PM", "8:10 PM", "8:20 PM", "8:30 PM", "8:40 PM", "8:50 PM",
+                "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM"
+            )
+        }
 
         slotAdapter = SlotsAdapter(timeSlots) { slot ->
             viewModel.setSelectedSlot(slot)
@@ -89,13 +102,16 @@ class SlotSelectionFragment : Fragment() {
         binding.rvSlots.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = slotAdapter
-            // Apply layout animation
             layoutAnimation = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_slide_in)
             setPadding(8, 8, 8, 8)
         }
     }
 
-    // Removed setupDatePicker()
+
+    private fun isAmDay(): Boolean {
+        val dayOfWeek = receivedSelectedDate.get(Calendar.DAY_OF_WEEK)
+        return dayOfWeek == Calendar.WEDNESDAY || dayOfWeek == Calendar.SATURDAY
+    }
 
     private fun showRecyclerViewWithAnimation() {
         if (binding.rvSlots.visibility != View.VISIBLE) {
@@ -116,6 +132,7 @@ class SlotSelectionFragment : Fragment() {
 
     private fun setupButtonListeners() {
         binding.btnConfirm.setOnClickListener {
+            binding.inProgress.visibility = View.VISIBLE
             viewModel.confirmBooking()
         }
 
@@ -128,6 +145,7 @@ class SlotSelectionFragment : Fragment() {
         viewModel.bookingStatus.observe(viewLifecycleOwner) { success ->
             if (success == true) {
                 Toast.makeText(requireContext(), "Booking Confirmed!", Toast.LENGTH_SHORT).show()
+                binding.inProgress.visibility = View.GONE
                 findNavController().navigate(SlotSelectionFragmentDirections.actionSlotSelectionFragmentToHomeFragment())
                 viewModel.clearStatus()
             }
@@ -139,6 +157,7 @@ class SlotSelectionFragment : Fragment() {
                     if (error == "You already have a booking on this date.") {
                         binding.btnConfirm.isEnabled = false
                         Toast.makeText(requireContext(), "You already have a booking on this date.", Toast.LENGTH_SHORT).show()
+                        binding.inProgress.visibility = View.GONE
                     } else {
                         binding.btnConfirm.isEnabled = true
                     }

@@ -97,8 +97,8 @@
 
     <TextView
         android:id="@+id/facebook"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
         android:background="@drawable/facebook_logo"
         app:layout_constraintStart_toStartOf="@id/info_container"
         app:layout_constraintBottom_toTopOf="@id/book"
@@ -107,8 +107,8 @@
 
     <TextView
         android:id="@+id/tikTok"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/tiktok_logo"
         app:layout_constraintEnd_toStartOf="@id/facebook"
         app:layout_constraintStart_toEndOf="@id/Instagram"
@@ -117,8 +117,8 @@
 
     <TextView
         android:id="@+id/Instagram"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/instagram_logo"
         app:layout_constraintEnd_toStartOf="@id/WhatsApp"
         app:layout_constraintStart_toEndOf="@id/tikTok"
@@ -127,8 +127,8 @@
 
     <TextView
         android:id="@+id/WhatsApp"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/whatsapp_logo"
         app:layout_constraintEnd_toEndOf="@id/info_container"
         app:layout_constraintBottom_toTopOf="@id/book"

@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
-import com.example.clinic.databinding.FragmentSplashBinding
+import com.example.clinic.databinding.FragmentBSplashBinding
 
 class SplashFragment: Fragment() {
-    private var _binding: FragmentSplashBinding?= null
+    private var _binding: FragmentBSplashBinding?= null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,12 +22,12 @@ class SplashFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_splash , container , false)
+        return inflater.inflate(R.layout.fragment_b_splash , container , false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentSplashBinding.bind(view)
+        _binding = FragmentBSplashBinding.bind(view)
         Handler(Looper.getMainLooper()).postDelayed({
             val sharedPref = requireContext().getSharedPreferences("onboarding", Context.MODE_PRIVATE)
             val isShown = sharedPref.getBoolean("shown", false)

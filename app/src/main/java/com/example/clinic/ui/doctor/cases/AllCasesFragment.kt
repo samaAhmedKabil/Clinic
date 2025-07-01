@@ -10,12 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clinic.adapters.AllCasesAdapter
+import com.example.clinic.databinding.FragmentDoctorAllCasesBinding
 import com.example.clinic.repos.PatientRepo
-import com.example.clinic.databinding.FragmentAllCasesBinding
 import com.example.clinic.ui.doctor.viewModel.DoctorViewModel
 
 class AllCasesFragment :Fragment() {
-    private var _binding: FragmentAllCasesBinding? = null
+    private var _binding: FragmentDoctorAllCasesBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DoctorViewModel by viewModels { DoctorViewModel.Factory(PatientRepo()) }
     private lateinit var patientAdapter: AllCasesAdapter
@@ -24,7 +24,7 @@ class AllCasesFragment :Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAllCasesBinding.inflate(inflater, container, false)
+        _binding = FragmentDoctorAllCasesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,6 +32,8 @@ class AllCasesFragment :Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         backArrowClick()
+
+        binding.inProgress.visibility = View.VISIBLE
 
         patientAdapter = AllCasesAdapter { patient ->
             // Handle patient click if needed
@@ -51,11 +53,13 @@ class AllCasesFragment :Fragment() {
         // Observe the patient list from the ViewModel
         viewModel.patientsList.observe(viewLifecycleOwner) { patients ->
             patientAdapter.submitList(patients)
+            binding.inProgress.visibility = View.GONE
         }
 
         // Observe error messages if any
         viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+            binding.inProgress.visibility = View.GONE
         }
 
         // Fetch patients from Firebase

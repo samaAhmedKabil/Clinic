@@ -83,7 +83,8 @@
         android:background="@drawable/star"
         app:layout_constraintStart_toEndOf="@id/dr_img"
         app:layout_constraintTop_toBottomOf="@id/speciality"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/yellow_star"/>
 
     <TextView
         android:layout_width="0dp"

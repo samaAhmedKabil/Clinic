@@ -7,29 +7,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
-import com.example.clinic.databinding.FragmentSettingsBinding
+import com.example.clinic.databinding.FragmentBSettingsBinding
 import com.example.clinic.ui.auth.logout.LogoutDialog
-import com.example.clinic.utils.SharedPrefManager
-import com.google.firebase.auth.FirebaseAuth
 
 class SettingsFragment: Fragment() {
-    private var _binding: FragmentSettingsBinding? = null
+    private var _binding: FragmentBSettingsBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_settings , container , false)
+        return inflater.inflate(R.layout.fragment_b_settings , container , false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentSettingsBinding.bind(view)
+        _binding = FragmentBSettingsBinding.bind(view)
         logoutClick()
         backArrowClick()
         myProfileClick()
         aboutDoctorClick()
         aboutClinicClick()
+        feedbacksClick()
     }
     private fun backArrowClick(){
         binding.arrowBack.setOnClickListener {
@@ -55,6 +54,11 @@ class SettingsFragment: Fragment() {
     private fun aboutClinicClick(){
         binding.aboutUs.setOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToAboutClinic())
+        }
+    }
+    private fun feedbacksClick(){
+        binding.feedback.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToFeedbacksFragment())
         }
     }
 

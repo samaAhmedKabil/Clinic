@@ -62,7 +62,4 @@
         app:cornerRadius="10dp"
         android:text="@string/ok"/>
 
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

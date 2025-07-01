@@ -1,4 +1,4 @@
-package com.example.clinic.ui.myProfile
+package com.example.clinic.ui.settings.myProfile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
-import com.example.clinic.databinding.FeagmentMyProfileBinding
+import com.example.clinic.databinding.FragmentBMyProfileBinding
 import com.example.clinic.repos.UserProfileRepo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class MyProfileFragment: Fragment() {
-    private var _binding: FeagmentMyProfileBinding? = null
+    private var _binding: FragmentBMyProfileBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.MyProfileViewModelFactory(
         UserProfileRepo(FirebaseDatabase.getInstance())) }
@@ -27,13 +27,14 @@ class MyProfileFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.feagment_my_profile , container , false)
+        return inflater.inflate(R.layout.fragment_b_my_profile , container , false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FeagmentMyProfileBinding.bind(view)
+        _binding = FragmentBMyProfileBinding.bind(view)
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         viewModel.loadUserProfile(userId)
+        binding.inProgress.visibility = View.VISIBLE
         backArrowClick()
         observeData()
 
@@ -56,6 +57,7 @@ class MyProfileFragment: Fragment() {
             binding.ageText.setText(it.age.toString())
             binding.locationText.setText(it.address)
             binding.specializationText.setText(it.role)
+            binding.inProgress.visibility = View.GONE
         }
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
@@ -64,8 +66,10 @@ class MyProfileFragment: Fragment() {
 
         viewModel.updateSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
+                binding.inProgress.visibility = View.GONE
                 Toast.makeText(requireContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show()
             } else {
+                binding.inProgress.visibility = View.GONE
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
             }
         }
@@ -106,6 +110,7 @@ class MyProfileFragment: Fragment() {
 
     // --- Specific Save Functions ---
     private fun saveAge(newAgeString: String) {
+        binding.inProgress.visibility = View.VISIBLE
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val currentProfile = viewModel.userProfile.value
         if (currentProfile == null) {
@@ -124,6 +129,7 @@ class MyProfileFragment: Fragment() {
     }
 
     private fun savePhone(newPhone: String) {
+        binding.inProgress.visibility = View.VISIBLE
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val currentProfile = viewModel.userProfile.value
         if (currentProfile == null) {
@@ -142,6 +148,7 @@ class MyProfileFragment: Fragment() {
     }
 
     private fun saveLocation(newAddress: String) {
+        binding.inProgress.visibility = View.VISIBLE
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val currentProfile = viewModel.userProfile.value
         if (currentProfile == null) {

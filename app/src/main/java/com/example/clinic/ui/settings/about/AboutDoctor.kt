@@ -1,4 +1,4 @@
-package com.example.clinic.ui.patient.about
+package com.example.clinic.ui.settings.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,23 +7,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
-import com.example.clinic.databinding.FragmentAboutDoctorBinding
-import com.example.clinic.databinding.FragmentSettingsBinding
+import com.example.clinic.databinding.FragmentBAboutDoctorBinding
 
 
 class AboutDoctor: Fragment() {
-    private var _binding: FragmentAboutDoctorBinding? = null
+    private var _binding: FragmentBAboutDoctorBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_about_doctor , container , false)
+        return inflater.inflate(R.layout.fragment_b_about_doctor , container , false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentAboutDoctorBinding.bind(view)
+        _binding = FragmentBAboutDoctorBinding.bind(view)
         backArrowClick()
         bookClick()
     }

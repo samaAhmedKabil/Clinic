@@ -83,6 +83,7 @@ class AllBookingsFragment : Fragment() {
                 requireContext(),
                 { _, year, month, dayOfMonth ->
                     val selectedDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth)
+                    binding.inProgress.visibility = View.VISIBLE
                     viewModel.fetchBookingsByDate(selectedDate)
                 },
                 calendar.get(Calendar.YEAR),
@@ -94,10 +95,11 @@ class AllBookingsFragment : Fragment() {
     }
 
     private fun setupObservers() {
+       binding.inProgress.visibility = View.VISIBLE
         viewModel.bookingsList.observe(viewLifecycleOwner) { bookings ->
             bookingAdapter.updateBookings(bookings)
+            binding.inProgress.visibility = View.GONE
         }
-
         viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             if (error.isNotEmpty()) {
                 android.widget.Toast.makeText(context, error, android.widget.Toast.LENGTH_SHORT).show()

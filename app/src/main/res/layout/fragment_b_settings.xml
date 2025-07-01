@@ -174,20 +174,20 @@
         android:layout_marginHorizontal="10dp"/>
 
     <TextView
-        android:id="@+id/language_icon"
+        android:id="@+id/feedback_icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/logout_icon"
+        android:background="@drawable/baseline_feed_24"
         android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/about_us"/>
 
     <TextView
-        android:id="@+id/logout"
+        android:id="@+id/feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/logout"
+        android:text="@string/feedbacks"
         android:textSize="15sp"
         android:textStyle="italic"
         android:textColor="@color/default_blue"
@@ -211,6 +211,47 @@
         android:layout_height="4dp"
         android:background="@drawable/thin_line"
         app:layout_constraintTop_toBottomOf="@id/logout"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"/>
+
+    <TextView
+        android:id="@+id/logout_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/logout_icon"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/feedback_icon"/>
+
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:textColor="@color/default_blue"
+        android:fontFamily="@font/poppins_light"
+        app:layout_constraintStart_toEndOf="@id/logout_icon"
+        app:layout_constraintTop_toBottomOf="@id/feedback"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="13dp"/>
+
+    <TextView
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/feedback"
+        app:layout_constraintBottom_toBottomOf="@id/feedback"
+        android:background="@drawable/arrow_right"
+        android:layout_marginEnd="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/thin_line"
+        app:layout_constraintTop_toBottomOf="@id/feedback"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"/>
 

@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.utils.ConstData
 import com.example.clinic.R
-import com.example.clinic.databinding.FragmentRoleSelectionBinding
+import com.example.clinic.databinding.FragmentBRoleSelectionBinding
 
 class RoleSelectionFragment: Fragment() {
-    private var _binding: FragmentRoleSelectionBinding?= null
+    private var _binding: FragmentBRoleSelectionBinding?= null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -21,11 +21,11 @@ class RoleSelectionFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_role_selection , container , false)
+        return inflater.inflate(R.layout.fragment_b_role_selection , container , false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentRoleSelectionBinding.bind(view)
+        _binding = FragmentBRoleSelectionBinding.bind(view)
         checkBoxClick()
         nextClick()
     }

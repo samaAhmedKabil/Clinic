@@ -74,6 +74,9 @@
         <action
             android:id="@+id/action_homeFragment_to_dateSelectionFragment"
             app:destination="@id/dateSelectionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_patientCommonQuestionsFragment"
+            app:destination="@id/patientCommonQuestionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/slotSelectionFragment"
@@ -107,6 +110,9 @@
         <action
             android:id="@+id/action_doctorHomeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_doctorHomeFragment_to_commonQuestionsFragment"
+            app:destination="@id/commonQuestionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/allCasesFragment"
@@ -144,10 +150,13 @@
         <action
             android:id="@+id/action_settingsFragment_to_aboutClinic"
             app:destination="@id/aboutClinic" />
+        <action
+            android:id="@+id/action_settingsFragment_to_feedbacksFragment"
+            app:destination="@id/feedbacksFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
-        android:name="com.example.clinic.ui.myProfile.MyProfileFragment"
+        android:name="com.example.clinic.ui.settings.myProfile.MyProfileFragment"
         android:label="MyProfileFragment" />
     <fragment
         android:id="@+id/onBoardingOne"
@@ -163,7 +172,7 @@
         android:label="OnBoardingTwo" />
     <fragment
         android:id="@+id/aboutDoctor"
-        android:name="com.example.clinic.ui.patient.about.AboutDoctor"
+        android:name="com.example.clinic.ui.settings.about.AboutDoctor"
         android:label="AboutDoctor" >
         <action
             android:id="@+id/action_aboutDoctor_to_dateSelectionFragment"
@@ -171,7 +180,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutClinic"
-        android:name="com.example.clinic.ui.patient.about.AboutClinic"
+        android:name="com.example.clinic.ui.settings.about.AboutClinic"
         android:label="AboutClinic" >
         <action
             android:id="@+id/action_aboutClinic_to_dateSelectionFragment"
@@ -185,4 +194,24 @@
             android:id="@+id/action_dateSelectionFragment_to_slotSelectionFragment"
             app:destination="@id/slotSelectionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/newQuestionFragment"
+        android:name="com.example.clinic.ui.doctor.commonQuestions.NewQuestionFragment"
+        android:label="NewQuestionFragment" />
+    <fragment
+        android:id="@+id/commonQuestionsFragment"
+        android:name="com.example.clinic.ui.doctor.commonQuestions.CommonQuestionsFragment"
+        android:label="CommonQuestionsFragment" >
+        <action
+            android:id="@+id/action_commonQuestionsFragment_to_newQuestionFragment"
+            app:destination="@id/newQuestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/patientCommonQuestionsFragment"
+        android:name="com.example.clinic.ui.patient.commonQuestions.PatientCommonQuestionsFragment"
+        android:label="PatientCommonQuestionsFragment" />
+    <fragment
+        android:id="@+id/feedbacksFragment"
+        android:name="com.example.clinic.ui.settings.feedbacks.FeedbacksFragment"
+        android:label="FeedbacksFragment" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.clinic.ui.myProfile
+package com.example.clinic.ui.settings.myProfile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -248,6 +248,7 @@
         android:src="@drawable/pencil"/>
 
     <ProgressBar
+        android:id="@+id/in_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -255,6 +256,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"
-        android:indeterminateTint="#80C8BFE7"/>
+        android:indeterminateTint="@color/default_pink"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
