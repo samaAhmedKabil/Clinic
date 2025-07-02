@@ -40,6 +40,9 @@ class DoctorHomeFragment :Fragment() {
         binding.menu.setOnClickListener {
             findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToSettingsFragment())
         }
+        binding.manageBookings.setOnClickListener {
+            findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToDateSelectionFragment())
+        }
     }
 
     private fun onBackPressed(){

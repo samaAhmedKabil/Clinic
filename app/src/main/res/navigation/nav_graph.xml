@@ -32,16 +32,28 @@
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="userType"
             app:argType="string" />
         <action
             android:id="@+id/action_loginFragment_to_doctorHomeFragment"
-            app:destination="@id/doctorHomeFragment" />
+            app:destination="@id/doctorHomeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -49,13 +61,21 @@
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="userType"
             app:argType="string" />
         <action
             android:id="@+id/action_registerFragment_to_doctorHomeFragment"
-            app:destination="@id/doctorHomeFragment" />
+            app:destination="@id/doctorHomeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -63,20 +83,36 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_bookedAppointmentsFragment"
-            app:destination="@id/bookedAppointmentsFragment" />
+            app:destination="@id/bookedAppointmentsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="userName"
             app:argType="string"
             android:defaultValue="Unknown"/>
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_homeFragment_to_dateSelectionFragment"
-            app:destination="@id/dateSelectionFragment" />
+            app:destination="@id/dateSelectionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_homeFragment_to_patientCommonQuestionsFragment"
-            app:destination="@id/patientCommonQuestionsFragment" />
+            app:destination="@id/patientCommonQuestionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/slotSelectionFragment"
@@ -84,7 +120,11 @@
         android:label="SlotSelectionFragment" >
         <action
             android:id="@+id/action_slotSelectionFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="date"
             app:argType="long"
@@ -100,19 +140,38 @@
         android:label="DoctorHomeFragment" >
         <action
             android:id="@+id/action_doctorHomeFragment_to_allCasesFragment"
-            app:destination="@id/allCasesFragment" />
+            app:destination="@id/allCasesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_doctorHomeFragment_to_allBookingsFragment"
-            app:destination="@id/allBookingsFragment" />
+            app:destination="@id/allBookingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="userName"
             app:argType="string" />
         <action
             android:id="@+id/action_doctorHomeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_doctorHomeFragment_to_commonQuestionsFragment"
-            app:destination="@id/commonQuestionsFragment" />
+            app:destination="@id/commonQuestionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_doctorHomeFragment_to_dateSelectionFragment"
+            app:destination="@id/dateSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/allCasesFragment"
@@ -120,7 +179,11 @@
         android:label="AllCasesFragment" >
         <action
             android:id="@+id/action_allCasesFragment_to_caseDetailsFragment"
-            app:destination="@id/caseDetailsFragment" />
+            app:destination="@id/caseDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/allBookingsFragment"
@@ -140,19 +203,39 @@
         android:label="SettingsFragment" >
         <action
             android:id="@+id/action_settingsFragment_to_roleSelectionFragment"
-            app:destination="@id/roleSelectionFragment" />
+            app:destination="@id/roleSelectionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_settingsFragment_to_myProfileFragment"
-            app:destination="@id/myProfileFragment" />
+            app:destination="@id/myProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_settingsFragment_to_aboutDoctor"
-            app:destination="@id/aboutDoctor" />
+            app:destination="@id/aboutDoctor"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_settingsFragment_to_aboutClinic"
-            app:destination="@id/aboutClinic" />
+            app:destination="@id/aboutClinic"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_settingsFragment_to_feedbacksFragment"
-            app:destination="@id/feedbacksFragment" />
+            app:destination="@id/feedbacksFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
@@ -164,7 +247,11 @@
         android:label="OnBoardingOne" >
         <action
             android:id="@+id/action_onBoardingOne_to_onBoardingTwo"
-            app:destination="@id/onBoardingTwo" />
+            app:destination="@id/onBoardingTwo"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/onBoardingTwo"
@@ -176,7 +263,11 @@
         android:label="AboutDoctor" >
         <action
             android:id="@+id/action_aboutDoctor_to_dateSelectionFragment"
-            app:destination="@id/dateSelectionFragment" />
+            app:destination="@id/dateSelectionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/aboutClinic"
@@ -184,7 +275,11 @@
         android:label="AboutClinic" >
         <action
             android:id="@+id/action_aboutClinic_to_dateSelectionFragment"
-            app:destination="@id/dateSelectionFragment" />
+            app:destination="@id/dateSelectionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/dateSelectionFragment"
@@ -192,7 +287,14 @@
         android:label="DateSelectionFragment" >
         <action
             android:id="@+id/action_dateSelectionFragment_to_slotSelectionFragment"
-            app:destination="@id/slotSelectionFragment" />
+            app:destination="@id/slotSelectionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_dateSelectionFragment_to_manageBookingsFragment"
+            app:destination="@id/manageBookingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newQuestionFragment"
@@ -204,7 +306,11 @@
         android:label="CommonQuestionsFragment" >
         <action
             android:id="@+id/action_commonQuestionsFragment_to_newQuestionFragment"
-            app:destination="@id/newQuestionFragment" />
+            app:destination="@id/newQuestionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/patientCommonQuestionsFragment"
@@ -214,4 +320,23 @@
         android:id="@+id/feedbacksFragment"
         android:name="com.example.clinic.ui.settings.feedbacks.FeedbacksFragment"
         android:label="FeedbacksFragment" />
+    <fragment
+        android:id="@+id/manageBookingsFragment"
+        android:name="com.example.clinic.ui.doctor.manageBookings.ManageBookingsFragment"
+        android:label="ManageBookingsFragment" >
+        <argument
+            android:name="date"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_manageBookingsFragment_to_doctorHomeFragment"
+            app:destination="@id/doctorHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manageAvailableDatesFragment"
+        android:name="com.example.clinic.ui.doctor.manageBookings.ManageAvailableDatesFragment"
+        android:label="ManageAvailableDatesFragment" >
+        <action
+            android:id="@+id/action_manageAvailableDatesFragment_to_doctorHomeFragment"
+            app:destination="@id/doctorHomeFragment" />
+    </fragment>
 </navigation>

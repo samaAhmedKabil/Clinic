@@ -53,5 +53,18 @@
     <string name="next">التالي</string>
     <string name="warning">تحذير !!</string>
     <string name="clinic_is_not_working_on">عيادة دكتور ايهاب قابيل لا تعمل يومي الاثنين و الثلاثاء</string>
-    <string name="manage_available_slots">Manage Available Slots</string>
+    <string name="manage_available_slots">تعديل المواعيد المتاحة</string>
+    <string name="for_you">لكي **</string>
+    <string name="feedbacks">Feedbacks</string>
+    <string name="all_feedbacks">All Feedbacks</string>
+    <string name="post">نشر</string>
+    <string name="enter_the_answer">... ادخل الاجابة</string>
+    <string name="answer">الاجابه</string>
+    <string name="enter_the_question">... ادخل السؤال</string>
+    <string name="question">السؤال</string>
+    <string name="all_questions">كل الاسئلة الشائعه</string>
+    <string name="write_your_feedback_here">اكتب تعليقك هنا</string>
+    <string name="rating">تقييم</string>
+    <string name="give_your_visit_a_rate">اكتب تقييمك لعيادة الدكتور ايهاب قابيل</string>
+    <string name="stars_intro">كم نجمة تعطي لزياراتك للعيادة ؟</string>
 </resources>

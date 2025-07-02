@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.databinding.FragmentPatientDateSelectionBinding
 import com.example.clinic.ui.dialogs.TellDisabledDialog
+import com.example.clinic.utils.ConstData
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -17,6 +20,7 @@ class DateSelectionFragment: Fragment() {
     private var _binding: FragmentPatientDateSelectionBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var userId: String
     private var selectedDate: Calendar = Calendar.getInstance()
     private var lastValidSelectedDate: Calendar = Calendar.getInstance() // To store the last valid date
 
@@ -93,6 +97,16 @@ class DateSelectionFragment: Fragment() {
     }
 
     private fun confirmClick(){
+        userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId)
+        userRef.get().addOnSuccessListener { snapshot ->
+            val role = snapshot.child("role").value?.toString() ?: ""
+            if(role == ConstData.DOCTOR_TYPE){
+                binding.btnConfirm.setOnClickListener {
+                    findNavController().navigate(DateSelectionFragmentDirections.actionDateSelectionFragmentToManageBookingsFragment(date = selectedDate.timeInMillis))
+                }
+            }
+        }
         binding.btnConfirm.setOnClickListener {
             findNavController().navigate(DateSelectionFragmentDirections.actionDateSelectionFragmentToSlotSelectionFragment(date = selectedDate.timeInMillis))
         }

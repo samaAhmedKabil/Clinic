@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_black"
-        android:text="Rating"
+        android:text="@string/rating"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topLine"/>
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_light"
-        android:text="Give Your Visit to DR. Ehab Kabil Clinic a Rate"
+        android:text="@string/give_your_visit_a_rate"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rating" />
@@ -49,11 +49,25 @@
         android:textColor="@color/default_blue"
         android:layout_marginTop="12dp"/>
 
+    <TextView
+        android:id="@+id/stars_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/edit_feedback"
+        app:layout_constraintEnd_toEndOf="@id/edit_feedback"
+        app:layout_constraintTop_toBottomOf="@id/edit_feedback"
+        android:text="@string/stars_intro"
+        android:textStyle="italic"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/purple"/>
+
+
     <ImageView
     android:id="@+id/star1"
     android:layout_width="20dp"
     android:layout_height="20dp"
-    app:layout_constraintTop_toBottomOf="@id/edit_feedback"
+    app:layout_constraintTop_toBottomOf="@id/stars_intro"
     app:layout_constraintEnd_toStartOf="@id/star2"
     android:src="@drawable/star"
     android:layout_marginTop="10dp"/>
@@ -62,7 +76,7 @@
         android:id="@+id/star2"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:layout_constraintTop_toBottomOf="@id/edit_feedback"
+        app:layout_constraintTop_toBottomOf="@id/stars_intro"
         app:layout_constraintEnd_toStartOf="@id/star3"
         android:src="@drawable/star"
         android:layout_marginTop="10dp"/>
@@ -71,7 +85,7 @@
         android:id="@+id/star3"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:layout_constraintTop_toBottomOf="@id/edit_feedback"
+        app:layout_constraintTop_toBottomOf="@id/stars_intro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/star"
@@ -81,7 +95,7 @@
         android:id="@+id/star4"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:layout_constraintTop_toBottomOf="@id/edit_feedback"
+        app:layout_constraintTop_toBottomOf="@id/stars_intro"
         app:layout_constraintStart_toEndOf="@id/star3"
         android:src="@drawable/star"
         android:layout_marginTop="10dp"/>
@@ -90,9 +104,8 @@
         android:id="@+id/star5"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        app:layout_constraintTop_toBottomOf="@id/edit_feedback"
+        app:layout_constraintTop_toBottomOf="@id/stars_intro"
         app:layout_constraintStart_toEndOf="@id/star4"
-
         android:src="@drawable/star"
         android:layout_marginTop="10dp"/>
 

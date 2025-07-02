@@ -85,6 +85,7 @@ class LoginFragment : Fragment() {
             val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser != null) {
                 // Fetch the user name from Firebase for remembered state
+                binding.root.isEnabled = false
                 binding.inProgress.visibility = View.VISIBLE
                 val userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.uid)
                 userRef.get().addOnSuccessListener { snapshot ->
@@ -134,9 +135,7 @@ class LoginFragment : Fragment() {
                     val userId = FirebaseAuth.getInstance().currentUser?.uid
 
                     if (userId != null) {
-                        // Fetch the user name (fName) from Firebase
-                        val userRef =
-                            FirebaseDatabase.getInstance().getReference("users").child(userId)
+                        val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId)
                         userRef.get().addOnSuccessListener { snapshot ->
                             val fName = snapshot.child("fname").getValue(String::class.java) ?: "Unknown"
                             sharedPrefManager.saveUserName(fName)

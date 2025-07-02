@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.clinic.R
 import com.example.clinic.data.Feedback
 import com.example.clinic.databinding.DialogRatingBinding
 import com.example.clinic.repos.FeedbackRepo
@@ -62,7 +63,7 @@ class RatingDialog(): BottomSheetDialogFragment() {
             star.setOnClickListener {
                 selectedStars = index + 1
                 stars.forEachIndexed { i, img ->
-                    img.setColorFilter(if (i < selectedStars) Color.YELLOW else Color.GRAY)
+                    img.setColorFilter(if (i < selectedStars) R.color.yellow_star else Color.GRAY)
                 }
             }
         }

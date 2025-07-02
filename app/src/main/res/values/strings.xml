@@ -68,4 +68,7 @@
     <string name="question">Question</string>
     <string name="all_questions">All Questions</string>
     <string name="write_your_feedback_here">Write your feedback here</string>
+    <string name="rating">Rating</string>
+    <string name="give_your_visit_a_rate">Give Your Visit to DR. Ehab Kabil Clinic a Rate</string>
+    <string name="stars_intro">How many stars would you like to give to the clinic ?</string>
 </resources>
