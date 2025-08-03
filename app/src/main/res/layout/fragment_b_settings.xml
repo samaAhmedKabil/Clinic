@@ -75,6 +75,7 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
+        android:id="@+id/profile_arrow"
         android:layout_width="10dp"
         android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +106,7 @@
         android:id="@+id/about_doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About Doctor"
+        android:text="@string/about_the_doctor"
         android:textSize="15sp"
         android:textStyle="italic"
         android:fontFamily="@font/poppins_light"
@@ -116,6 +117,7 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
+        android:id="@+id/about_doc_arrow"
         android:layout_width="10dp"
         android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -157,6 +159,7 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
+        android:id="@+id/about_clinic_arrow"
         android:layout_width="10dp"
         android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -198,6 +201,7 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
+        android:id="@+id/logout_arrow"
         android:layout_width="10dp"
         android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -239,6 +243,7 @@
         android:layout_marginStart="13dp"/>
 
     <TextView
+        android:id="@+id/feedbacks_arrow"
         android:layout_width="10dp"
         android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"

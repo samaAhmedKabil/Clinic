@@ -113,6 +113,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_homeFragment_to_forYouFragment"
+            app:destination="@id/forYouFragment" />
     </fragment>
     <fragment
         android:id="@+id/slotSelectionFragment"
@@ -339,4 +342,8 @@
             android:id="@+id/action_manageAvailableDatesFragment_to_doctorHomeFragment"
             app:destination="@id/doctorHomeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/forYouFragment"
+        android:name="com.example.clinic.ui.patient.forYou.ForYouFragment"
+        android:label="ForYouFragment" />
 </navigation>

@@ -100,13 +100,16 @@ class PatientRepo {
                             val fName = userSnapshot.child("fname").getValue(String::class.java) ?: ""
                             val lName = userSnapshot.child("lname").getValue(String::class.java) ?: ""
                             val phone = userSnapshot.child("phone").getValue(String::class.java) ?: ""
-
+                            val finalState = bookingSnapshot.child("finalState").getValue(String::class.java)
+                            val note = bookingSnapshot.child("note").getValue(String::class.java)
                             val booking = DoctorBooking(
                                 bookingId = bookingId,
                                 patientName = "$fName $lName",
                                 patientPhone = phone,
                                 date = date,
-                                slot = slot
+                                slot = slot,
+                                finalState = finalState,
+                                note = note
                             )
                             bookings.add(booking)
 
@@ -154,7 +157,8 @@ class PatientRepo {
                     val bookingId = bookingSnapshot.key ?: continue
                     val patientId = bookingSnapshot.child("patientId").getValue(String::class.java) ?: continue
                     val slot = bookingSnapshot.child("timeSlot").getValue(String::class.java) ?: ""
-
+                    val finalState = bookingSnapshot.child("finalState").getValue(String::class.java)
+                    val note = bookingSnapshot.child("note").getValue(String::class.java)
                     database.child(patientId).get()
                         .addOnSuccessListener { userSnapshot ->
                             val fName = userSnapshot.child("fname").getValue(String::class.java) ?: ""
@@ -166,7 +170,9 @@ class PatientRepo {
                                 patientName = "$fName $lName",
                                 patientPhone = phone,
                                 date = date,
-                                slot = slot
+                                slot = slot,
+                                finalState = finalState,
+                                note = note
                             )
                             bookings.add(booking)
                             processedCount++
@@ -187,6 +193,29 @@ class PatientRepo {
                 onFailure(error.message)
             }
         })
+    }
+
+    fun updateBookingFinalState(
+        bookingId: String,
+        finalState: String,
+        onResult: (Boolean) -> Unit
+    ) {
+        val ref = FirebaseDatabase.getInstance().getReference("bookings").child(bookingId).child("finalState")
+        ref.setValue(finalState)
+            .addOnSuccessListener { onResult(true) }
+            .addOnFailureListener { onResult(false) }
+    }
+
+    fun updateBookingNote(
+        bookingId: String,
+        note: String,
+        onResult: (Boolean) -> Unit
+    ) {
+        val ref = FirebaseDatabase.getInstance().getReference("bookings")
+            .child(bookingId).child("note")
+        ref.setValue(note)
+            .addOnSuccessListener { onResult(true) }
+            .addOnFailureListener { onResult(false) }
     }
 
 

@@ -69,4 +69,9 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
     // maps
     implementation("com.google.android.gms:play-services-maps:18.2.0")
+    // image glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+    // gif
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.29")
 }

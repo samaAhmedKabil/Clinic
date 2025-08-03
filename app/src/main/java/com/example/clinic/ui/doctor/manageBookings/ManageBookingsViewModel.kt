@@ -8,6 +8,10 @@ import com.example.clinic.data.Booking
 import com.example.clinic.repos.BookingRepo
 import com.example.clinic.ui.patient.booking.BookingViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class ManageBookingsViewModel(private val repo: BookingRepo):ViewModel() {
     private val _bookingStatus = MutableLiveData<Boolean?>()
@@ -17,7 +21,7 @@ class ManageBookingsViewModel(private val repo: BookingRepo):ViewModel() {
     val bookingError: MutableLiveData<String?> get() = _bookingError
 
     private var selectedDate: String? = null
-    private var selectedSlot: String? = null
+    internal var selectedSlot: String? = null
 
     // Set selected date and slot
     fun setSelectedDate(date: String) {
@@ -48,7 +52,10 @@ class ManageBookingsViewModel(private val repo: BookingRepo):ViewModel() {
             id = "",
             patientId = userId,
             date = date,
-            timeSlot = slot
+            timeSlot = slot,
+            isDeletable = true,
+            finalState = "",
+            note = bookingNote.orEmpty()
         )
 
         repo.bookAppointment(booking) { success ->
@@ -59,6 +66,7 @@ class ManageBookingsViewModel(private val repo: BookingRepo):ViewModel() {
             }
         }
     }
+
 
 
     fun clearStatus() {
@@ -86,6 +94,58 @@ class ManageBookingsViewModel(private val repo: BookingRepo):ViewModel() {
             _availableSlots.postValue(filteredSlots)
         }
     }
+
+    private var bookingNote: String? = null
+
+    fun setBookingNote(note: String) {
+        bookingNote = note
+    }
+
+    fun addNoteToBooking(note: String) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val date = selectedDate
+        val slot = selectedSlot
+
+        if (userId == null || date.isNullOrEmpty() || slot.isNullOrEmpty()) {
+            _bookingError.value = "Missing data to add note"
+            return
+        }
+
+        // Find the user's booking on that date and slot to get bookingId
+        val bookingsRef = FirebaseDatabase.getInstance().getReference("bookings")
+
+        bookingsRef.orderByChild("patientId").equalTo(userId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var bookingId: String? = null
+                    for (bookingSnapshot in snapshot.children) {
+                        val bookingDate = bookingSnapshot.child("date").getValue(String::class.java)
+                        val timeSlot = bookingSnapshot.child("timeSlot").getValue(String::class.java)
+                        if (bookingDate == date && timeSlot == slot) {
+                            bookingId = bookingSnapshot.key
+                            break
+                        }
+                    }
+                    if (bookingId != null) {
+                        val noteRef = bookingsRef.child(bookingId).child("note")
+                        noteRef.setValue(note)
+                            .addOnSuccessListener {
+                                _bookingError.postValue("Note added successfully") // or use _bookingStatus
+                            }
+                            .addOnFailureListener {
+                                _bookingError.postValue("Failed to add note")
+                            }
+                    } else {
+                        _bookingError.postValue("Booking not found to add note")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    _bookingError.postValue("Failed to query booking: ${error.message}")
+                }
+            })
+    }
+
 
     class ManageBookingsViewModelFactory(private val repo: BookingRepo) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

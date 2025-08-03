@@ -40,9 +40,16 @@ class SettingsFragment: Fragment() {
             val bottomSheetFragment = LogoutDialog()
             bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
         }
+        binding.logoutArrow.setOnClickListener {
+            val bottomSheetFragment = LogoutDialog()
+            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+        }
     }
     private fun myProfileClick(){
         binding.myProfile.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToMyProfileFragment())
+        }
+        binding.profileArrow.setOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToMyProfileFragment())
         }
     }
@@ -50,14 +57,23 @@ class SettingsFragment: Fragment() {
         binding.aboutDoctor.setOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToAboutDoctor())
         }
+        binding.aboutDocArrow.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToAboutDoctor())
+        }
     }
     private fun aboutClinicClick(){
         binding.aboutUs.setOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToAboutClinic())
         }
+        binding.aboutClinicArrow.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToAboutClinic())
+        }
     }
     private fun feedbacksClick(){
         binding.feedback.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToFeedbacksFragment())
+        }
+        binding.feedbacksArrow.setOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToFeedbacksFragment())
         }
     }

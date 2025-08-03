@@ -18,6 +18,12 @@ class CommonQuestionsViewModel(private val repo: CommonQuestionsRepo) : ViewMode
     private val _uploadStatus = MutableLiveData<String>() // For success/error messages
     val uploadStatus: LiveData<String> = _uploadStatus
 
+    private val _deleteStatus = MutableLiveData<String>()
+    val deleteStatus: LiveData<String> = _deleteStatus
+
+    private val _editStatus = MutableLiveData<String>()
+    val editStatus: LiveData<String> = _editStatus
+
     init {
         loadQuestions()
     }
@@ -50,6 +56,35 @@ class CommonQuestionsViewModel(private val repo: CommonQuestionsRepo) : ViewMode
             }
         }
     }
+
+    fun deleteQuestion(questionId: String) {
+        viewModelScope.launch {
+            try {
+                repo.deleteQuestion(questionId)
+                _deleteStatus.postValue("Deleted successfully!")
+            } catch (e: Exception) {
+                _deleteStatus.postValue("Error deleting: ${e.message}")
+            }
+        }
+    }
+
+    fun editQuestion(questionId: String, newQuestion: String, newAnswer: String) {
+        if (newQuestion.isBlank() || newAnswer.isBlank()) {
+            _editStatus.postValue("Question and answer cannot be empty.")
+            return
+        }
+
+        viewModelScope.launch {
+            try {
+                val updated = CommonQuestions(id = questionId, question = newQuestion, answer = newAnswer)
+                repo.updateQuestion(updated)
+                _editStatus.postValue("Edited successfully!")
+            } catch (e: Exception) {
+                _editStatus.postValue("Error editing: ${e.message}")
+            }
+        }
+    }
+
 
     // Factory for ViewModel (standard practice with constructor parameters)
     class CommonQuestionsViewModelFactory(private val repo: CommonQuestionsRepo) : ViewModelProvider.Factory {

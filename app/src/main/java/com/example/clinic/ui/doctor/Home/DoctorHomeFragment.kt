@@ -10,6 +10,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.clinic.R
 import com.example.clinic.databinding.FragmentDoctorHome2Binding
 import com.example.clinic.ui.dialogs.ConfirmQuitDialog
+import com.example.clinic.ui.dialogs.OperationSelectionDialog
+import com.example.clinic.ui.dialogs.TellDisabledDialog
 
 class DoctorHomeFragment :Fragment() {
     private var _binding: FragmentDoctorHome2Binding? = null
@@ -41,7 +43,8 @@ class DoctorHomeFragment :Fragment() {
             findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToSettingsFragment())
         }
         binding.manageBookings.setOnClickListener {
-            findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToDateSelectionFragment())
+            val bottomSheetFragment = OperationSelectionDialog()
+            bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
         }
     }
 

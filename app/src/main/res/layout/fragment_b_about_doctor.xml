@@ -44,44 +44,85 @@
 
     <ImageView
         android:id="@+id/dr_img"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:src="@drawable/circle_uncle"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/about"
-        app:layout_constraintBottom_toTopOf="@id/info_container"
-        android:layout_marginStart="10dp" />
+        app:layout_constraintBottom_toTopOf="@id/info_container" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/dr_img"
-        app:layout_constraintTop_toTopOf="@id/dr_img"
+        app:layout_constraintEnd_toEndOf="@id/contact_title"
+        app:layout_constraintTop_toBottomOf="@id/contact_title"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:text="@string/dr_ehab_kabil"
         android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:textColor="@color/default_blue"
+        android:textSize="25sp"/>
 
     <TextView
         android:id="@+id/speciality"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/name"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/name"
+        app:layout_constraintStart_toStartOf="@id/info_container"
         android:ellipsize="end"
-        android:textSize="12sp"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/name"
-        android:text="@string/speciality"
+        android:text="@string/onboarding_intro"
         android:textColor="@color/purple"/>
 
     <TextView
-        android:id="@+id/star"
+        android:id="@+id/v_star1"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:background="@drawable/star"
-        app:layout_constraintStart_toEndOf="@id/dr_img"
+        app:layout_constraintEnd_toEndOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/speciality"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/yellow_star"/>
+    <TextView
+        android:id="@+id/v_star2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintEnd_toStartOf="@id/v_star1"
+        app:layout_constraintTop_toBottomOf="@id/speciality"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/yellow_star"/>
+
+    <TextView
+        android:id="@+id/v_star3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintEnd_toStartOf="@id/v_star2"
+        app:layout_constraintTop_toBottomOf="@id/speciality"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/yellow_star"/>
+
+    <TextView
+        android:id="@+id/v_star4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintEnd_toStartOf="@id/v_star3"
+        app:layout_constraintTop_toBottomOf="@id/speciality"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/yellow_star"/>
+
+    <TextView
+        android:id="@+id/v_star5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintEnd_toStartOf="@id/v_star4"
         app:layout_constraintTop_toBottomOf="@id/speciality"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/yellow_star"/>
@@ -89,80 +130,92 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/stars"
+        android:text="علي فيزيتا (Veseeta)"
         android:textColor="@color/default_blue"
         android:textSize="12sp"
         android:textStyle="bold"
         android:ellipsize="end"
-        app:layout_constraintStart_toEndOf="@id/star"
+        app:layout_constraintEnd_toStartOf="@id/v_star5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/star"
-        app:layout_constraintBottom_toBottomOf="@id/star"
-        android:layout_marginStart="5dp" />
+        app:layout_constraintTop_toTopOf="@id/v_star5"
+        app:layout_constraintBottom_toBottomOf="@id/v_star5"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/c_star1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintEnd_toEndOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/v_star1"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/yellow_star"/>
+    <TextView
+        android:id="@+id/c_star2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintEnd_toStartOf="@id/c_star1"
+        app:layout_constraintTop_toBottomOf="@id/v_star1"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/yellow_star"/>
+
+    <TextView
+        android:id="@+id/c_star3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintEnd_toStartOf="@id/c_star2"
+        app:layout_constraintTop_toBottomOf="@id/v_star1"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/yellow_star"/>
+
+    <TextView
+        android:id="@+id/c_star4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintEnd_toStartOf="@id/c_star3"
+        app:layout_constraintTop_toBottomOf="@id/v_star1"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/yellow_star"/>
+
+    <TextView
+        android:id="@+id/c_star5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/star"
+        app:layout_constraintEnd_toStartOf="@id/c_star4"
+        app:layout_constraintTop_toBottomOf="@id/v_star1"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/yellow_star"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="علي كليندو (Clindo)"
+        android:textColor="@color/default_blue"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@id/c_star5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/c_star5"
+        app:layout_constraintBottom_toBottomOf="@id/c_star5"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/contact_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/info_container"
+        app:layout_constraintEnd_toEndOf="@id/info_container"
+        android:layout_marginStart="10dp"
         app:layout_constraintTop_toTopOf="@id/info_container"
-        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginTop="45dp"
         android:textStyle="bold"
-        android:textSize="25sp"
-        android:text="Contact Details For Emergency"/>
-
-    <ImageView
-        android:id="@+id/phone1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintWidth_percent="0.08"
-        android:src="@drawable/phone"
-        app:layout_constraintTop_toBottomOf="@id/contact_title"
-        app:layout_constraintStart_toStartOf="@id/contact_title"
-        android:layout_marginTop="25dp"/>
-
-    <ImageView
-        android:id="@+id/phone2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.08"
-        app:layout_constraintWidth_percent="0.08"
-        android:src="@drawable/phone"
-        app:layout_constraintTop_toBottomOf="@id/phone1"
-        app:layout_constraintStart_toStartOf="@id/phone1"
-        android:layout_marginTop="25dp"/>
-
-    <TextView
-        android:id="@+id/phone1_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/phone1"
-        app:layout_constraintTop_toTopOf="@id/phone1"
-        app:layout_constraintBottom_toBottomOf="@id/phone1"
-        android:text="01116043605"
-        android:layout_marginStart="15dp"
-        android:textSize="18sp"
-        android:textIsSelectable="true"
-        android:fontFamily="@font/rubik_variable_font_wight"
-        android:textStyle="bold"
-        android:textColor="#878787"/>
-
-    <TextView
-    android:id="@+id/phone2_text"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toEndOf="@id/phone2"
-    app:layout_constraintTop_toTopOf="@id/phone2"
-    app:layout_constraintBottom_toBottomOf="@id/phone2"
-    android:text="01030903115"
-    android:layout_marginStart="15dp"
-    android:textSize="18sp"
-    android:textIsSelectable="true"
-    android:fontFamily="@font/rubik_variable_font_wight"
-    android:textStyle="bold"
-    android:textColor="#878787"/>
+        android:textSize="30sp"
+        android:text="اعرف اكثر ؟؟"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/book"
@@ -173,7 +226,7 @@
         android:layout_marginBottom="30dp"
         app:cornerRadius="10dp"
         android:backgroundTint="@color/pink"
-        android:text="Book An Appointment Now"
+        android:text="@string/book_an_appointment_now"
         android:textSize="15sp"
         android:textAlignment="center"
         android:textStyle="bold"/>

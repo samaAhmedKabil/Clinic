@@ -58,10 +58,21 @@ class BookedAppointmentsFragment: Fragment() {
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 bookingsList.clear()
+                val today = System.currentTimeMillis()
                 for (bookingSnapshot in snapshot.children) {
                     val id = bookingSnapshot.key ?: ""
                     val booking = bookingSnapshot.getValue(Booking::class.java)?.copy(id = id)
+
                     if (booking != null) {
+                        // Compare booking.date (as "yyyy-MM-dd") with today
+                        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+                        val bookingTime = try {
+                            sdf.parse(booking.date)?.time ?: 0L
+                        } catch (e: Exception) {
+                            0L
+                        }
+
+                        booking.isDeletable = bookingTime >= today
                         bookingsList.add(booking)
                     }
                 }
@@ -75,6 +86,7 @@ class BookedAppointmentsFragment: Fragment() {
             }
         })
     }
+
 
     private fun deleteBooking(bookingId: String) {
         val dialog = ConfirmCancelingDialog()

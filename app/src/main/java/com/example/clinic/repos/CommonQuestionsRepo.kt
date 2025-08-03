@@ -57,4 +57,13 @@ class CommonQuestionsRepo {
         val questionWithId = question.copy(id = newQuestionRef.key ?: "") // Set the ID
         newQuestionRef.setValue(questionWithId).await() // Upload data and wait for completion
     }
+
+    suspend fun deleteQuestion(questionId: String) {
+        commonQuestionsRef.child(questionId).removeValue().await()
+    }
+
+    suspend fun updateQuestion(updatedQuestion: CommonQuestions) {
+        // Overwrite existing question data
+        commonQuestionsRef.child(updatedQuestion.id).setValue(updatedQuestion).await()
+    }
 }

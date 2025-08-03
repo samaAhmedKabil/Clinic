@@ -23,7 +23,8 @@
         android:fontFamily="@font/poppins_black"
         android:text="@string/rating"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="10dp"
         app:layout_constraintTop_toBottomOf="@id/topLine"/>
 
     <TextView
@@ -33,7 +34,8 @@
         android:fontFamily="@font/poppins_light"
         android:text="@string/give_your_visit_a_rate"
         android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="10dp"
         app:layout_constraintTop_toBottomOf="@id/rating" />
 
     <EditText

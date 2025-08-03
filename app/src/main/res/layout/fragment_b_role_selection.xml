@@ -33,15 +33,15 @@
         android:drawableLeft="@drawable/patient"
         android:paddingTop="10dp"
         android:text="@string/continue_as_patient"
-        android:textColor="#000"
         android:textAlignment="center"
+        android:textColor="#000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/circleImageView2"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.232" />
 
     <CheckBox
         android:id="@+id/patient_check_box"
@@ -57,12 +57,14 @@
         android:id="@+id/Continue_Doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
         android:drawableLeft="@drawable/doctor"
+        android:paddingTop="10dp"
         android:text="@string/continue_as_doctor"
+        android:textAlignment="center"
         android:textColor="#000"
         android:textSize="20sp"
-        android:layout_marginTop="40dp"
-        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Continue_patient" />
 
@@ -70,6 +72,7 @@
         android:id="@+id/doctor_check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:outlineAmbientShadowColor="@color/default_pink"
         app:layout_constraintTop_toTopOf="@id/Continue_Doctor"
         app:layout_constraintEnd_toEndOf="parent"

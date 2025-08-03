@@ -1,6 +1,7 @@
 package com.example.clinic
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -15,7 +16,9 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.clinic.databinding.ActivityMainBinding
 import com.example.clinic.ui.doctor.bookings.BookingWorker
+import com.example.clinic.utils.LocaleHelper.setLocale
 import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -71,5 +74,10 @@ class MainActivity : AppCompatActivity() {
                 Log.d("MainActivity", "Notification permission denied")
             }
         }
+    }
+
+
+    protected override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(setLocale(newBase, "en"))
     }
 }

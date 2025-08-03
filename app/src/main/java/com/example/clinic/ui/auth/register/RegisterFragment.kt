@@ -63,9 +63,8 @@ class RegisterFragment: Fragment() {
         val password = binding.password.text.toString().trim()
         val fName = binding.firstName.text.toString().trim()
         val lName = binding.lastName.text.toString().trim()
-        val age = binding.age.text.toString().trim()
         val phone = binding.phone.text.toString().trim()
-        val address = binding.address.text.toString().trim()
+        val confirm_pass = binding.confirmPassword.text.toString().trim()
         if (email.isEmpty()){
             binding.email.error = getString(R.string.required)
         }
@@ -78,14 +77,11 @@ class RegisterFragment: Fragment() {
         else if (lName.isEmpty()){
             binding.lastName.error = getString(R.string.required)
         }
-        else if (age.isEmpty()) {
-            binding.age.error = getString(R.string.required)
-        }
         else if (phone.isEmpty()){
             binding.phone.error = getString(R.string.required)
         }
-        else if (address.isEmpty()) {
-            binding.address.error = getString(R.string.required)
+        else if (confirm_pass.isEmpty() || confirm_pass != password) {
+            binding.confirmPassword.error = getString(R.string.required)
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             binding.email.error = getString(R.string.wrong_email)
@@ -94,7 +90,7 @@ class RegisterFragment: Fragment() {
             val fullName = "$fName $lName"
             val sharedPrefManager = SharedPrefManager(requireContext())
             sharedPrefManager.saveUserName(fullName)
-            authViewModel.register(email, password, userType, fName, lName, age.toInt(), phone, address) { success ->
+            authViewModel.register(email, password, userType, fName, lName, phone) { success ->
                 if (success) {
                     Toast.makeText(context, "Register Successful", Toast.LENGTH_SHORT).show()
                     if(userType == ConstData.DOCTOR_TYPE){

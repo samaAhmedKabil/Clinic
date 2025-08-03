@@ -38,9 +38,7 @@ class MyProfileFragment: Fragment() {
         backArrowClick()
         observeData()
 
-        setupEditButton(binding.ageText, binding.editAge, ::saveAge)
         setupEditButton(binding.phoneText, binding.editPhone, ::savePhone)
-        setupEditButton(binding.locationText, binding.editLocation, ::saveLocation)
     }
 
     private fun backArrowClick(){
@@ -54,8 +52,6 @@ class MyProfileFragment: Fragment() {
             binding.name.text = it.fname + " " + it.lname
             binding.emailText.setText(it.email)
             binding.phoneText.setText(it.phone)
-            binding.ageText.setText(it.age.toString())
-            binding.locationText.setText(it.address)
             binding.specializationText.setText(it.role)
             binding.inProgress.visibility = View.GONE
         }
@@ -109,25 +105,6 @@ class MyProfileFragment: Fragment() {
     }
 
     // --- Specific Save Functions ---
-    private fun saveAge(newAgeString: String) {
-        binding.inProgress.visibility = View.VISIBLE
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val currentProfile = viewModel.userProfile.value
-        if (currentProfile == null) {
-            Toast.makeText(requireContext(), "User profile data not loaded.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val age = newAgeString.toIntOrNull()
-        if (age == null || age <= 0 || age > 150) { // Basic age validation
-            Toast.makeText(requireContext(), "Please enter a valid age.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val updatedUser = currentProfile.copy(age = age)
-        viewModel.updateUserProfile(userId, updatedUser)
-    }
-
     private fun savePhone(newPhone: String) {
         binding.inProgress.visibility = View.VISIBLE
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
@@ -146,20 +123,6 @@ class MyProfileFragment: Fragment() {
         val updatedUser = currentProfile.copy(phone = newPhone)
         viewModel.updateUserProfile(userId, updatedUser)
     }
-
-    private fun saveLocation(newAddress: String) {
-        binding.inProgress.visibility = View.VISIBLE
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val currentProfile = viewModel.userProfile.value
-        if (currentProfile == null) {
-            Toast.makeText(requireContext(), "User profile data not loaded.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val updatedUser = currentProfile.copy(address = newAddress)
-        viewModel.updateUserProfile(userId, updatedUser)
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

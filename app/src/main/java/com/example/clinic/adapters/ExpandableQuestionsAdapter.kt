@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.clinic.R
 import com.example.clinic.data.CommonQuestions
 
-class ExpandableQuestionsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ExpandableQuestionsAdapter(
+    private val onEditClick: ((CommonQuestions) -> Unit)? = null,
+    private val onDeleteClick: ((CommonQuestions) -> Unit)? = null
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val dataList: MutableList<ExpandableQuestionItem> = mutableListOf()
     private var allQuestions: List<CommonQuestions> = emptyList()
@@ -36,7 +39,7 @@ class ExpandableQuestionsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
                 dataList.add(ExpandableQuestionItem.Child(question.answer, question.id))
             }
         }
-        notifyDataSetChanged() // For a full refresh (can be optimized with DiffUtil)
+        notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -49,11 +52,13 @@ class ExpandableQuestionsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_PARENT -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_faq_question, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_faq_question, parent, false)
                 ParentViewHolder(view)
             }
             VIEW_TYPE_CHILD -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_faq_answer, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_faq_answer, parent, false)
                 ChildViewHolder(view)
             }
             else -> throw IllegalArgumentException("Unknown view type: $viewType")
@@ -66,7 +71,6 @@ class ExpandableQuestionsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
                 val parentHolder = holder as ParentViewHolder
                 val parentItem = dataList[position] as ExpandableQuestionItem.Parent
                 parentHolder.bind(parentItem)
-
                 parentHolder.itemView.setOnClickListener {
                     toggleParentExpansion(parentItem, position)
                 }
@@ -85,11 +89,31 @@ class ExpandableQuestionsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
         private val questionTextView: TextView = itemView.findViewById(R.id.tv_question)
         private val arrowImageView: ImageView = itemView.findViewById(R.id.iv_expand_arrow)
 
+        // Optional: add edit & delete buttons if present in your XML layout
+        private val editButton: ImageView? = itemView.findViewById(R.id.iv_edit)
+        private val deleteButton: ImageView? = itemView.findViewById(R.id.iv_delete)
+
         fun bind(parentItem: ExpandableQuestionItem.Parent) {
             questionTextView.text = parentItem.question.question
             arrowImageView.setImageResource(
                 if (parentItem.isExpanded) R.drawable.up_arrow else R.drawable.down_b_arrow
             )
+
+            // If callbacks are provided, show buttons; else hide them
+            if (onEditClick != null && onDeleteClick != null) {
+                editButton?.visibility = View.VISIBLE
+                deleteButton?.visibility = View.VISIBLE
+
+                editButton?.setOnClickListener {
+                    onEditClick.invoke(parentItem.question)
+                }
+                deleteButton?.setOnClickListener {
+                    onDeleteClick.invoke(parentItem.question)
+                }
+            } else {
+                editButton?.visibility = View.GONE
+                deleteButton?.visibility = View.GONE
+            }
         }
     }
 
@@ -105,19 +129,20 @@ class ExpandableQuestionsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
         parentItem.isExpanded = !parentItem.isExpanded
 
         if (parentItem.isExpanded) {
-            // Insert child (answer) right after the parent
-            dataList.add(position + 1, ExpandableQuestionItem.Child(parentItem.question.answer, parentItem.question.id))
+            dataList.add(
+                position + 1,
+                ExpandableQuestionItem.Child(parentItem.question.answer, parentItem.question.id)
+            )
             notifyItemInserted(position + 1)
         } else {
-            // Safety check: ensure the item at position+1 is indeed the child of this parent
             if (position + 1 < dataList.size && dataList[position + 1] is ExpandableQuestionItem.Child) {
                 val child = dataList[position + 1] as ExpandableQuestionItem.Child
-                if (child.parentId == parentItem.question.id) { // Verify it's the correct child
+                if (child.parentId == parentItem.question.id) {
                     dataList.removeAt(position + 1)
                     notifyItemRemoved(position + 1)
                 }
             }
         }
-        notifyItemChanged(position) // Update the parent item's arrow
+        notifyItemChanged(position) // Update arrow icon
     }
 }

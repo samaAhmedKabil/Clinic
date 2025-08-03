@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -16,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clinic.R
 import com.example.clinic.databinding.FragmentPatientSlotSelectionBinding
 import com.example.clinic.repos.BookingRepo
+import com.example.clinic.ui.dialogs.BookingConfirmationDialogFragment
+import com.google.android.material.button.MaterialButton
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -26,9 +27,20 @@ class SlotSelectionFragment : Fragment() {
 
     private lateinit var viewModel: BookingViewModel
     private lateinit var slotAdapter: SlotsAdapter
+
     private val args: SlotSelectionFragmentArgs by navArgs()
 
-    lateinit var timeSlots: List<String>
+    private val morningSlotsData = listOf(
+        "11:00 AM", "11:10 AM", "11:20 AM", "11:30 AM", "11:40 AM", "11:50 AM",
+        "12:00 PM", "12:10 PM", "12:20 PM", "12:30 PM", "12:40 PM", "12:50 PM"
+    )
+
+    private val eveningSlotsData = listOf(
+        "6:00 PM", "6:10 PM", "6:20 PM", "6:30 PM", "6:40 PM", "6:50 PM",
+        "7:00 PM", "7:10 PM", "7:20 PM", "7:30 PM", "7:40 PM", "7:50 PM",
+        "8:00 PM", "8:10 PM", "8:20 PM", "8:30 PM", "8:40 PM", "8:50 PM",
+        "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM"
+    )
 
     private lateinit var receivedSelectedDate: Calendar
 
@@ -53,14 +65,19 @@ class SlotSelectionFragment : Fragment() {
         displayReceivedDate(receivedSelectedDate)
 
         setupRecyclerView()
-        setupObservers()
         setupButtonListeners()
+        setupObservers()
         backArrowClick()
 
         val formattedDateForViewModel = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(receivedSelectedDate.time)
         viewModel.setSelectedDate(formattedDateForViewModel)
         viewModel.loadAvailableSlots(formattedDateForViewModel)
-        showRecyclerViewWithAnimation()
+
+        if (isAmDay()) {
+            binding.morningSlots.performClick()
+        } else {
+            binding.eveningSlots.performClick()
+        }
     }
 
     private fun backArrowClick() {
@@ -70,33 +87,14 @@ class SlotSelectionFragment : Fragment() {
     }
 
     private fun displayReceivedDate(calendar: Calendar) {
-        val dateFormat = SimpleDateFormat("dd MMMM, yyyy", Locale.getDefault()) // Adjust format as needed
+        val dateFormat = SimpleDateFormat("dd MMMM, yyyy", Locale.getDefault())
         val formattedDate = dateFormat.format(calendar.time)
         binding.tvSelectedDate.text = "Selected Date: $formattedDate"
     }
 
     private fun setupRecyclerView() {
-        timeSlots = if (isAmDay()) {
-            listOf(
-                "10:00 AM", "10:10 AM", "10:20 AM", "10:30 AM", "10:40 AM", "10:50 AM",
-                "11:00 AM", "11:10 AM", "11:20 AM", "11:30 AM", "11:40 AM", "11:50 AM",
-                "12:00 PM", "12:10 PM", "12:20 PM", "12:30 PM", "12:40 PM", "12:50 PM",
-                "6:00 PM", "6:10 PM", "6:20 PM", "6:30 PM", "6:40 PM", "6:50 PM",
-                "7:00 PM", "7:10 PM", "7:20 PM", "7:30 PM", "7:40 PM", "7:50 PM",
-                "8:00 PM", "8:10 PM", "8:20 PM", "8:30 PM", "8:40 PM", "8:50 PM",
-                "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM"
-            )
-        } else {
-            listOf(
-                "6:00 PM", "6:10 PM", "6:20 PM", "6:30 PM", "6:40 PM", "6:50 PM",
-                "7:00 PM", "7:10 PM", "7:20 PM", "7:30 PM", "7:40 PM", "7:50 PM",
-                "8:00 PM", "8:10 PM", "8:20 PM", "8:30 PM", "8:40 PM", "8:50 PM",
-                "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM"
-            )
-        }
-
-        slotAdapter = SlotsAdapter(timeSlots) { slot ->
-            viewModel.setSelectedSlot(slot)
+        slotAdapter = SlotsAdapter(emptyList()) { slot ->
+            viewModel.setSelectedSlot(slot) // This call is correct
         }
 
         binding.rvSlots.apply {
@@ -107,30 +105,26 @@ class SlotSelectionFragment : Fragment() {
         }
     }
 
-
     private fun isAmDay(): Boolean {
         val dayOfWeek = receivedSelectedDate.get(Calendar.DAY_OF_WEEK)
         return dayOfWeek == Calendar.WEDNESDAY || dayOfWeek == Calendar.SATURDAY
     }
 
-    private fun showRecyclerViewWithAnimation() {
-        if (binding.rvSlots.visibility != View.VISIBLE) {
-            binding.rvSlots.visibility = View.VISIBLE
-            val slideDown = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_down)
-            slideDown.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationStart(animation: Animation?) {}
-                override fun onAnimationEnd(animation: Animation?) {
-                    binding.rvSlots.scheduleLayoutAnimation()
-                }
-                override fun onAnimationRepeat(animation: Animation?) {}
-            })
-            binding.rvSlots.startAnimation(slideDown)
-        } else {
-            binding.rvSlots.scheduleLayoutAnimation()
-        }
-    }
-
     private fun setupButtonListeners() {
+        binding.morningSlots.setOnClickListener {
+            if (isAmDay()) {
+                updateButtonBackground(binding.morningSlots)
+                updateSlotList(morningSlotsData)
+            } else {
+                Toast.makeText(requireContext(), "Morning slots are only available on Wednesday and Saturday.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.eveningSlots.setOnClickListener {
+            updateButtonBackground(binding.eveningSlots)
+            updateSlotList(eveningSlotsData)
+        }
+
         binding.btnConfirm.setOnClickListener {
             binding.inProgress.visibility = View.VISIBLE
             viewModel.confirmBooking()
@@ -141,11 +135,27 @@ class SlotSelectionFragment : Fragment() {
         }
     }
 
+    private fun updateButtonBackground(clickedButton: MaterialButton) {
+        binding.morningSlots.setBackgroundTintList(resources.getColorStateList(R.color.light_grey, null))
+        binding.eveningSlots.setBackgroundTintList(resources.getColorStateList(R.color.light_grey, null))
+
+        clickedButton.setBackgroundTintList(resources.getColorStateList(R.color.default_pink_transparent, null))
+    }
+
+    private fun updateSlotList(newSlots: List<String>) {
+        val bookedSlots = viewModel.bookedSlots.value ?: emptyList()
+        slotAdapter.updateSlots(newSlots, bookedSlots)
+        binding.rvSlots.scheduleLayoutAnimation()
+    }
+
     private fun setupObservers() {
         viewModel.bookingStatus.observe(viewLifecycleOwner) { success ->
             if (success == true) {
-                Toast.makeText(requireContext(), "Booking Confirmed!", Toast.LENGTH_SHORT).show()
                 binding.inProgress.visibility = View.GONE
+                val selectedSlotTime = viewModel.selectedSlot ?: ""
+                val dialog = BookingConfirmationDialogFragment.newInstance(selectedSlotTime)
+                dialog.show(parentFragmentManager, "BookingConfirmationDialog")
+
                 findNavController().navigate(SlotSelectionFragmentDirections.actionSlotSelectionFragmentToHomeFragment())
                 viewModel.clearStatus()
             }
@@ -153,27 +163,37 @@ class SlotSelectionFragment : Fragment() {
 
         viewModel.bookingError.observe(viewLifecycleOwner) { error ->
             error?.let {
-                viewModel.bookingError.observe(viewLifecycleOwner) { error ->
-                    if (error == "You already have a booking on this date.") {
-                        binding.btnConfirm.isEnabled = false
-                        Toast.makeText(requireContext(), "You already have a booking on this date.", Toast.LENGTH_SHORT).show()
-                        binding.inProgress.visibility = View.GONE
-                    } else {
-                        binding.btnConfirm.isEnabled = true
-                    }
+                if (it == "You already have a booking on this date.") {
+                    binding.btnConfirm.isEnabled = false
+                    Toast.makeText(requireContext(), "You already have a booking on this date. ⚠️", Toast.LENGTH_SHORT).show()
+                    binding.inProgress.visibility = View.GONE
+                } else {
+                    binding.btnConfirm.isEnabled = true
+                    Toast.makeText(requireContext(), "Booking Error: $it ❌", Toast.LENGTH_SHORT).show()
+                    binding.inProgress.visibility = View.GONE
                 }
-                //viewModel.clearStatus()
+                viewModel.clearStatus()
             }
         }
 
         viewModel.availableSlots.observe(viewLifecycleOwner) { availableSlots ->
+            val currentDisplayedSlots = when {
+                binding.morningSlots.backgroundTintList?.defaultColor == resources.getColor(R.color.default_pink_transparent, null) -> morningSlotsData
+                binding.eveningSlots.backgroundTintList?.defaultColor == resources.getColor(R.color.default_pink_transparent, null) -> eveningSlotsData
+                else -> emptyList()
+            }
             val bookedSlots = viewModel.bookedSlots.value ?: emptyList()
-            slotAdapter.updateSlots(timeSlots, bookedSlots)
+            slotAdapter.updateSlots(currentDisplayedSlots, bookedSlots)
             binding.rvSlots.scheduleLayoutAnimation()
         }
 
         viewModel.bookedSlots.observe(viewLifecycleOwner) { bookedSlots ->
-            slotAdapter.updateSlots(timeSlots, bookedSlots)
+            val currentDisplayedSlots = when {
+                binding.morningSlots.backgroundTintList?.defaultColor == resources.getColor(R.color.default_pink_transparent, null) -> morningSlotsData
+                binding.eveningSlots.backgroundTintList?.defaultColor == resources.getColor(R.color.default_pink_transparent, null) -> eveningSlotsData
+                else -> emptyList()
+            }
+            slotAdapter.updateSlots(currentDisplayedSlots, bookedSlots)
             binding.rvSlots.scheduleLayoutAnimation()
         }
     }

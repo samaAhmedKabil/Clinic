@@ -38,8 +38,15 @@ class BookingAdapter(private val bookings: MutableList<Booking>, private val onD
             tvDate.text = "Date: ${booking.date}"
             tvSlot.text = "Slot: ${booking.timeSlot}"
 
-            btnDelete.setOnClickListener {
-                onDelete(booking.id)
+            if (booking.isDeletable) {
+                btnDelete.visibility = View.VISIBLE
+                btnDelete.isEnabled = true
+                btnDelete.setOnClickListener {
+                    onDelete(booking.id)
+                }
+            } else {
+                btnDelete.visibility = View.GONE
+                btnDelete.setOnClickListener(null)
             }
         }
     }

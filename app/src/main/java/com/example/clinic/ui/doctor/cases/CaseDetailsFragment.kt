@@ -37,8 +37,6 @@ class CaseDetailsFragment :Fragment() {
                 binding.patientName.text = patient.name
                 binding.email.setText(patient.email)
                 binding.phone.setText(patient.phone)
-                binding.age.setText(patient.age.toString())
-                binding.address.setText(patient.address)
                 binding.inProgress.visibility = View.GONE
             } else {
                 binding.patientName.text = "No data found"

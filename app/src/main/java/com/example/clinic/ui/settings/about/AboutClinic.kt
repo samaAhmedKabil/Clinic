@@ -43,7 +43,7 @@ class AboutClinic : Fragment(), OnMapReadyCallback {
     }
 
     private fun addressClick() {
-        binding.address.setOnClickListener {
+        binding.mapsIcon.setOnClickListener {
             openGoogleMaps()
         }
     }

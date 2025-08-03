@@ -48,6 +48,9 @@ class HomeFragment:Fragment() {
         binding.menu.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment())
         }
+        binding.forYou.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToForYouFragment())
+        }
     }
 
     private fun addressClick() {

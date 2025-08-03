@@ -64,7 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/line"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="40dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp">
 
@@ -116,42 +117,13 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/age_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/age"
-                android:textSize="18sp"
-                android:textColor="#989898"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                />
-            <EditText
-                android:id="@+id/age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="20"
-                android:textSize="18sp"
-                android:clickable="false"
-                android:maxLines="1"
-                android:gravity="center"
-                android:focusableInTouchMode="false"
-                android:background="@drawable/text_box"
-                android:textColor="@color/default_pink"
-                app:layout_constraintTop_toBottomOf="@id/age_label"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                />
-
-            <TextView
                 android:id="@+id/phone_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/phone_number"
                 android:textSize="18sp"
                 android:textColor="#989898"
-                app:layout_constraintTop_toBottomOf="@id/age"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
@@ -200,37 +172,6 @@
                 app:layout_constraintTop_toBottomOf="@id/date_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
-                />
-
-            <TextView
-                android:id="@+id/status_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/address"
-                android:textSize="18sp"
-                android:textColor="#989898"
-                app:layout_constraintTop_toBottomOf="@id/email"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                />
-            <EditText
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Cairo"
-                android:textSize="18sp"
-                android:maxLines="1"
-                android:clickable="false"
-                android:background="@drawable/text_box"
-                android:textColor="@color/default_pink"
-                app:layout_constraintTop_toBottomOf="@id/status_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:focusableInTouchMode="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="20dp"
                 />
 
             <ProgressBar

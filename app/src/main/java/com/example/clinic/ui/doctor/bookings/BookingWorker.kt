@@ -11,6 +11,7 @@ import androidx.work.WorkerParameters
 import com.example.clinic.R
 import com.example.clinic.data.DoctorBooking
 import com.example.clinic.repos.PatientRepo
+import com.example.clinic.utils.ConstData
 import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
@@ -30,7 +31,7 @@ class BookingWorker(private val context: Context, workerParams: WorkerParameters
             val sharedPreferences = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
             val role = sharedPreferences.getString("role", null)
 
-            if (role != "Doctor") {
+            if (role != ConstData.DOCTOR_TYPE) {
                 Log.d("BookingWorker", "Not a doctor, skipping work")
                 return Result.success()
             }

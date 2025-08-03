@@ -27,8 +27,8 @@ class ConfirmCancelingDialog: BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.logout.text = "Cancel this booking"
-        binding.logoutDes.text = "Are you sure you want to cancel this booking?"
+        binding.logout.text = "الغاء الحجز"
+        binding.logoutDes.text = "هل أنت متأكد من الغاء هذا الحجز؟"
         bookingId?.let { okClick(it) }
         binding.cancel.setOnClickListener {
             dismiss()
@@ -39,12 +39,12 @@ class ConfirmCancelingDialog: BottomSheetDialogFragment() {
             database = FirebaseDatabase.getInstance().reference.child("bookings")
             database.child(bookingId).removeValue()
                 .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Booking deleted successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "تم الغاء الحجز", Toast.LENGTH_SHORT).show()
                     onDeleteConfirmed?.invoke()
                     dismiss()
                 }
                 .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Failed to delete booking", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "فشل الغاء الحجز", Toast.LENGTH_SHORT).show()
                 }
         }
     }

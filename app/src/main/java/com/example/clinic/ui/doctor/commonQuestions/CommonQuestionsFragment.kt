@@ -9,8 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.clinic.adapters.ExpandableQuestionsAdapter
+import com.example.clinic.data.CommonQuestions
 import com.example.clinic.databinding.FragmentDoctorAllCommonQuestionsBinding
 import com.example.clinic.repos.CommonQuestionsRepo
+import com.example.clinic.ui.dialogs.ShowEditDialog
+import com.example.clinic.ui.patient.commonQuestions.PatientCommonQuestionsFragment
 
 class CommonQuestionsFragment : Fragment() {
 
@@ -53,8 +56,17 @@ class CommonQuestionsFragment : Fragment() {
         }
     }
 
+    private fun showEditDialog(question: CommonQuestions) {
+        ShowEditDialog(question) { newQ, newA ->
+            viewModel.editQuestion(question.id, newQ, newA)
+        }.show(parentFragmentManager, "EditQuestionBottomSheet")
+    }
+
     private fun setupRecyclerView() {
-        adapter = ExpandableQuestionsAdapter()
+        adapter = ExpandableQuestionsAdapter(
+            onEditClick = { question -> showEditDialog(question) },
+            onDeleteClick = { question -> viewModel.deleteQuestion(question.id) }
+        )
         binding.rvQuestions.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@CommonQuestionsFragment.adapter
@@ -63,7 +75,7 @@ class CommonQuestionsFragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.questions.observe(viewLifecycleOwner) { questions ->
-            adapter.submitQuestions(questions) // Update RecyclerView with fetched questions
+            adapter.submitQuestions(questions)
         }
     }
 

@@ -51,25 +51,23 @@ class AllBookingsFragment : Fragment() {
         }
     }
 
-    private fun init(){
-        bookingAdapter = DoctorBookingAdapter(mutableListOf())
+    private fun init() {
+        bookingAdapter = DoctorBookingAdapter(mutableListOf()) { booking, newState ->
+            viewModel.updateBookingFinalState(booking.bookingId, newState) { success ->
+                if (success) {
+                    android.widget.Toast.makeText(requireContext(), "Updated successfully", android.widget.Toast.LENGTH_SHORT).show()
+                    // refresh list (better to update the specific item in the list instead of reload)
+                    viewModel.fetchBookingsByDate(booking.date)
+                } else {
+                    android.widget.Toast.makeText(requireContext(), "Failed to update", android.widget.Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
         binding.bookedSlots.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = bookingAdapter
         }
     }
-
-    /*private fun fetchAllBookings() {
-        viewModel.bookingsList.observe(viewLifecycleOwner) { bookings ->
-            bookingAdapter.updateBookings(bookings)
-        }
-
-        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
-            if (error.isNotEmpty()) {
-                android.widget.Toast.makeText(context, error, android.widget.Toast.LENGTH_SHORT).show()
-            }
-        }
-    }*/
 
     private fun fetchBookingsByToday() {
         val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())

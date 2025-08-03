@@ -9,12 +9,12 @@ class AuthRepo {
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance().reference
 
-    fun register(email: String, password: String, role: String, fName: String, lName: String, age: Int, phone: String, address: String, onResult: (Boolean) -> Unit) {
+    fun register(email: String, password: String, role: String, fName: String, lName: String, phone: String, onResult: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 // After successful authentication, add role and other details to the database
                 val userId = auth.currentUser?.uid ?: return@addOnSuccessListener
-                var user = User(userId, email, role, fName, lName, age, phone, address) // Assuming you have a User data class
+                var user = User(userId, email, role, fName, lName, phone) // Assuming you have a User data class
 
                 // Save user data to Firebase Realtime Database
                 database.child("users").child(userId).setValue(user)

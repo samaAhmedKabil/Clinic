@@ -26,7 +26,6 @@ class FragmentOnBoarding: Fragment() {
         _binding = OnBoardingFragmentBinding.bind(view)
         val fragments = listOf(
             OnBoardingOne(),
-            OnBoardingTwo()
         )
 
         binding.onboardingViewPager.adapter = object : FragmentStateAdapter(this) {

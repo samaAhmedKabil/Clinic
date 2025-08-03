@@ -63,7 +63,7 @@ class RatingDialog(): BottomSheetDialogFragment() {
             star.setOnClickListener {
                 selectedStars = index + 1
                 stars.forEachIndexed { i, img ->
-                    img.setColorFilter(if (i < selectedStars) R.color.yellow_star else Color.GRAY)
+                    img.setColorFilter(if (i < selectedStars) Color.YELLOW else Color.GRAY)
                 }
             }
         }

@@ -44,15 +44,9 @@ class DoctorViewModel(private val repo: PatientRepo) : ViewModel() {
     private val _bookingsList = MutableLiveData<List<DoctorBooking>>()
     val bookingsList: LiveData<List<DoctorBooking>> get() = _bookingsList
 
-    fun fetchAllBookings() {
-        repo.getAllBookings(
-            onResult = { bookings ->
-                _bookingsList.value = bookings
-            },
-            onFailure = { error ->
-                _errorMessage.value = "Error fetching bookings: $error"
-            }
-        )
+
+    fun updateBookingFinalState(bookingId: String, finalState: String, onResult: (Boolean) -> Unit) {
+        repo.updateBookingFinalState(bookingId, finalState, onResult)
     }
 
     fun fetchBookingsByDate(date: String) {
@@ -65,6 +59,10 @@ class DoctorViewModel(private val repo: PatientRepo) : ViewModel() {
                 _errorMessage.value = "Error fetching bookings: $error"
             }
         )
+    }
+
+    fun updateBookingNote(bookingId: String, note: String, onResult: (Boolean) -> Unit) {
+        repo.updateBookingNote(bookingId, note, onResult)
     }
 
     class Factory(private val repo: PatientRepo) : ViewModelProvider.Factory {

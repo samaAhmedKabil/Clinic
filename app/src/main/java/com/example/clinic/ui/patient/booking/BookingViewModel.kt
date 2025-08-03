@@ -17,7 +17,7 @@ class BookingViewModel(private val repo: BookingRepo):ViewModel() {
     val bookingError: MutableLiveData<String?> get() = _bookingError
 
     private var selectedDate: String? = null
-    private var selectedSlot: String? = null
+    internal var selectedSlot: String? = null
 
     // Set selected date and slot
     fun setSelectedDate(date: String) {
@@ -48,12 +48,7 @@ class BookingViewModel(private val repo: BookingRepo):ViewModel() {
             if (alreadyBooked) {
                 _bookingError.postValue("You already have a booking on this date.")
             } else {
-                val booking = Booking(
-                    id = "",
-                    patientId = userId,
-                    date = date,
-                    timeSlot = slot
-                )
+                val booking = Booking(id = "", patientId = userId, date = date, timeSlot = slot, finalState = "")
 
                 repo.bookAppointment(booking) { success ->
                     if (success) {
