@@ -51,7 +51,7 @@
     <string name="pick_a_slot">اختار موعد</string>
     <string name="next">التالي</string>
     <string name="warning">تحذير !!</string>
-    <string name="clinic_is_not_working_on">عيادة دكتور ايهاب قابيل لا تعمل يومي الاثنين و الثلاثاء</string>
+    <string name="clinic_is_not_working_on">عيادة الدكتور ايهاب قابيل لا تعمل في هذا اليوم !!</string>
     <string name="manage_available_slots">تعديل المواعيد المتاحة</string>
     <string name="for_you">لكي **</string>
     <string name="feedbacks">التقييمات</string>
@@ -90,4 +90,7 @@
     <string name="note">ملحوظه</string>
     <string name="write_notes">اكتب ملاحظاتك هنا !!</string>
     <string name="notes_headings">ملاحظات</string>
+    <string name="year">السنة</string>
+    <string name="day">اليوم</string>
+    <string name="month">الشهر</string>
 </resources>

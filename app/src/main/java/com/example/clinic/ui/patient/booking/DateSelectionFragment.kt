@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.clinic.data.DisabledDate
 import com.example.clinic.databinding.FragmentPatientDateSelectionBinding
+import com.example.clinic.repos.DisabledDatesRepo
 import com.example.clinic.ui.dialogs.TellDisabledDialog
+import com.example.clinic.ui.doctor.manageBookings.DisabledDatesViewModel
 import com.example.clinic.utils.ConstData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -23,6 +27,9 @@ class DateSelectionFragment: Fragment() {
     private lateinit var userId: String
     private var selectedDate: Calendar = Calendar.getInstance()
     private var lastValidSelectedDate: Calendar = Calendar.getInstance() // To store the last valid date
+    private lateinit var disabledViewModel: DisabledDatesViewModel
+    private var disabledDates: List<DisabledDate> = emptyList()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +45,15 @@ class DateSelectionFragment: Fragment() {
         setupCalendarView()
         confirmClick()
 
-        if (isDayOfWeekInvalid(selectedDate)) {
+        val factory = DisabledDatesViewModel.Factory(DisabledDatesRepo())
+        disabledViewModel = ViewModelProvider(this, factory)[DisabledDatesViewModel::class.java]
+        disabledViewModel.loadDisabledDates()
+
+        disabledViewModel.disabledDates.observe(viewLifecycleOwner) { list ->
+            disabledDates = list
+        }
+
+        if (isDateInvalid(selectedDate)) {
             findNextValidDay(selectedDate)
             binding.calender.date = selectedDate.timeInMillis
         }
@@ -63,9 +78,8 @@ class DateSelectionFragment: Fragment() {
                 set(Calendar.MILLISECOND, 0)
             }
 
-            if (isDayOfWeekInvalid(newlySelectedCalendar)) {
+            if (isDateInvalid(newlySelectedCalendar)) {
                 showDisabledDayDialog()
-
                 binding.calender.date = lastValidSelectedDate.timeInMillis
                 selectedDate = lastValidSelectedDate
             } else {
@@ -76,14 +90,20 @@ class DateSelectionFragment: Fragment() {
         }
     }
 
-    private fun isDayOfWeekInvalid(calendar: Calendar): Boolean {
+    private fun isDateInvalid(calendar: Calendar): Boolean {
         val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
-        return dayOfWeek == Calendar.MONDAY || dayOfWeek == Calendar.TUESDAY
+        if (dayOfWeek == Calendar.MONDAY || dayOfWeek == Calendar.TUESDAY) return true
+
+        return disabledDates.any {
+            it.year == calendar.get(Calendar.YEAR) &&
+                    it.month == calendar.get(Calendar.MONTH) + 1 && // Firebase month saved 1-based
+                    it.day == calendar.get(Calendar.DAY_OF_MONTH)
+        }
     }
 
     private fun findNextValidDay(calendar: Calendar) {
         var tempCalendar = calendar.clone() as Calendar
-        while (isDayOfWeekInvalid(tempCalendar)) {
+        while (isDateInvalid(tempCalendar)) {
             tempCalendar.add(Calendar.DAY_OF_YEAR, 1)
         }
         calendar.timeInMillis = tempCalendar.timeInMillis
