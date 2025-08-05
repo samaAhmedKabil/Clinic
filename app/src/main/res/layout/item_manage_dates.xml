@@ -13,14 +13,26 @@
         android:layout_height="match_parent"
         android:padding="16dp">
 
+        <TextView
+            android:id="@+id/year_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/year"
+            android:textColor="@color/pink"
+            android:textSize="15sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/year"
+            app:layout_constraintEnd_toEndOf="@id/year"/>
+
         <EditText
             android:id="@+id/year"
             android:layout_width="100dp"
             android:layout_height="40dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/year_view"
             android:background="@drawable/text_box"
-            android:hint="@string/year"
+            android:textColor="@color/purple"
+            android:layout_marginTop="8dp"
             android:textColorHint="@color/grey"
             android:gravity="center" />
 
@@ -33,17 +45,39 @@
             app:layout_constraintBottom_toBottomOf="@id/year"
             android:background="@drawable/delete"/>
 
+        <TextView
+            android:id="@+id/day_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/day"
+            android:textColor="@color/pink"
+            android:textSize="15sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/day"
+            app:layout_constraintEnd_toEndOf="@id/day"/>
+
         <EditText
             android:id="@+id/day"
             android:layout_width="100dp"
             android:layout_height="40dp"
             app:layout_constraintEnd_toStartOf="@id/delete"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/day_view"
             android:layout_marginEnd="10dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/text_box"
-            android:hint="@string/day"
             android:textColorHint="@color/grey"
             android:gravity="center" />
+
+        <TextView
+            android:id="@+id/month_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/month"
+            android:textColor="@color/pink"
+            android:textSize="15sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/month"
+            app:layout_constraintEnd_toEndOf="@id/month"/>
 
         <EditText
             android:id="@+id/month"
@@ -51,9 +85,9 @@
             android:layout_height="40dp"
             app:layout_constraintStart_toEndOf="@id/year"
             app:layout_constraintEnd_toStartOf="@id/day"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/month_view"
             android:background="@drawable/text_box"
-            android:hint="@string/month"
+            android:layout_marginTop="8dp"
             android:textColorHint="@color/grey"
             android:gravity="center"/>
 

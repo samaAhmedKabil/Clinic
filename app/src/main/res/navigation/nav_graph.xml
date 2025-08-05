@@ -345,5 +345,13 @@
     <fragment
         android:id="@+id/forYouFragment"
         android:name="com.example.clinic.ui.patient.forYou.ForYouFragment"
-        android:label="ForYouFragment" />
+        android:label="ForYouFragment" >
+        <action
+            android:id="@+id/action_forYouFragment_to_hospitalBagFragment"
+            app:destination="@id/hospitalBagFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hospitalBagFragment"
+        android:name="com.example.clinic.ui.patient.forYou.hospitalBag.HospitalBagFragment"
+        android:label="HospitalBagFragment" />
 </navigation>
