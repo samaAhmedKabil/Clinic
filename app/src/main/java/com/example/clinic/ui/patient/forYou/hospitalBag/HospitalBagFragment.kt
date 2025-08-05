@@ -38,17 +38,17 @@ class HospitalBagFragment: Fragment() {
 
     private fun setupHospitalBagLists() {
         val momNeeds = listOf(
-            HospitalBagItem("بيجامة", R.drawable.caring_pregnant),
-            HospitalBagItem("ملابس", R.drawable.caring_pregnant),
-            HospitalBagItem("شباشب", R.drawable.caring_pregnant),
-            HospitalBagItem("فوط صحية لما بعد الولادة", R.drawable.caring_pregnant),
-            HospitalBagItem("ملابس داخلية", R.drawable.caring_pregnant),
-            HospitalBagItem("وسادة الرضاعة", R.drawable.caring_pregnant),
-            HospitalBagItem("غطاء الرضاعة", R.drawable.caring_pregnant),
-            HospitalBagItem("فرشاة اسنان", R.drawable.caring_pregnant),
-            HospitalBagItem("معجون اسنان", R.drawable.caring_pregnant),
-            HospitalBagItem("شامبو", R.drawable.caring_pregnant),
-            HospitalBagItem("جل الاستحمام", R.drawable.caring_pregnant)
+            HospitalBagItem("بيجامة", R.drawable.mom),
+            HospitalBagItem("ملابس", R.drawable.mom),
+            HospitalBagItem("شباشب", R.drawable.mom),
+            HospitalBagItem("فوط صحية لما بعد الولادة", R.drawable.mom),
+            HospitalBagItem("ملابس داخلية", R.drawable.mom),
+            HospitalBagItem("وسادة الرضاعة", R.drawable.mom),
+            HospitalBagItem("غطاء الرضاعة", R.drawable.mom),
+            HospitalBagItem("فرشاة اسنان", R.drawable.mom),
+            HospitalBagItem("معجون اسنان", R.drawable.mom),
+            HospitalBagItem("شامبو", R.drawable.mom),
+            HospitalBagItem("جل الاستحمام", R.drawable.mom)
         )
 
         val babyNeeds = listOf(
