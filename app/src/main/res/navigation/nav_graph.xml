@@ -349,9 +349,16 @@
         <action
             android:id="@+id/action_forYouFragment_to_hospitalBagFragment"
             app:destination="@id/hospitalBagFragment" />
+        <action
+            android:id="@+id/action_forYouFragment_to_babyNamesFragment"
+            app:destination="@id/babyNamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/hospitalBagFragment"
         android:name="com.example.clinic.ui.patient.forYou.hospitalBag.HospitalBagFragment"
         android:label="HospitalBagFragment" />
+    <fragment
+        android:id="@+id/babyNamesFragment"
+        android:name="com.example.clinic.ui.patient.forYou.babyNames.BabyNamesFragment"
+        android:label="BabyNamesFragment" />
 </navigation>

@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontalUp"
-        android:text="لأجلك يا ماما"
+        android:text="@string/for_you_mom"
         android:textStyle="bold|italic"
         android:textSize="22sp"
         android:textColor="@color/default_pink"
@@ -65,6 +65,7 @@
             android:paddingBottom="16dp">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/hospital_bag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
@@ -115,6 +116,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/baby_names"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
@@ -171,6 +173,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/baby_kicks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"

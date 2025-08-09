@@ -93,4 +93,10 @@
     <string name="year">السنة</string>
     <string name="day">اليوم</string>
     <string name="month">الشهر</string>
+    <string name="for_you_mom">لأجلك يا ماما</string>
+    <string name="what_to_name_your_baby">ماذا تسمي طفلك ؟؟</string>
+    <string name="evening_slots">فترات مسائيه</string>
+    <string name="morning_slots">فترات صباحية</string>
+    <string name="girls">بنات</string>
+    <string name="boys">اولاد</string>
 </resources>
