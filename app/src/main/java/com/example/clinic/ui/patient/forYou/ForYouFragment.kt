@@ -24,11 +24,32 @@ class ForYouFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arrowBackClick()
+        hospitalBagClick()
+        babyNamesClick()
+        babyKicksClick()
     }
 
     private fun arrowBackClick(){
         binding.arrowBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+    }
+
+    private fun hospitalBagClick(){
+        binding.hospitalBag.setOnClickListener {
+            findNavController().navigate(ForYouFragmentDirections.actionForYouFragmentToHospitalBagFragment())
+        }
+    }
+
+    private fun babyNamesClick(){
+        binding.babyNames.setOnClickListener {
+            findNavController().navigate(ForYouFragmentDirections.actionForYouFragmentToBabyNamesFragment())
+        }
+    }
+
+    private fun babyKicksClick(){
+        binding.babyKicks.setOnClickListener {
+            findNavController().navigate(ForYouFragmentDirections.actionForYouFragmentToBabyKicksFragment())
         }
     }
 }

@@ -25,20 +25,13 @@ class OnBoardingOne: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentBOnboarding1Binding.bind(view)
-        onSkipClick()
         onContinueClick()
     }
 
-    private fun onSkipClick(){
-        binding.skip.setOnClickListener {
-            requireContext().getSharedPreferences("onboarding", Context.MODE_PRIVATE).edit() {putBoolean("shown", true)}
-            findNavController().navigate(R.id.roleSelectionFragment)
-        }
-    }
     private fun onContinueClick(){
         binding.getStarted.setOnClickListener {
             requireContext().getSharedPreferences("onboarding", Context.MODE_PRIVATE).edit() {putBoolean("shown", true)}
-            findNavController().navigate(R.id.onBoardingTwo)
+            findNavController().navigate(R.id.roleSelectionFragment)
         }
     }
 }
