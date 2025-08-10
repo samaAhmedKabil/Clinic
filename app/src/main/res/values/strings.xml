@@ -15,7 +15,7 @@
     <string name="cancel">الغاء</string>
     <string name="confirm">تأكيد</string>
     <string name="selected_date">التاريخ المختار: ---</string>
-    <string name="pick_a_date">اختر ميعاد</string>
+    <string name="pick_a_date">اختر لالغاء ميعاد</string>
     <string name="your_appointments">مواعيدك المحجوزه</string>
     <string name="welcome_back">مرحباا !!</string>
     <string name="to_continue_login_now">سجل دخولك الان !!</string>
@@ -39,7 +39,7 @@
     <string name="address">العنوان:</string>
     <string name="are_you_sure_you_want_to_logout">تأكيد تسجيل الخروج ؟</string>
     <string name="ok">نعم</string>
-    <string name="all_bookings">كل الحجوات</string>
+    <string name="all_bookings">كل الحجوزات</string>
     <string name="select_a_date_to_show_the_available_slots">اختر تاريخ لعرض المواعيد المتاحة</string>
     <string name="bookings_of_today">حجوزات اليوم</string>
     <string name="all_cases">كل الحالات</string>

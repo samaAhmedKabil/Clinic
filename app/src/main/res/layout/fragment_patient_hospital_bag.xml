@@ -82,8 +82,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="10dp"
-                android:src="@drawable/pregnant3"
-                />
+                android:src="@drawable/pregnant3" />
 
             <TextView
                 android:layout_width="wrap_content"

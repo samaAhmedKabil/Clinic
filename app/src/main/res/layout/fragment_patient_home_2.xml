@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/welcome_top"
-        android:layout_marginHorizontal="10dp"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
@@ -42,8 +41,8 @@
         android:textSize="20sp"
         android:textColor="#878787"
         android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="@id/welcome"
-        android:layout_marginStart="12dp"
+        app:layout_constraintEnd_toEndOf="@id/welcome"
+        android:layout_marginEnd="12dp"
         app:layout_constraintTop_toBottomOf="@id/menu"
         android:layout_marginTop="35dp"/>
 
@@ -55,7 +54,7 @@
         android:textSize="20sp"
         android:textColor="#878787"
         android:textStyle="bold|italic"
-        app:layout_constraintStart_toEndOf="@id/hi"
+        app:layout_constraintEnd_toStartOf="@id/hi"
         app:layout_constraintTop_toBottomOf="@id/menu"
         android:layout_marginTop="35dp"/>
 
@@ -64,27 +63,28 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/google_maps_logo"
-        app:layout_constraintEnd_toEndOf="@id/welcome"
+        app:layout_constraintStart_toEndOf="@id/WhatsApp"
         app:layout_constraintTop_toTopOf="@id/type"
         app:layout_constraintBottom_toBottomOf="@id/type"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginStart="20dp"/>
 
     <TextView
         android:id="@+id/WhatsApp"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/whatsapp_logo"
-        app:layout_constraintEnd_toStartOf="@id/location"
-        app:layout_constraintTop_toTopOf="@id/location"
-        app:layout_constraintBottom_toBottomOf="@id/location"
-        android:layout_marginEnd="10dp" />
+        app:layout_constraintStart_toEndOf="@id/price"
+        app:layout_constraintTop_toTopOf="@id/price"
+        app:layout_constraintBottom_toBottomOf="@id/price"
+        android:layout_marginStart="10dp" />
 
     <TextView
+        android:id="@+id/price"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/money"
-        app:layout_constraintEnd_toStartOf="@id/WhatsApp"
-        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toStartOf="@id/welcome"
+        android:layout_marginStart="10dp"
         app:layout_constraintTop_toTopOf="@id/location"
         android:backgroundTint="@color/purple"
         app:layout_constraintBottom_toBottomOf="@id/location"/>

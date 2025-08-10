@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tool="http://schemas.android.com/tools"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="10dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_marginHorizontal="10dp"
+    app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -45,8 +46,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tool:text="The Doctor is perfect"
-            android:padding="12dp"
-            android:textColor="@color/default_blue"
+            android:padding="8dp"
+            android:textColor="@color/grey"
             android:fontFamily="@font/poppins_light" />
 
         <TextView
