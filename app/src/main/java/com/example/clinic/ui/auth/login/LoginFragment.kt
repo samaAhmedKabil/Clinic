@@ -45,6 +45,7 @@ class LoginFragment : Fragment() {
         registerClick()
         rememberClick()
         checkRememberedState()
+        forgetPasswordClick()
     }
 
     private fun loginClick() {
@@ -58,6 +59,14 @@ class LoginFragment : Fragment() {
         binding.register.setOnClickListener {
             findNavController().navigate(
                 LoginFragmentDirections.actionLoginFragmentToRegisterFragment(ConstData.userType)
+            )
+        }
+    }
+
+    private fun forgetPasswordClick() {
+        binding.forgetPassword.setOnClickListener {
+            findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment()
             )
         }
     }

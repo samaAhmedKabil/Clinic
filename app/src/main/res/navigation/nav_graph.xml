@@ -54,6 +54,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_loginFragment_to_forgetPasswordFragment"
+            app:destination="@id/forgetPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -116,6 +119,9 @@
         <action
             android:id="@+id/action_homeFragment_to_forYouFragment"
             app:destination="@id/forYouFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
     </fragment>
     <fragment
         android:id="@+id/slotSelectionFragment"
@@ -175,6 +181,9 @@
         <action
             android:id="@+id/action_doctorHomeFragment_to_dateSelectionFragment"
             app:destination="@id/dateSelectionFragment" />
+        <action
+            android:id="@+id/action_doctorHomeFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
     </fragment>
     <fragment
         android:id="@+id/allCasesFragment"
@@ -368,4 +377,12 @@
         android:id="@+id/babyKicksFragment"
         android:name="com.example.clinic.ui.patient.forYou.babyKicks.BabyKicksFragment"
         android:label="BabyKicksFragment" />
+    <fragment
+        android:id="@+id/servicesFragment"
+        android:name="com.example.clinic.ui.settings.prices.ServicesFragment"
+        android:label="ServicesFragment" />
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.example.clinic.ui.auth.forgetPassword.ForgetPasswordFragment"
+        android:label="ForgetPasswordFragment" />
 </navigation>

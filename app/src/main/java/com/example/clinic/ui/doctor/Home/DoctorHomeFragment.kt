@@ -12,6 +12,7 @@ import com.example.clinic.databinding.FragmentDoctorHome2Binding
 import com.example.clinic.ui.dialogs.ConfirmQuitDialog
 import com.example.clinic.ui.dialogs.OperationSelectionDialog
 import com.example.clinic.ui.dialogs.TellDisabledDialog
+import com.example.clinic.ui.patient.Home.HomeFragmentDirections
 
 class DoctorHomeFragment :Fragment() {
     private var _binding: FragmentDoctorHome2Binding? = null
@@ -45,6 +46,9 @@ class DoctorHomeFragment :Fragment() {
         binding.manageBookings.setOnClickListener {
             val bottomSheetFragment = OperationSelectionDialog()
             bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
+        }
+        binding.price.setOnClickListener {
+            findNavController().navigate(DoctorHomeFragmentDirections.actionDoctorHomeFragmentToServicesFragment())
         }
     }
 

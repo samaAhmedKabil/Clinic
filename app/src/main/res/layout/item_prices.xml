@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    app:cardElevation="10dp"
+    android:layout_marginHorizontal="10dp"
+    app:cardCornerRadius="10dp"
+    android:layout_marginBottom="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        android:layout_marginBottom="12dp"
+        android:outlineProvider="background">
+
+        <TextView
+            android:id="@+id/serviceName1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tool:text="كشف"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@id/seperator"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/servicePrice1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/buttonEdit1"
+            app:layout_constraintBottom_toBottomOf="@id/buttonEdit1"
+            android:textColor="@color/default_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/buttonEdit1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/pencil"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/seperator"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:background="@drawable/cursor"
+            app:layout_constraintEnd_toStartOf="@id/buttonEdit1"
+            app:layout_constraintTop_toTopOf="@id/buttonEdit1"
+            app:layout_constraintBottom_toBottomOf="@id/buttonEdit1"
+            android:layout_marginEnd="8dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

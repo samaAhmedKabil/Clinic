@@ -51,6 +51,9 @@ class HomeFragment:Fragment() {
         binding.forYou.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToForYouFragment())
         }
+        binding.price.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToServicesFragment())
+        }
     }
 
     private fun addressClick() {
