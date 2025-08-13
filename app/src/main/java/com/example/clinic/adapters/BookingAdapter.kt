@@ -36,7 +36,7 @@ class BookingAdapter(private val bookings: MutableList<Booking>, private val onD
 
         fun bind(booking: Booking, onDelete: (String) -> Unit) {
             tvDate.text = "Date: ${booking.date}"
-            tvSlot.text = "Slot: ${booking.timeSlot}"
+            tvSlot.text = " ${booking.timeSlot}"
 
             if (booking.isDeletable) {
                 btnDelete.visibility = View.VISIBLE

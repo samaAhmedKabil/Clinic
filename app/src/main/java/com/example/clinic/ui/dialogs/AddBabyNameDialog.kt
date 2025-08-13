@@ -33,7 +33,7 @@ class AddBabyNameDialog(
                 else -> ""
             }
             if (name.isEmpty() || gender.isEmpty()) {
-                Toast.makeText(requireContext(), "Please enter all fields", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "من فضلك ادخل كل البيانات المطلوبة", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }

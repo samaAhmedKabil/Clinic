@@ -82,7 +82,7 @@ class ManageAvailableDatesFragment: Fragment() {
 
         viewModel.addStatus.observe(viewLifecycleOwner) { success ->
             success?.let {
-                if (it) Toast.makeText(requireContext(), "Date added!", Toast.LENGTH_SHORT).show()
+                if (it) Toast.makeText(requireContext(), "تم الغاء الحجوزات في هذا التاريخ", Toast.LENGTH_SHORT).show()
                 else Toast.makeText(requireContext(), "Invalid input or failed to add", Toast.LENGTH_SHORT).show()
                 viewModel.clearStatus()
             }

@@ -55,11 +55,11 @@ class AllBookingsFragment : Fragment() {
         bookingAdapter = DoctorBookingAdapter(mutableListOf()) { booking, newState ->
             viewModel.updateBookingFinalState(booking.bookingId, newState) { success ->
                 if (success) {
-                    android.widget.Toast.makeText(requireContext(), "Updated successfully", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(requireContext(), "تم التعديل بنجاح", android.widget.Toast.LENGTH_SHORT).show()
                     // refresh list (better to update the specific item in the list instead of reload)
                     viewModel.fetchBookingsByDate(booking.date)
                 } else {
-                    android.widget.Toast.makeText(requireContext(), "Failed to update", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(requireContext(), "فشلت عملية التعديل", android.widget.Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -93,9 +93,11 @@ class AllBookingsFragment : Fragment() {
     }
 
     private fun setupObservers() {
-       binding.inProgress.visibility = View.VISIBLE
+        binding.inProgress.visibility = View.VISIBLE
         viewModel.bookingsList.observe(viewLifecycleOwner) { bookings ->
-            bookingAdapter.updateBookings(bookings)
+            // Sort by slot before displaying
+            val sortedBookings = bookings.sortedBy { it.slot }
+            bookingAdapter.updateBookings(sortedBookings)
             binding.inProgress.visibility = View.GONE
         }
         viewModel.errorMessage.observe(viewLifecycleOwner) { error ->

@@ -248,6 +248,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_settingsFragment_to_doctorServices"
+            app:destination="@id/doctorServices" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
@@ -385,4 +388,8 @@
         android:id="@+id/forgetPasswordFragment"
         android:name="com.example.clinic.ui.auth.forgetPassword.ForgetPasswordFragment"
         android:label="ForgetPasswordFragment" />
+    <fragment
+        android:id="@+id/doctorServices"
+        android:name="com.example.clinic.ui.settings.doctorServices.DoctorServices"
+        android:label="DoctorServices" />
 </navigation>

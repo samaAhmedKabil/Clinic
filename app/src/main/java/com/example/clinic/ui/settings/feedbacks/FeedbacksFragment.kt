@@ -59,11 +59,11 @@ class FeedbacksFragment: Fragment() {
             adapter = FeedbackAdapter(list, isDoctor) { feedback ->
                 viewModel.deleteFeedback(itemId, feedback.id) { success ->
                     if (!success){
-                        Toast.makeText(requireContext(), "Failed to delete", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "فشل الحذف", Toast.LENGTH_SHORT).show()
                         binding.inProgress.visibility = View.GONE
                     }
                     else{
-                        Toast.makeText(requireContext(), "Deleted Successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "تم الحذف بنجاح", Toast.LENGTH_SHORT).show()
                         binding.inProgress.visibility = View.GONE
                     }
                 }
@@ -79,11 +79,11 @@ class FeedbacksFragment: Fragment() {
             val role = snapshot.child("role").value?.toString() ?: ""
             isDoctor = role == ConstData.DOCTOR_TYPE
 
-            if (role != ConstData.PATIENT_TYPE) {
-                binding.addNewFeedback.visibility = View.GONE
+            if (role == ConstData.DOCTOR_TYPE) {
+                binding.addNewFeedback.visibility = View.VISIBLE
             }
         }.addOnFailureListener {
-            Toast.makeText(requireContext(), "Failed to load user info", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "فشل تحميل معلومات المستخدم", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -91,6 +91,11 @@ class FeedbacksFragment: Fragment() {
         binding.arrowBack.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

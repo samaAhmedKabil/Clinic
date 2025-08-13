@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.clinic.data.DisabledDate
 import com.example.clinic.databinding.FragmentPatientDateSelectionBinding
+import com.example.clinic.repos.BookingRepo
 import com.example.clinic.repos.DisabledDatesRepo
 import com.example.clinic.ui.dialogs.TellDisabledDialog
 import com.example.clinic.ui.doctor.manageBookings.DisabledDatesViewModel
@@ -60,6 +62,7 @@ class DateSelectionFragment: Fragment() {
         lastValidSelectedDate = selectedDate.clone() as Calendar
 
         updateSelectedDateText(selectedDate)
+
     }
 
     private fun backArrowClick() {

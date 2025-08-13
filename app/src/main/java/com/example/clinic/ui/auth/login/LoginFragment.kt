@@ -139,7 +139,7 @@ class LoginFragment : Fragment() {
         } else {
             authViewModel.login(email, password) { success ->
                 if (success) {
-                    Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "تم تسجيل الدخول بنجاح", Toast.LENGTH_SHORT).show()
 
                     val userId = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -162,11 +162,11 @@ class LoginFragment : Fragment() {
                                 )
                             }
                         }.addOnFailureListener {
-                            Toast.makeText(context, "Failed to fetch user info", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "فشل في تحميا بيانات المستخدم", Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
-                    Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "فشل تسجيل الدخول", Toast.LENGTH_SHORT).show()
                 }
             }
         }

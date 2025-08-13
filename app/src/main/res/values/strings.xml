@@ -54,8 +54,8 @@
     <string name="clinic_is_not_working_on">عيادة الدكتور ايهاب قابيل لا تعمل في هذا اليوم !!</string>
     <string name="manage_available_slots">تعديل المواعيد المتاحة</string>
     <string name="for_you">لكي **</string>
-    <string name="feedbacks">التقييمات</string>
-    <string name="all_feedbacks">كل التقييمات</string>
+    <string name="feedbacks">أراء المرضي</string>
+    <string name="all_feedbacks">كل اراء المرضي</string>
     <string name="post">نشر</string>
     <string name="enter_the_answer">... ادخل الاجابة</string>
     <string name="answer">الاجابه</string>
@@ -64,14 +64,14 @@
     <string name="all_questions">كل الاسئلة الشائعه</string>
     <string name="write_your_feedback_here">اكتب تعليقك هنا</string>
     <string name="rating">تقييم</string>
-    <string name="give_your_visit_a_rate">اكتب تقييمك لعيادة الدكتور ايهاب قابيل</string>
+    <string name="give_your_visit_a_rate">تقييمك يساعدنا غلي تحسين الخدمة</string>
     <string name="stars_intro">كم نجمة تعطي لزياراتك للعيادة ؟</string>
     <string name="about_the_doctor">عن الدكتور</string>
     <string name="your_bookings">مواعيدك</string>
     <string name="hi">‘اهلا</string>
     <string name="about_the_clinic">عن العيادة</string>
     <string name="book_an_appointment_now">احجز موعد الان !</string>
-    <string name="onboarding_intro">استشاري ورئيس قسم التوليد وأمراض النساء والعقم بمستشفيات القوات المسلحة</string>
+    <string name="onboarding_intro">استشاري ورئيس قسم التوليد وأمراض النساء والعقم بمستشفيات القوات المسلحة خبرة اكثر من 25 عاما في مجال النساء و التوليدو تأخر الانجاب</string>
     <string name="delivery_essensials">شنطة المستشفي</string>
     <string name="baby_names">اقتراحات اسماء لطفلك</string>
     <string name="baby_kicks">ركلات الطفل</string>
@@ -80,7 +80,7 @@
     <string name="your_essencials">مستلزماتك</string>
     <string name="baby_essencials">مستلزمات طفلك</string>
     <string name="booking_confirmed_dialog_message">تم تأكيد حجزك في الساعة %s! ✅</string>
-    <string name="booking_dialog_additional_info">يُفضل التواجد في العيادة قبل الموعد بـ 30 دقيقة على الأقل. في حال فوات دورك، سيتم تأجيلك إلى نهاية المواعيد. ⚠️</string>
+    <string name="booking_dialog_additional_info"> يجب التواجد في العيادة قبل الميعاد بـ 30 دقيقة على الأقل. والا سيتم الغاء الحجز او التأجيل الي اخر العيادة و يرجي العلم بأن ممنوع دخول الاطفال غرفة الكشف. ⚠️</string>
     <string name="close_date">الغاء تاريخ</string>
     <string name="close_slot">الغاء موعد</string>
     <string name="what_is_the_edit">ما هو التعديل ؟</string>

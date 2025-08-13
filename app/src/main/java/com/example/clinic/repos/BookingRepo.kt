@@ -6,6 +6,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class BookingRepo {
     private val auth = FirebaseAuth.getInstance() // Firebase Authentication instance
@@ -75,6 +77,40 @@ class BookingRepo {
 
             override fun onCancelled(error: DatabaseError) {
                 onResult(false) // Treat as not booked on error
+            }
+        })
+    }
+
+    fun hasUpcomingBooking(userId: String, onResult: (Boolean) -> Unit) {
+        val database = FirebaseDatabase.getInstance().getReference("bookings")
+
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val now = System.currentTimeMillis()
+                val sdf = SimpleDateFormat("yyyy-MM-dd hh:mm a", Locale.getDefault())
+
+                for (bookingSnapshot in snapshot.children) {
+                    val bookingUserId = bookingSnapshot.child("patientId").getValue(String::class.java)
+                    val date = bookingSnapshot.child("date").getValue(String::class.java)
+                    val slot = bookingSnapshot.child("timeSlot").getValue(String::class.java)
+
+                    if (bookingUserId == userId && date != null && slot != null) {
+                        try {
+                            val bookingTime = sdf.parse("$date $slot")?.time ?: continue
+                            if (bookingTime > now) {
+                                onResult(true) // has upcoming booking
+                                return
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                }
+                onResult(false)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                onResult(false)
             }
         })
     }

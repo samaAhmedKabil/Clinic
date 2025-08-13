@@ -1,5 +1,7 @@
 package com.example.clinic.ui.settings.about
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +27,7 @@ class AboutDoctor: Fragment() {
         _binding = FragmentBAboutDoctorBinding.bind(view)
         backArrowClick()
         bookClick()
+        navigateClick()
     }
 
     private fun backArrowClick() {
@@ -37,5 +40,33 @@ class AboutDoctor: Fragment() {
         binding.book.setOnClickListener {
             findNavController().navigate(R.id.action_aboutDoctor_to_dateSelectionFragment)
         }
+    }
+
+    private fun navigateClick(){
+        // For Clinido link
+        binding.clindo.setOnClickListener {
+            val clinidoUrl = "https://clinido.com/ar/drprofile/66083/5496"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(clinidoUrl))
+            startActivity(intent)
+        }
+
+        binding.clindoLogo.setOnClickListener {
+            val clinidoUrl = "https://clinido.com/ar/drprofile/66083/5496"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(clinidoUrl))
+            startActivity(intent)
+        }
+
+        binding.veseeta.setOnClickListener {
+            val vezeetaUrl = "https://app.vezeeta.com/kgiF1tVmBu7EJivX9"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(vezeetaUrl))
+            startActivity(intent)
+        }
+
+        binding.veseetaLogo.setOnClickListener {
+            val vezeetaUrl = "https://app.vezeeta.com/kgiF1tVmBu7EJivX9"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(vezeetaUrl))
+            startActivity(intent)
+        }
+
     }
 }

@@ -55,17 +55,18 @@ class BookedAppointmentsFragment: Fragment() {
     }
 
     private fun fetchBookings() {
+        val currentUserId = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid ?: return
+
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 bookingsList.clear()
                 val today = System.currentTimeMillis()
-                for (bookingSnapshot in snapshot.children) {
-                    val id = bookingSnapshot.key ?: ""
-                    val booking = bookingSnapshot.getValue(Booking::class.java)?.copy(id = id)
+                val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
 
-                    if (booking != null) {
-                        // Compare booking.date (as "yyyy-MM-dd") with today
-                        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+                for (bookingSnapshot in snapshot.children) {
+                    val booking = bookingSnapshot.getValue(Booking::class.java)?.copy(id = bookingSnapshot.key ?: "")
+
+                    if (booking != null && booking.patientId == currentUserId) {
                         val bookingTime = try {
                             sdf.parse(booking.date)?.time ?: 0L
                         } catch (e: Exception) {
@@ -76,6 +77,7 @@ class BookedAppointmentsFragment: Fragment() {
                         bookingsList.add(booking)
                     }
                 }
+
                 bookingAdapter.notifyDataSetChanged()
                 binding.inProgress.visibility = View.GONE
             }
@@ -86,6 +88,7 @@ class BookedAppointmentsFragment: Fragment() {
             }
         })
     }
+
 
 
     private fun deleteBooking(bookingId: String) {

@@ -92,7 +92,7 @@ class RegisterFragment: Fragment() {
             sharedPrefManager.saveUserName(fullName)
             authViewModel.register(email, password, userType, fName, lName, phone) { success ->
                 if (success) {
-                    Toast.makeText(context, "Register Successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "تم انشاء الحساب بنجاح", Toast.LENGTH_SHORT).show()
                     if(userType == ConstData.DOCTOR_TYPE){
                         findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToDoctorHomeFragment(fullName))
                     }
@@ -100,7 +100,7 @@ class RegisterFragment: Fragment() {
                         findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(fullName))
                     }
                 } else {
-                    Toast.makeText(context, "Register Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "فشلت عملية انشاء حساب جديد", Toast.LENGTH_SHORT).show()
                 }
             }
         }

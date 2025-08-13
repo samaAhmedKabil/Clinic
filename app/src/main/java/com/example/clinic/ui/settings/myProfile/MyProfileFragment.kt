@@ -63,7 +63,8 @@ class MyProfileFragment: Fragment() {
         viewModel.updateSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 binding.inProgress.visibility = View.GONE
-                Toast.makeText(requireContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "" +
+                        "تم تعديل الملف الشخصي بنجاح", Toast.LENGTH_SHORT).show()
             } else {
                 binding.inProgress.visibility = View.GONE
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
@@ -76,7 +77,7 @@ class MyProfileFragment: Fragment() {
             if (editText.isEnabled) { // Currently editable -> try to save
                 val newValue = editText.text.toString().trim()
                 if (newValue.isEmpty()) {
-                    Toast.makeText(requireContext(), "Field cannot be empty.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "يجب ادخال التعديل", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
                 saveAction(newValue) // Call the specific save function
@@ -110,13 +111,13 @@ class MyProfileFragment: Fragment() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val currentProfile = viewModel.userProfile.value
         if (currentProfile == null) {
-            Toast.makeText(requireContext(), "User profile data not loaded.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "لم يتم تحميل ملفك الشخصي", Toast.LENGTH_SHORT).show()
             return
         }
 
         // Basic phone number validation (add more robust regex if needed)
         if (newPhone.length < 8 || newPhone.any { !it.isDigit() }) {
-            Toast.makeText(requireContext(), "Please enter a valid phone number.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "من فضلك ادخل رقم التيليفون من 11 رقم", Toast.LENGTH_SHORT).show()
             return
         }
 

@@ -39,20 +39,20 @@ class ForgetPasswordFragment: Fragment() {
             val email = binding.editEmail.text.toString().trim()
 
             if (email.isEmpty()) {
-                Toast.makeText(requireContext(), "Please enter your email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "من فضلك ادخل البريد الالكتروني", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             // Simple format check before sending to Firebase
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(requireContext(), "Invalid email format", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "البريد الالكتروني غير صحيح", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(requireContext(), "Password reset email sent", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "تم ارسال بريد الاكتروني لاعادة تعيين كلمة مرور", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(requireContext(), task.exception?.message ?: "Error sending reset email", Toast.LENGTH_SHORT).show()
                     }

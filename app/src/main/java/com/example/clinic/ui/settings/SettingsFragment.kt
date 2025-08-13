@@ -29,6 +29,7 @@ class SettingsFragment: Fragment() {
         aboutDoctorClick()
         aboutClinicClick()
         feedbacksClick()
+        doctorServicesClick()
     }
     private fun backArrowClick(){
         binding.arrowBack.setOnClickListener {
@@ -75,6 +76,15 @@ class SettingsFragment: Fragment() {
         }
         binding.feedbacksArrow.setOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToFeedbacksFragment())
+        }
+    }
+
+    private fun doctorServicesClick(){
+        binding.ourServices.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToDoctorServices())
+        }
+        binding.servicesArrow.setOnClickListener {
+            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToDoctorServices())
         }
     }
 

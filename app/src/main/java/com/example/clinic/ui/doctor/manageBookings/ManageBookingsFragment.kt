@@ -140,7 +140,7 @@ class ManageBookingsFragment:Fragment() {
         binding.note.setOnClickListener{
             AddNoteDialog { note ->
                 viewModel.setBookingNote(note)
-                Toast.makeText(requireContext(), "Note added to booking", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "تم اضافة ملحوظات علي الحجز", Toast.LENGTH_SHORT).show()
             }.show(parentFragmentManager, "AddNoteDialog")
         }
     }
@@ -175,7 +175,7 @@ class ManageBookingsFragment:Fragment() {
             error?.let {
                 if (it == "You already have a booking on this date.") {
                     binding.btnConfirm.isEnabled = false
-                    Toast.makeText(requireContext(), "You already have a booking on this date. ⚠️", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "لا يمكنك حجز اكثر من ميعاد في نفس التاريخ. ⚠️", Toast.LENGTH_SHORT).show()
                     binding.inProgress.visibility = View.GONE
                 } else {
                     binding.btnConfirm.isEnabled = true

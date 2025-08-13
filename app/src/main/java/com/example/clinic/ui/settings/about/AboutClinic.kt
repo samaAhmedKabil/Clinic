@@ -38,6 +38,7 @@ class AboutClinic : Fragment(), OnMapReadyCallback {
         instagramClick()
         whatsAppClick()
         addressClick()
+        youtubeClick()
         tikTokClick()
         initMap()
     }
@@ -146,6 +147,31 @@ class AboutClinic : Fragment(), OnMapReadyCallback {
         }
     }
 
+    private fun youtubeClick() {
+        binding.youtube.setOnClickListener {  // Change Instagram to your YouTube button's ID
+            openYouTubeChannel()
+        }
+    }
+
+    private fun openYouTubeChannel() {
+        val channelIdOrUsername = "@dr.ehabkabil7006" // YouTube handle or channel username, with '@' as in your link
+        val youtubeAppIntentUri = Uri.parse("https://www.youtube.com/$channelIdOrUsername")
+        val webUri = Uri.parse("https://www.youtube.com/$channelIdOrUsername")
+
+        try {
+            // Try to open using official YouTube app by package name
+            val intent = Intent(Intent.ACTION_VIEW, youtubeAppIntentUri)
+            intent.setPackage("com.google.android.youtube")
+            startActivity(intent)
+        } catch (e: Exception) {
+            // Fallback: Open in a browser if YouTube app is not installed
+            val webIntent = Intent(Intent.ACTION_VIEW, webUri)
+            startActivity(webIntent)
+        }
+    }
+
+
+
     private fun whatsAppClick(){
         binding.WhatsApp.setOnClickListener {
             openWhatsAppChat()
@@ -153,7 +179,7 @@ class AboutClinic : Fragment(), OnMapReadyCallback {
     }
 
     private fun openWhatsAppChat() {
-        val phoneNumber = "+201102977959" // International format, no spaces or dashes
+        val phoneNumber = "+201030903115" // International format, no spaces or dashes
         val url = "https://wa.me/${phoneNumber.replace("+", "")}"
 
         try {

@@ -44,12 +44,11 @@ class BookingViewModel(private val repo: BookingRepo):ViewModel() {
             return
         }
 
-        repo.isUserAlreadyBooked(date, userId) { alreadyBooked ->
-            if (alreadyBooked) {
-                _bookingError.postValue("You already have a booking on this date.")
+        repo.hasUpcomingBooking(userId) { hasUpcoming ->
+            if (hasUpcoming) {
+                _bookingError.postValue("You already have a booking that hasn't passed yet.")
             } else {
                 val booking = Booking(id = "", patientId = userId, date = date, timeSlot = slot, finalState = "")
-
                 repo.bookAppointment(booking) { success ->
                     if (success) {
                         _bookingStatus.postValue(true)
@@ -60,6 +59,7 @@ class BookingViewModel(private val repo: BookingRepo):ViewModel() {
             }
         }
     }
+
 
     fun clearStatus() {
         _bookingStatus.value = null

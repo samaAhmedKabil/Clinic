@@ -133,6 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="207867803474"
+                android:textIsSelectable="true"
                 android:textSize="18sp"
                 android:background="@drawable/text_box"
                 android:clickable="false"

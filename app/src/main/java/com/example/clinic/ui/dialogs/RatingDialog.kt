@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.example.clinic.R
 import com.example.clinic.data.Feedback
 import com.example.clinic.databinding.DialogRatingBinding
 import com.example.clinic.repos.FeedbackRepo
@@ -46,6 +45,10 @@ class RatingDialog(): BottomSheetDialogFragment() {
         getUserInfoAndRole()
 
         binding.ok.setOnClickListener {
+            if (selectedStars == 0) {
+                Toast.makeText(requireContext(), "يجب اختيار نجمة واحدة علي الاقل", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val text = binding.editFeedback.text.toString()
             if (text.isNotBlank()) {
                 val feedback = Feedback("", userId, userName, text, selectedStars)
@@ -78,7 +81,7 @@ class RatingDialog(): BottomSheetDialogFragment() {
 
             userName = "$fname $lname"
         }.addOnFailureListener {
-            Toast.makeText(requireContext(), "Failed to load user info", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "فشل تحميل معلومات المستخدم", Toast.LENGTH_SHORT).show()
         }
     }
 }
