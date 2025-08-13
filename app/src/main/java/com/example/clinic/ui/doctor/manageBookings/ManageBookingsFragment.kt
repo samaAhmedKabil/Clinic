@@ -34,15 +34,19 @@ class ManageBookingsFragment:Fragment() {
     private val args: SlotSelectionFragmentArgs by navArgs()
 
     private val morningSlotsData = listOf(
-        "11:00 AM", "11:10 AM", "11:20 AM", "11:30 AM", "11:40 AM", "11:50 AM",
-        "12:00 PM", "12:10 PM", "12:20 PM", "12:30 PM", "12:40 PM", "12:50 PM"
+        "11:00 AM", "11:06 AM", "11:12 AM", "11:18 AM", "11:24 AM", "11:30 AM",
+        "11:36 AM", "11:42 AM", "11:48 AM", "11:54 AM", "12:00 PM", "12:06 PM"
     )
 
     private val eveningSlotsData = listOf(
-        "6:00 PM", "6:10 PM", "6:20 PM", "6:30 PM", "6:40 PM", "6:50 PM",
-        "7:00 PM", "7:10 PM", "7:20 PM", "7:30 PM", "7:40 PM", "7:50 PM",
-        "8:00 PM", "8:10 PM", "8:20 PM", "8:30 PM", "8:40 PM", "8:50 PM",
-        "9:00 PM", "9:10 PM", "9:20 PM", "9:30 PM", "9:40 PM", "9:50 PM"
+        "6:00 PM", "6:06 PM", "6:12 PM", "6:18 PM", "6:24 PM", "6:30 PM",
+        "6:36 PM", "6:42 PM", "6:48 PM", "6:54 PM",
+        "7:00 PM", "7:06 PM", "7:12 PM", "7:18 PM", "7:24 PM", "7:30 PM",
+        "7:36 PM", "7:42 PM", "7:48 PM", "7:54 PM",
+        "8:00 PM", "8:06 PM", "8:12 PM", "8:18 PM", "8:24 PM", "8:30 PM",
+        "8:36 PM", "8:42 PM", "8:48 PM", "8:54 PM",
+        "9:00 PM", "9:06 PM", "9:12 PM", "9:18 PM", "9:24 PM", "9:30 PM",
+        "9:36 PM", "9:42 PM", "9:48 PM", "9:54 PM"
     )
 
     private lateinit var receivedSelectedDate: Calendar
