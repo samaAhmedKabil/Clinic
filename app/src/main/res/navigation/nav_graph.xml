@@ -367,6 +367,9 @@
         <action
             android:id="@+id/action_forYouFragment_to_babyKicksFragment"
             app:destination="@id/babyKicksFragment" />
+        <action
+            android:id="@+id/action_forYouFragment_to_deliveryTimeFragment"
+            app:destination="@id/deliveryTimeFragment" />
     </fragment>
     <fragment
         android:id="@+id/hospitalBagFragment"
@@ -392,4 +395,8 @@
         android:id="@+id/doctorServices"
         android:name="com.example.clinic.ui.settings.doctorServices.DoctorServices"
         android:label="DoctorServices" />
+    <fragment
+        android:id="@+id/deliveryTimeFragment"
+        android:name="com.example.clinic.ui.patient.forYou.followingPregnancy.DeliveryTimeFragment"
+        android:label="DeliveryTimeFragment" />
 </navigation>

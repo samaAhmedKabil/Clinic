@@ -27,6 +27,7 @@ class ForYouFragment:Fragment() {
         hospitalBagClick()
         babyNamesClick()
         babyKicksClick()
+        deliveryClick()
     }
 
     private fun arrowBackClick(){
@@ -50,6 +51,12 @@ class ForYouFragment:Fragment() {
     private fun babyKicksClick(){
         binding.babyKicks.setOnClickListener {
             findNavController().navigate(ForYouFragmentDirections.actionForYouFragmentToBabyKicksFragment())
+        }
+    }
+
+    private fun deliveryClick(){
+        binding.followingPregnancy.setOnClickListener {
+            findNavController().navigate(ForYouFragmentDirections.actionForYouFragmentToDeliveryTimeFragment())
         }
     }
 }

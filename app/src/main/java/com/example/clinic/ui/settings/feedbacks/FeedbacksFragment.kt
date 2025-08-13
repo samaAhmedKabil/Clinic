@@ -40,10 +40,8 @@ class FeedbacksFragment: Fragment() {
         viewModel = ViewModelProvider(this, factory)[FeedbacksViewModel::class.java]
 
         userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-        viewModel.loadFeedbacks(itemId)
-
-        observeFeedbacks()
         getUserInfoAndRole()
+
         backArrowClick()
 
         binding.feedbacksRecycler.layoutManager = LinearLayoutManager(requireContext())
@@ -53,6 +51,7 @@ class FeedbacksFragment: Fragment() {
             bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
         }
     }
+
 
     private fun observeFeedbacks() {
         viewModel.feedbacks.observe(viewLifecycleOwner) { list ->
@@ -74,18 +73,22 @@ class FeedbacksFragment: Fragment() {
 
     private fun getUserInfoAndRole() {
         val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId)
-
         userRef.get().addOnSuccessListener { snapshot ->
             val role = snapshot.child("role").value?.toString() ?: ""
             isDoctor = role == ConstData.DOCTOR_TYPE
-
-            if (role == ConstData.DOCTOR_TYPE) {
+            if (!isDoctor) {
                 binding.addNewFeedback.visibility = View.VISIBLE
             }
+
+            // Now that we know the role, load feedbacks
+            viewModel.loadFeedbacks(itemId)
+            observeFeedbacks()
+
         }.addOnFailureListener {
             Toast.makeText(requireContext(), "فشل تحميل معلومات المستخدم", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun backArrowClick(){
         binding.arrowBack.setOnClickListener {
