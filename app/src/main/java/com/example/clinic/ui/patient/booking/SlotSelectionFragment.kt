@@ -32,7 +32,9 @@ class SlotSelectionFragment : Fragment() {
 
     private val morningSlotsData = listOf(
         "11:00 AM", "11:06 AM", "11:12 AM", "11:18 AM", "11:24 AM", "11:30 AM",
-        "11:36 AM", "11:42 AM", "11:48 AM", "11:54 AM", "12:00 PM", "12:06 PM"
+        "11:36 AM", "11:42 AM", "11:48 AM", "11:54 AM", "12:00 PM", "12:06 PM",
+        "12:12 PM", "12:18 PM", "12:24 PM", "12:30 PM", "12:36 PM", "12:42 PM",
+        "12:48 PM", "12:54 PM"
     )
 
     private val eveningSlotsData = listOf(

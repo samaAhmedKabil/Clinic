@@ -61,7 +61,7 @@ class RatingDialog(): BottomSheetDialogFragment() {
     }
 
     private fun setupStars() {
-        val stars = listOf(binding.star1, binding.star2, binding.star3, binding.star4, binding.star5)
+        val stars = listOf(binding.star5, binding.star4, binding.star3, binding.star2, binding.star1)
         stars.forEachIndexed { index, star ->
             star.setOnClickListener {
                 selectedStars = index + 1

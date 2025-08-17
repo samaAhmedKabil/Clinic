@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.03"
-        />
+        app:layout_constraintGuide_percent="0.03" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -86,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="عن خدماتنا"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold|italic"
                 android:textColor="@color/grey"
                 android:textSize="22sp"
@@ -96,7 +96,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• متابعة حمل"
+                android:text="• متابعة الحمل"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"
                 android:gravity="end"
@@ -108,7 +108,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• متابعة حمل حرج"
+                android:text="• متابعة الحمل الحرج"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"
                 android:gravity="end"
@@ -120,7 +120,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• الكشف بالموجات الصوتيه "
+                android:text="• الكشف بالموجات الصوتية "
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"
                 android:gravity="end"
@@ -156,7 +156,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• حالات المشيمة المتقدمة"
+                android:text="• حالات المشيمة المتقدمة و الملتصقة (مع الحفاظ على الرحم)"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"
                 android:gravity="end"

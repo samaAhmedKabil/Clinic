@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Clinic</string>
+    <string name="app_name">Dr. Ehab Kabil Clinic</string>
     <string name="loading">جاري التحميل ...</string>
     <string name="continue_as_doctor">اكمل كطبيب</string>
     <string name="continue_as_patient">اكمل كمريض</string>
@@ -42,7 +42,7 @@
     <string name="all_bookings">كل الحجوزات</string>
     <string name="select_a_date_to_show_the_available_slots">اختر تاريخ لعرض المواعيد المتاحة</string>
     <string name="bookings_of_today">حجوزات اليوم</string>
-    <string name="all_cases">كل الحالات</string>
+    <string name="all_cases">بيانات الحالات</string>
     <string name="book_now">احجز الان ؟</string>
     <string name="price">200 جنيهاا</string>
     <string name="hi_dr_ehab_kabil">مرحباا دكتور ايهاب</string>
@@ -71,7 +71,7 @@
     <string name="hi">‘اهلا</string>
     <string name="about_the_clinic">عن العيادة</string>
     <string name="book_an_appointment_now">احجز موعد الان !</string>
-    <string name="onboarding_intro">استشاري ورئيس قسم التوليد وأمراض النساء والعقم بمستشفيات القوات المسلحة خبرة اكثر من 25 عاما في مجال النساء و التوليدو تأخر الانجاب</string>
+    <string name="onboarding_intro">استشاري ورئيس قسم التوليد وأمراض النساء والعقم بمستشفيات القوات المسلحة خبرة اكثر من 25 عاما في مجال النساء و التوليد و تأخر الانجاب</string>
     <string name="delivery_essensials">شنطة المستشفي</string>
     <string name="baby_names">اقتراحات اسماء لطفلك</string>
     <string name="baby_kicks">ركلات الطفل</string>
@@ -81,8 +81,8 @@
     <string name="baby_essencials">مستلزمات طفلك</string>
     <string name="booking_confirmed_dialog_message">تم تأكيد حجزك في الساعة %s! ✅</string>
     <string name="booking_dialog_additional_info"> يجب التواجد في العيادة قبل الميعاد بـ 30 دقيقة على الأقل. والا سيتم الغاء الحجز او التأجيل الي اخر العيادة و يرجي العلم بأن ممنوع دخول الاطفال غرفة الكشف. ⚠️</string>
-    <string name="close_date">الغاء تاريخ</string>
-    <string name="close_slot">الغاء موعد</string>
+    <string name="close_date">اجازة</string>
+    <string name="close_slot">حجز لمريض</string>
     <string name="what_is_the_edit">ما هو التعديل ؟</string>
     <string name="do_edit_here">قم بالتعديل هنا !!</string>
     <string name="edit_ques">عدل السؤال</string>

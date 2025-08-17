@@ -35,4 +35,17 @@ class FeedbackRepo {
             .addOnCompleteListener { onComplete(it.isSuccessful) }
     }
 
+    fun hasUserFeedback(itemId: String, userId: String, onResult: (Boolean) -> Unit) {
+        dbRef.child(itemId).orderByChild("userId").equalTo(userId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    onResult(snapshot.exists()) // true if feedback exists
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    onResult(false)
+                }
+            })
+    }
+
+
 }

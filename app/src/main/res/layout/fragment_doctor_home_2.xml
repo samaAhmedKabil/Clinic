@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="@id/welcome"
         android:src="@drawable/menu_bar"
         android:background="#80C8BFE7"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"/>
 
     <ImageView

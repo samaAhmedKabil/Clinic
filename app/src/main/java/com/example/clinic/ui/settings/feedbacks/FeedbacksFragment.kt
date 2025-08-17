@@ -64,6 +64,11 @@ class FeedbacksFragment: Fragment() {
                     else{
                         Toast.makeText(requireContext(), "تم الحذف بنجاح", Toast.LENGTH_SHORT).show()
                         binding.inProgress.visibility = View.GONE
+                        if (!isDoctor) {
+                            viewModel.hasUserFeedback(itemId, userId) { hasFeedback ->
+                                binding.addNewFeedback.visibility = if (hasFeedback) View.GONE else View.VISIBLE
+                            }
+                        }
                     }
                 }
             }
@@ -76,8 +81,12 @@ class FeedbacksFragment: Fragment() {
         userRef.get().addOnSuccessListener { snapshot ->
             val role = snapshot.child("role").value?.toString() ?: ""
             isDoctor = role == ConstData.DOCTOR_TYPE
+
+            // If not a doctor, check if user already has feedback
             if (!isDoctor) {
-                binding.addNewFeedback.visibility = View.VISIBLE
+                viewModel.hasUserFeedback(itemId, userId) { hasFeedback ->
+                    binding.addNewFeedback.visibility = if (hasFeedback) View.GONE else View.VISIBLE
+                }
             }
 
             // Now that we know the role, load feedbacks

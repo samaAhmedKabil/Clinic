@@ -26,6 +26,10 @@ class FeedbacksViewModel(private val repo: FeedbackRepo) : ViewModel() {
         repo.deleteFeedback(itemId, feedbackId, onComplete)
     }
 
+    fun hasUserFeedback(itemId: String, userId: String, onResult: (Boolean) -> Unit) {
+        repo.hasUserFeedback(itemId, userId, onResult)
+    }
+
     // Factory for ViewModel with a constructor parameter (isDoctor)
     class FeedbackViewModelFactory(private val repo: FeedbackRepo) :
         ViewModelProvider.Factory {
